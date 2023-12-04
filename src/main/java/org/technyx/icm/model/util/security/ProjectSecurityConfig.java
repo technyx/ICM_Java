@@ -2,6 +2,7 @@ package org.technyx.icm.model.util.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,10 +21,12 @@ public class ProjectSecurityConfig {
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests
                         ((requests) -> requests
-                                        .requestMatchers("/app/v001/auth").authenticated()
-//                        .requestMatchers("/app/v001").permitAll()
+                                .requestMatchers("/app/v001/auth").authenticated()
+                                .requestMatchers(HttpMethod.POST,"/app/v001/extra-info").authenticated()
+                                .requestMatchers(HttpMethod.PUT,"/app/v001/extra-info").authenticated()
+                                .requestMatchers(HttpMethod.DELETE,"/app/v001/extra-info").authenticated()
+                                .requestMatchers(HttpMethod.GET, "/app/v001/extra-info").permitAll()
                         )
-                .formLogin(withDefaults())
                 .httpBasic(withDefaults())
                 .build();
     }

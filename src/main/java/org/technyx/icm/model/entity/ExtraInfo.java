@@ -32,5 +32,4 @@ public class ExtraInfo extends BaseObject {
 
     @Column(name = "c_phone")
     private String phone;
-
 }
