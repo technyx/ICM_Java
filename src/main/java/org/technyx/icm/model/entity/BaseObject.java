@@ -1,5 +1,6 @@
 package org.technyx.icm.model.entity;
 
+import com.google.gson.Gson;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,4 +25,9 @@ public class BaseObject {
 
     @Column(name = "c_register_date")
     private Timestamp registerDate;
+
+    @Override
+    public String toString() {
+        return new Gson().toJson(this);
+    }
 }
