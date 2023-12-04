@@ -24,8 +24,6 @@ public class ExtraInfoServiceImpl implements ExtraInfoService {
     @Autowired
     private ExtraInfoRepository repository;
 
-    @Autowired
-    private UserRepository userRepository;
 
     @Override
     public ExtraInfoDto save(ExtraInfoDto dto) {
