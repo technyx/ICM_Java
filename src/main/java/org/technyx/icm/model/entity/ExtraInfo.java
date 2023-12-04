@@ -18,9 +18,8 @@ import java.sql.Date;
 @Table(name = "tb_extra_info")
 public class ExtraInfo extends BaseObject {
 
-    @OneToOne
-    @JoinColumn(name = "user_c_id")
-    private User user;
+    @Column(name = "fk_user")
+    private long user;
 
     @Column(name = "c_firstname")
     private String firstname;

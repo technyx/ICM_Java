@@ -18,9 +18,8 @@ import org.technyx.icm.model.entity.enums.Country;
 @Table(name = "tb_address")
 public class Address extends BaseObject{
 
-    @OneToOne
-    @JoinColumn(name = "extra_info_c_id")
-    private ExtraInfo extraInfo;
+    @Column(name = "fk_extra_info")
+    private long extraInfo;
 
     @Column(name = "c_country")
     @Enumerated(EnumType.STRING)
