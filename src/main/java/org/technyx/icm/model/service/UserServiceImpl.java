@@ -28,8 +28,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository repository;
 
-    @Autowired
-    private ModelMapper mapper = ModelMapperConfig.getMapperInstance();
+    private final ModelMapper mapper = ModelMapperConfig.getMapperInstance();
 
     @Autowired
     @Lazy

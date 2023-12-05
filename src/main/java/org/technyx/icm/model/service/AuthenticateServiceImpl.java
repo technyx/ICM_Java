@@ -18,8 +18,7 @@ import java.time.LocalDateTime;
 @Transactional
 public class AuthenticateServiceImpl implements AuthenticateService {
 
-    @Autowired
-    private ModelMapper mapper = ModelMapperConfig.getMapperInstance();
+    private final ModelMapper mapper = ModelMapperConfig.getMapperInstance();
 
     @Autowired
     private UserRepository repository;

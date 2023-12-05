@@ -26,8 +26,7 @@ import java.util.List;
 @Transactional
 public class ExtraInfoServiceImpl implements ExtraInfoService {
 
-    @Autowired
-    private ModelMapper mapper = ModelMapperConfig.getMapperInstance();
+    private final ModelMapper mapper = ModelMapperConfig.getMapperInstance();
 
     @Autowired
     private ExtraInfoRepository repository;
