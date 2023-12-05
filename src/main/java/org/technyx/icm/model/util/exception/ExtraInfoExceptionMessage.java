@@ -4,6 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum ExtraInfoExceptionMessage {
+    EXTRA_INFO_NOT_FOUND("اطلاعات تکمیلی کاربر یافت نشد."),
     ;
 
     private String exceptionMessage;

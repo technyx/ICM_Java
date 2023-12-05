@@ -11,7 +11,9 @@ import java.sql.Timestamp;
 
 @Getter
 @Setter
-public class FullUserDto {
+public class UserWithExtraInfoDto {
+
+    private long id;
 
     private String username;
 

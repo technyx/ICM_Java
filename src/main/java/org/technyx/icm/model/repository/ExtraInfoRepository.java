@@ -9,7 +9,7 @@ import org.technyx.icm.model.entity.ExtraInfo;
 import java.util.List;
 
 @Repository
-public interface ExtraInfoRepository extends JpaRepository<ExtraInfo, Integer> {
+public interface ExtraInfoRepository extends JpaRepository<ExtraInfo, Long> {
 
     ExtraInfo findByUser(long id);
 
@@ -20,4 +20,6 @@ public interface ExtraInfoRepository extends JpaRepository<ExtraInfo, Integer> {
             , value = "select e.id from ExtraInfo e where e.user = ?1"
     )
     Long findIdByUserId(long userId);
+
+    boolean existsById(long id);
 }

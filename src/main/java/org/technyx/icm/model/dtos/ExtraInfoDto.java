@@ -9,6 +9,8 @@ import java.sql.Date;
 @Setter
 public class ExtraInfoDto {
 
+    private long id;
+
     private long user;
 
     private String firstname;

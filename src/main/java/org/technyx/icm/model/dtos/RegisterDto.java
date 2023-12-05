@@ -8,6 +8,8 @@ import org.technyx.icm.model.entity.enums.Role;
 @Setter
 public class RegisterDto {
 
+    private long id;
+
     private String username;
 
     private String password;

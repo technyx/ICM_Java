@@ -4,10 +4,12 @@ import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.technyx.icm.model.dtos.ExtraInfoDto;
-import org.technyx.icm.model.dtos.FullUserDto;
+import org.technyx.icm.model.dtos.UserWithExtraInfoDto;
 import org.technyx.icm.model.dtos.UserDto;
+import org.technyx.icm.model.dtos.UserWithFullDataDto;
 import org.technyx.icm.model.entity.ExtraInfo;
 import org.technyx.icm.model.entity.User;
 import org.technyx.icm.model.repository.UserRepository;
@@ -16,8 +18,6 @@ import org.technyx.icm.model.service.interfaces.UserService;
 import org.technyx.icm.model.util.ModelMapperConfig;
 import org.technyx.icm.model.util.security.ProjectSecurityConfig;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,16 +36,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto update(UserDto dto) {
-        Long oldModelId = repository.findIdByUsername(dto.getUsername());
-        User newModel = mapper.map(dto, User.class);
-        newModel.setId(oldModelId);
-        User savedUser = repository.save(newModel);
+        dto.setPassword(ProjectSecurityConfig.passwordEncoder().encode(dto.getPassword()));
+        User savedUser = repository.save(
+                mapper.map(dto, User.class)
+        );
         return mapper.map(savedUser, UserDto.class);
     }
 
     @Override
     public void delete(UserDto dto) {
-        repository.deleteByUsername(dto.getUsername());
+        repository.delete(mapper.map(dto, User.class));
     }
 
     @Override
@@ -58,18 +58,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean existsById(long id) {
-        return repository.existsUserById(id);
-    }
-
-    @Override
-    public FullUserDto saveWithExtraInfo(FullUserDto dto) {
+    public UserWithExtraInfoDto saveWithExtraInfo(UserWithExtraInfoDto dto) {
         dto.setPassword(ProjectSecurityConfig.passwordEncoder().encode(dto.getPassword()));
         User savedUser = repository.save(mapper.map(dto, User.class));
         dto.setUser(savedUser.getId());
         ExtraInfoDto savedExtraInfo = extraInfoService.save(mapper.map(dto, ExtraInfoDto.class));
-        FullUserDto newFullUserDto = new FullUserDto();
-        newFullUserDto.map2Model(savedUser, mapper.map(savedExtraInfo, ExtraInfo.class));
-        return newFullUserDto;
+        UserWithExtraInfoDto newUserWithExtraInfoDto = new UserWithExtraInfoDto();
+        newUserWithExtraInfoDto.map2Model(savedUser, mapper.map(savedExtraInfo, ExtraInfo.class));
+        return newUserWithExtraInfoDto;
+    }
+
+    @Override
+    public UserWithFullDataDto saveWithFullData(UserWithFullDataDto dto) {
+        return null;
     }
 }

@@ -9,6 +9,8 @@ import org.technyx.icm.model.entity.enums.Country;
 @Setter
 public class AddressDto {
 
+    private long id;
+
     private long extraInfo;
 
     private Country country;

@@ -9,7 +9,7 @@ import org.technyx.icm.model.entity.User;
 import java.util.List;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByUsername(String username);
 
@@ -18,8 +18,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
             , value = "select u.id from User u where u.username = ?1"
     )
     Long findIdByUsername(String username);
-
-    boolean existsUserById(long id);
 
     void deleteByUsername(String username);
 }

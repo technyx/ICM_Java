@@ -10,6 +10,7 @@ import org.technyx.icm.model.entity.enums.Role;
 @Getter
 @Setter
 public class UserDto {
+    private long id;
 
     private String username;
 
