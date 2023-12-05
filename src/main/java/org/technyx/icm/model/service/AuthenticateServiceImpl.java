@@ -27,19 +27,11 @@ public class AuthenticateServiceImpl implements AuthenticateService {
     @Override
     public RegisterDto register(RegisterDto dto) {
         User model = mapper.map(dto, User.class);
-        populateRegister(model);
-        validateRegister(model);
+        model.setRegisterDate(Timestamp.valueOf(LocalDateTime.now()));
+        model.setPassword(ProjectSecurityConfig.passwordEncoder().encode(model.getPassword()));
         User savedModel = repository.save(model);
         RegisterDto savedDto = mapper.map(savedModel, RegisterDto.class);
         savedDto.setPassword("private");
         return savedDto;
-    }
-
-    private void validateRegister(User model) {
-    }
-
-    private void populateRegister(User model) {
-        model.setRegisterDate(Timestamp.valueOf(LocalDateTime.now()));
-        model.setPassword(ProjectSecurityConfig.passwordEncoder().encode(model.getPassword()));
     }
 }

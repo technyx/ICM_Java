@@ -23,7 +23,7 @@ public class BaseObject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "c_id")
-    private int id;
+    private long id;
 
     @Column(name = "c_register_date")
     @CreationTimestamp

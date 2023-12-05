@@ -39,42 +39,25 @@ public class ExtraInfoServiceImpl implements ExtraInfoService {
     @Override
     public ExtraInfoDto save(ExtraInfoDto dto) {
         ExtraInfo model = mapper.map(dto, ExtraInfo.class);
-        populateSave(model);
-        validateSave(model);
+        if (!userService.existsById(model.getUser())) {
+            throw new UserException(UserExceptionMessages.USER_NOT_FOUND.getErrorMessage());
+        }
         ExtraInfo savedModel = repository.save(model);
         return mapper.map(savedModel, ExtraInfoDto.class);
     }
 
-    private void validateSave(ExtraInfo model) {
-        if (!userService.existsById(model.getUser())) {
-            throw new UserException(UserExceptionMessages.USER_NOT_FOUND.getErrorMessage());
-        }
-    }
-
-    private void populateSave(ExtraInfo model) {
-    }
-
     @Override
     public ExtraInfoDto update(ExtraInfoDto dto) {
-        ExtraInfo oldModel = repository.findByUser(dto.getUser());
+        Long oldModelId = repository.findIdByUserId(dto.getUser());
         ExtraInfo newModel = mapper.map(dto, ExtraInfo.class);
-        populateUpdate(newModel, oldModel.getId());
-        validateUpdate(newModel);
+        newModel.setId(oldModelId);
         ExtraInfo savedModel = repository.save(newModel);
         return mapper.map(savedModel, ExtraInfoDto.class);
     }
 
-    private void validateUpdate(ExtraInfo newModel) {
-    }
-
-    private void populateUpdate(ExtraInfo newModel, int id) {
-        newModel.setId(id);
-    }
-
     @Override
     public void delete(ExtraInfoDto dto) {
-        ExtraInfo model = mapper.map(dto, ExtraInfo.class);
-        repository.deleteByUser(model.getUser());
+        repository.deleteByUser(dto.getUser());
     }
 
     @Override

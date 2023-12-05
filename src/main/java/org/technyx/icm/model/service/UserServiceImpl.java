@@ -18,6 +18,8 @@ import org.technyx.icm.model.util.security.ProjectSecurityConfig;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional
@@ -33,12 +35,27 @@ public class UserServiceImpl implements UserService {
     @Lazy
     private ExtraInfoService extraInfoService;
 
-    private void validateSave(User model) {
+    @Override
+    public UserDto update(UserDto dto) {
+        Long oldModelId = repository.findIdByUsername(dto.getUsername());
+        User newModel = mapper.map(dto, User.class);
+        newModel.setId(oldModelId);
+        User savedUser = repository.save(newModel);
+        return mapper.map(savedUser, UserDto.class);
     }
 
-    private void populateSave(User model) {
-        model.setRegisterDate(Timestamp.valueOf(LocalDateTime.now()));
-        model.setPassword(ProjectSecurityConfig.passwordEncoder().encode(model.getPassword()));
+    @Override
+    public void delete(UserDto dto) {
+        repository.deleteByUsername(dto.getUsername());
+    }
+
+    @Override
+    public List<UserDto> showList() {
+        List<UserDto> userDtos = new ArrayList<>();
+        List<User> modelList = repository.findAll();
+        modelList.forEach(user -> userDtos
+                .add(mapper.map(user, UserDto.class)));
+        return userDtos;
     }
 
     @Override
@@ -48,19 +65,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public FullUserDto fullSave(FullUserDto dto) {
-        populateFullSave(dto);
-        validateFullSave(dto);
+        dto.setPassword(ProjectSecurityConfig.passwordEncoder().encode(dto.getPassword()));
         User savedUser = repository.save(mapper.map(dto, User.class));
+        dto.setUser(savedUser.getId());
         ExtraInfoDto savedExtraInfo = extraInfoService.save(mapper.map(dto, ExtraInfoDto.class));
         FullUserDto newFullUserDto = new FullUserDto();
         newFullUserDto.map2Model(savedUser, mapper.map(savedExtraInfo, ExtraInfo.class));
         return newFullUserDto;
-    }
-
-    private void validateFullSave(FullUserDto dto) {
-    }
-
-    private void populateFullSave(FullUserDto dto) {
-        dto.setPassword(ProjectSecurityConfig.passwordEncoder().encode(dto.getPassword()));
     }
 }
