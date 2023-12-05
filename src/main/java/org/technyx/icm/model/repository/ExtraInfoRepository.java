@@ -16,8 +16,8 @@ public interface ExtraInfoRepository extends JpaRepository<ExtraInfo, Integer> {
     void deleteByUser(long id);
 
     @Query(
-            nativeQuery = true
-            , value = "select * from tb_extra_info where fk_user = 1"
+            nativeQuery = false
+            , value = "select e.id from ExtraInfo e where e.user = ?1"
     )
     Long findIdByUserId(long userId);
 }

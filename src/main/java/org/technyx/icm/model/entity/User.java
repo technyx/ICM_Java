@@ -15,7 +15,7 @@ import org.technyx.icm.model.entity.enums.Role;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "user")
+@Entity(name = "User")
 @Table(name = "tb_user")
 public class User extends BaseObject {
 

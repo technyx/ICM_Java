@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public FullUserDto fullSave(FullUserDto dto) {
+    public FullUserDto saveWithExtraInfo(FullUserDto dto) {
         dto.setPassword(ProjectSecurityConfig.passwordEncoder().encode(dto.getPassword()));
         User savedUser = repository.save(mapper.map(dto, User.class));
         dto.setUser(savedUser.getId());

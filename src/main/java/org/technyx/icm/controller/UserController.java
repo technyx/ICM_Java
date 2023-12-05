@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.technyx.icm.model.dtos.ExtraInfoDto;
 import org.technyx.icm.model.dtos.FullUserDto;
 import org.technyx.icm.model.dtos.UserDto;
 import org.technyx.icm.model.service.interfaces.UserService;
@@ -19,10 +18,10 @@ public class UserController {
     private UserService service;
 
     @PostMapping
-    public ResponseEntity<String> fullSave(@RequestBody FullUserDto dto) {
+    public ResponseEntity<String> saveWithExtraInfo(@RequestBody FullUserDto dto) {
         ResponseEntity<String> response = null;
         try {
-            FullUserDto savedDto = service.fullSave(dto);
+            FullUserDto savedDto = service.saveWithExtraInfo(dto);
             if (savedDto != null) {
                 response = ResponseEntity
                         .status(HttpStatus.CREATED)
