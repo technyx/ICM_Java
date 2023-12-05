@@ -6,13 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.technyx.icm.model.dtos.ExtraInfoDto;
-import org.technyx.icm.model.dtos.UserWithExtraInfoDto;
-import org.technyx.icm.model.dtos.UserDto;
-import org.technyx.icm.model.dtos.UserWithFullDataDto;
+import org.technyx.icm.model.dtos.*;
+import org.technyx.icm.model.entity.Address;
 import org.technyx.icm.model.entity.ExtraInfo;
 import org.technyx.icm.model.entity.User;
 import org.technyx.icm.model.repository.UserRepository;
+import org.technyx.icm.model.service.interfaces.AddressService;
 import org.technyx.icm.model.service.interfaces.ExtraInfoService;
 import org.technyx.icm.model.service.interfaces.UserService;
 import org.technyx.icm.model.util.ModelMapperConfig;
@@ -33,6 +32,10 @@ public class UserServiceImpl implements UserService {
     @Autowired
     @Lazy
     private ExtraInfoService extraInfoService;
+
+    @Autowired
+    @Lazy
+    private AddressService addressService;
 
     @Override
     public UserDto update(UserDto dto) {
@@ -70,6 +73,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserWithFullDataDto saveWithFullData(UserWithFullDataDto dto) {
-        return null;
+        dto.setPassword(ProjectSecurityConfig.passwordEncoder().encode(dto.getPassword()));
+        User savedUser = repository.save(mapper.map(dto, User.class));
+        dto.setUser(savedUser.getId());
+        ExtraInfoDto savedExtraInfo = extraInfoService.save(mapper.map(dto, ExtraInfoDto.class));
+        dto.setExtraInfo(savedExtraInfo.getId());
+        AddressDto savedAddress = addressService.save(mapper.map(dto, AddressDto.class));
+        UserWithFullDataDto newUserWithFullData = new UserWithFullDataDto();
+        newUserWithFullData.map2Model(
+                savedUser
+                , mapper.map(savedExtraInfo, ExtraInfo.class)
+                , mapper.map(savedAddress, Address.class)
+        );
+        return newUserWithFullData;
     }
 }

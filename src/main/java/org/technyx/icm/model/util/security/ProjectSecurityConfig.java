@@ -22,7 +22,7 @@ public class ProjectSecurityConfig {
                 .authorizeHttpRequests
                         ((requests) -> requests
                                 .requestMatchers("/app/v001/auth").authenticated()
-                                .requestMatchers(HttpMethod.POST,"/app/v001/user").authenticated()
+                                .requestMatchers(HttpMethod.POST,"/app/v001/user/**").authenticated()
                                 .requestMatchers(HttpMethod.PUT,"/app/v001/user").authenticated()
                                 .requestMatchers(HttpMethod.DELETE,"/app/v001/user").authenticated()
                                 .requestMatchers(HttpMethod.GET, "/app/v001/user").permitAll()
@@ -30,6 +30,10 @@ public class ProjectSecurityConfig {
                                 .requestMatchers(HttpMethod.PUT,"/app/v001/extra-info").authenticated()
                                 .requestMatchers(HttpMethod.DELETE,"/app/v001/extra-info").authenticated()
                                 .requestMatchers(HttpMethod.GET, "/app/v001/extra-info").permitAll()
+                                .requestMatchers(HttpMethod.POST,"/app/v001/address").authenticated()
+                                .requestMatchers(HttpMethod.PUT,"/app/v001/address").authenticated()
+                                .requestMatchers(HttpMethod.DELETE,"/app/v001/address").authenticated()
+                                .requestMatchers(HttpMethod.GET, "/app/v001/address").permitAll()
                         )
                 .httpBasic(withDefaults())
                 .build();

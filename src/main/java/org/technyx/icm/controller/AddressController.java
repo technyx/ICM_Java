@@ -4,47 +4,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.technyx.icm.model.dtos.UserWithExtraInfoDto;
-import org.technyx.icm.model.dtos.UserDto;
-import org.technyx.icm.model.dtos.UserWithFullDataDto;
-import org.technyx.icm.model.service.interfaces.UserService;
+import org.technyx.icm.model.dtos.AddressDto;
+import org.technyx.icm.model.service.interfaces.AddressService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/app/v001/user")
-public class UserController {
+@RequestMapping("/app/v001/address")
+public class AddressController {
 
     @Autowired
-    private UserService service;
+    private AddressService service;
 
-    @PostMapping("/extra-info")
-    public ResponseEntity<String> saveWithExtraInfo(@RequestBody UserWithExtraInfoDto dto) {
+    @PostMapping
+    public ResponseEntity<String> save(@RequestBody AddressDto dto) {
         ResponseEntity<String> response = null;
         try {
-            UserWithExtraInfoDto savedDto = service.saveWithExtraInfo(dto);
+            AddressDto savedDto = service.save(dto);
             if (savedDto != null) {
                 response = ResponseEntity
                         .status(HttpStatus.CREATED)
-                        .body("given extra-info user has been created");
-            }
-        } catch (Exception ex) {
-            response = ResponseEntity
-                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("an exception occurred due to " + ex.getMessage());
-        }
-        return response;
-    }
-
-    @PostMapping("/full-data")
-    public ResponseEntity<String> saveWithFullData(@RequestBody UserWithFullDataDto dto) {
-        ResponseEntity<String> response = null;
-        try {
-            UserWithFullDataDto savedDto = service.saveWithFullData(dto);
-            if (savedDto != null) {
-                response = ResponseEntity
-                        .status(HttpStatus.CREATED)
-                        .body("given full-data user has been created");
+                        .body("given extra-info has been created");
             }
         } catch (Exception ex) {
             response = ResponseEntity
@@ -55,14 +35,14 @@ public class UserController {
     }
 
     @PutMapping
-    public ResponseEntity<String> update(@RequestBody UserDto dto) {
+    public ResponseEntity<String> update(@RequestBody AddressDto dto) {
         ResponseEntity<String> response = null;
         try {
-            UserDto savedDto = service.update(dto);
-            if (savedDto != null) {
+            AddressDto updatedDto = service.update(dto);
+            if (updatedDto != null) {
                 response = ResponseEntity
                         .status(HttpStatus.CREATED)
-                        .body("given user has been updated");
+                        .body("given extra-info has been updated");
             }
         } catch (Exception ex) {
             response = ResponseEntity
@@ -73,13 +53,13 @@ public class UserController {
     }
 
     @DeleteMapping
-    public ResponseEntity<String> delete(@RequestBody UserDto dto) {
+    public ResponseEntity<String> delete(@RequestBody AddressDto dto) {
         ResponseEntity<String> response = null;
         try {
             service.delete(dto);
             response = ResponseEntity
                     .status(HttpStatus.CREATED)
-                    .body("given user has been deleted");
+                    .body("given extra-info has been deleted");
 
         } catch (Exception ex) {
             response = ResponseEntity
@@ -89,10 +69,15 @@ public class UserController {
         return response;
     }
 
+    /*
+     * TODO: remember to implement showSingle
+     * */
+
     @GetMapping
-    public ResponseEntity<List<UserDto>> showAll() {
+    public ResponseEntity<List<AddressDto>> showAll() {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(service.showList());
     }
+
 }
