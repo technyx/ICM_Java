@@ -5,11 +5,19 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.technyx.icm.model.dtos.ExtraInfoDto;
+import org.technyx.icm.model.dtos.FullUserDto;
+import org.technyx.icm.model.dtos.RegisterDto;
 import org.technyx.icm.model.entity.ExtraInfo;
+import org.technyx.icm.model.entity.User;
 import org.technyx.icm.model.repository.ExtraInfoRepository;
 import org.technyx.icm.model.repository.UserRepository;
+import org.technyx.icm.model.service.interfaces.AuthenticateService;
 import org.technyx.icm.model.service.interfaces.ExtraInfoService;
+import org.technyx.icm.model.service.interfaces.UserService;
 import org.technyx.icm.model.util.ModelMapperConfig;
+import org.technyx.icm.model.util.exception.UserExceptionMessages;
+import org.technyx.icm.model.util.exception.base.ExtraInfoException;
+import org.technyx.icm.model.util.exception.base.UserException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +32,9 @@ public class ExtraInfoServiceImpl implements ExtraInfoService {
     @Autowired
     private ExtraInfoRepository repository;
 
+    @Autowired
+    private UserService userService;
+
 
     @Override
     public ExtraInfoDto save(ExtraInfoDto dto) {
@@ -35,6 +46,9 @@ public class ExtraInfoServiceImpl implements ExtraInfoService {
     }
 
     private void validateSave(ExtraInfo model) {
+        if (!userService.existsById(model.getUser())) {
+            throw new UserException(UserExceptionMessages.USER_NOT_FOUND.getErrorMessage());
+        }
     }
 
     private void populateSave(ExtraInfo model) {

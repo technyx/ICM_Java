@@ -7,8 +7,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -24,6 +26,7 @@ public class BaseObject {
     private int id;
 
     @Column(name = "c_register_date")
+    @CreationTimestamp
     private Timestamp registerDate;
 
     @Override

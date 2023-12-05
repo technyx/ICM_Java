@@ -1,6 +1,7 @@
 package org.technyx.icm.model.service.interfaces;
 
 import org.technyx.icm.model.dtos.ExtraInfoDto;
+import org.technyx.icm.model.dtos.FullUserDto;
 
 import java.util.List;
 
