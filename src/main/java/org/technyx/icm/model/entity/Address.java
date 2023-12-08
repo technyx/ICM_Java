@@ -11,7 +11,6 @@ import org.technyx.icm.model.entity.enums.Country;
 
 @Getter
 @Setter
-@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "Address")

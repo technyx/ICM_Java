@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @MappedSuperclass

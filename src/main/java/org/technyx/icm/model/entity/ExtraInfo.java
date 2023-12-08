@@ -11,7 +11,6 @@ import java.sql.Date;
 
 @Getter
 @Setter
-@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "ExtraInfo")
