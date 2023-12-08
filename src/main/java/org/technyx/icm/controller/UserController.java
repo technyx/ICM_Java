@@ -19,55 +19,55 @@ public class UserController {
     private UserService service;
 
     @PostMapping("/extra-info")
-    public ResponseEntity<String> saveWithExtraInfo(@RequestBody UserWithExtraInfoDto dto) {
-        ResponseEntity<String> response = null;
+    public ResponseEntity<UserWithExtraInfoDto> saveWithExtraInfo(@RequestBody UserWithExtraInfoDto dto) {
+        ResponseEntity<UserWithExtraInfoDto> response = null;
         try {
             UserWithExtraInfoDto savedDto = service.saveWithExtraInfo(dto);
             if (savedDto != null) {
                 response = ResponseEntity
                         .status(HttpStatus.CREATED)
-                        .body("given extra-info user has been created");
+                        .body(savedDto);
             }
         } catch (Exception ex) {
             response = ResponseEntity
                     .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("an exception occurred due to " + ex.getMessage());
+                    .body(null);
         }
         return response;
     }
 
     @PostMapping("/full-data")
-    public ResponseEntity<String> saveWithFullData(@RequestBody UserWithFullDataDto dto) {
-        ResponseEntity<String> response = null;
+    public ResponseEntity<UserWithFullDataDto> saveWithFullData(@RequestBody UserWithFullDataDto dto) {
+        ResponseEntity<UserWithFullDataDto> response = null;
         try {
             UserWithFullDataDto savedDto = service.saveWithFullData(dto);
             if (savedDto != null) {
                 response = ResponseEntity
                         .status(HttpStatus.CREATED)
-                        .body("given full-data user has been created");
+                        .body(savedDto);
             }
         } catch (Exception ex) {
             response = ResponseEntity
                     .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("an exception occurred due to " + ex.getMessage());
+                    .body(null);
         }
         return response;
     }
 
     @PutMapping
-    public ResponseEntity<String> update(@RequestBody UserDto dto) {
-        ResponseEntity<String> response = null;
+    public ResponseEntity<UserDto> update(@RequestBody UserDto dto) {
+        ResponseEntity<UserDto> response = null;
         try {
             UserDto savedDto = service.update(dto);
             if (savedDto != null) {
                 response = ResponseEntity
                         .status(HttpStatus.CREATED)
-                        .body("given user has been updated");
+                        .body(savedDto);
             }
         } catch (Exception ex) {
             response = ResponseEntity
                     .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("an exception occurred due to " + ex.getMessage());
+                    .body(null);
         }
         return response;
     }
@@ -78,7 +78,7 @@ public class UserController {
         try {
             service.delete(dto);
             response = ResponseEntity
-                    .status(HttpStatus.CREATED)
+                    .status(HttpStatus.OK)
                     .body("given user has been deleted");
 
         } catch (Exception ex) {
