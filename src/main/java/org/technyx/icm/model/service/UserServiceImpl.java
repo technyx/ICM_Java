@@ -76,9 +76,9 @@ public class UserServiceImpl implements UserService {
         dto.setPassword(ProjectSecurityConfig.passwordEncoder().encode(dto.getPassword()));
         User savedUser = repository.save(mapper.map(dto, User.class));
         dto.setUser(savedUser.getId());
-        ExtraInfoDto savedExtraInfo = extraInfoService.save(mapper.map(dto, ExtraInfoDto.class));
-        dto.setExtraInfo(savedExtraInfo.getId());
         AddressDto savedAddress = addressService.save(mapper.map(dto, AddressDto.class));
+        dto.setAddressId(savedAddress.getId());
+        ExtraInfoDto savedExtraInfo = extraInfoService.save(mapper.map(dto, ExtraInfoDto.class));
         UserWithFullDataDto newUserWithFullData = new UserWithFullDataDto();
         newUserWithFullData.map2Model(
                 savedUser

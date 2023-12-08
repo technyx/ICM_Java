@@ -1,8 +1,5 @@
 package org.technyx.icm.model.dtos;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import lombok.Getter;
 import lombok.Setter;
 import org.technyx.icm.model.entity.Address;
@@ -38,15 +35,15 @@ public class UserWithFullDataDto {
 
     private String phone;
 
-    private long extraInfo;
+    private long addressId;
 
     private Country country;
 
     private City city;
 
-    private String address;
-
     private String postalCode;
+
+    private String address;
 
     public void map2Model(User user, ExtraInfo extraInfo, Address address) {
         this.username = user.getUsername();
@@ -55,9 +52,9 @@ public class UserWithFullDataDto {
         this.user = extraInfo.getUser();
         this.firstname = extraInfo.getFirstname();
         this.lastname = extraInfo.getLastname();
-        this.birthDate = extraInfo.getBirthDate();;
+        this.birthDate = extraInfo.getBirthDate();
         this.phone = extraInfo.getPhone();
-        this.extraInfo = address.getExtraInfo();
+        this.addressId = extraInfo.getAddress();
         this.city = address.getCity();
         this.address = address.getAddress();
         this.postalCode = address.getPostalCode();

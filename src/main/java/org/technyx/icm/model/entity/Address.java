@@ -17,9 +17,6 @@ import org.technyx.icm.model.entity.enums.Country;
 @Table(name = "tb_address")
 public class Address extends BaseObject{
 
-    @Column(name = "fk_extra_info")
-    private long extraInfo;
-
     @Column(name = "c_city")
     @Enumerated(EnumType.STRING)
     private City city;
