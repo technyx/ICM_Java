@@ -22,7 +22,7 @@ public class ProjectSecurityConfig {
                 .authorizeHttpRequests
                         ((requests) -> requests
                                 .requestMatchers(HttpMethod.POST, "/app/v001/auth/register").authenticated()
-                                .requestMatchers(HttpMethod.POST, "/app/v001/auth/login").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/app/v001/auth/login").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/app/v001/user/**").authenticated()
                                 .requestMatchers(HttpMethod.PUT, "/app/v001/user").authenticated()
                                 .requestMatchers(HttpMethod.DELETE, "/app/v001/user").authenticated()

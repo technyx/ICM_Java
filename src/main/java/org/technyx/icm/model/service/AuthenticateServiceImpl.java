@@ -34,9 +34,8 @@ public class AuthenticateServiceImpl implements AuthenticateService {
 
     public LoginDto login(LoginDto dto) {
         User model = mapper.map(dto, User.class);
-        model.setPassword(ProjectSecurityConfig.passwordEncoder().encode(model.getPassword()));
         User loginModel = repository.findByUsername(model.getUsername());
-        if (loginModel.getPassword().equals(model.getPassword())) {
+        if (ProjectSecurityConfig.passwordEncoder().matches(model.getPassword(), loginModel.getPassword())) {
             return mapper.map(loginModel, LoginDto.class);
         }
         return null;
