@@ -36,7 +36,7 @@ public class AuthenticateServiceImpl implements AuthenticateService {
     }
 
     private void validateUsernamePassword(User model) {
-        if (model.getUsername().matches("^(?!null$)(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{6,20}$"))
+        if (!model.getUsername().matches("^(?!null$)(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{6,20}$"))
             throw new UserException(UserExceptionMessages.USER_USERNAME_NOT_VALID.getErrorMessage());
         if (!model.getPassword().matches("^(?!null$)(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{8}$"))
             throw new UserException(UserExceptionMessages.USER_PASSWORD_NOT_VALID.getErrorMessage());

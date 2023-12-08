@@ -12,6 +12,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -29,7 +31,7 @@ public class ProjectSecurityConfig {
                 .authorizeHttpRequests
                         ((requests) -> requests
                                 .requestMatchers(HttpMethod.POST, "/app/v001/auth/register").authenticated()
-                                .requestMatchers(HttpMethod.GET, "/app/v001/auth/login").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/app/v001/auth/login").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/app/v001/user/**").authenticated()
                                 .requestMatchers(HttpMethod.PUT, "/app/v001/user").authenticated()
                                 .requestMatchers(HttpMethod.DELETE, "/app/v001/user").authenticated()
@@ -48,16 +50,16 @@ public class ProjectSecurityConfig {
     }
 
     @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Collections.singletonList("*"));
-        configuration.setAllowedMethods(Collections.singletonList("*"));
-        configuration.setAllowedHeaders(Collections.singletonList("*"));
-        configuration.setAllowCredentials(true);
-        configuration.setMaxAge(3600L);
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**")
+                        .allowedOrigins("*")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowedHeaders("*");
+            }
+        };
     }
 
     @Bean
