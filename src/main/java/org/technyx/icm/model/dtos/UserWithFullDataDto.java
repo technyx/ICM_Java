@@ -58,7 +58,6 @@ public class UserWithFullDataDto {
         this.birthDate = extraInfo.getBirthDate();;
         this.phone = extraInfo.getPhone();
         this.extraInfo = address.getExtraInfo();
-        this.country = address.getCountry();
         this.city = address.getCity();
         this.address = address.getAddress();
         this.postalCode = address.getPostalCode();
