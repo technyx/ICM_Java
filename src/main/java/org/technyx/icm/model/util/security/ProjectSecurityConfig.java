@@ -27,7 +27,6 @@ public class ProjectSecurityConfig {
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
-                .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests
                         ((requests) -> requests
                                 .requestMatchers(HttpMethod.POST, "/app/v001/auth/register").authenticated()

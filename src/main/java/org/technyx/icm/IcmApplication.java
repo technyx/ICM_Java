@@ -32,8 +32,8 @@ public class IcmApplication extends SpringBootServletInitializer {
 		@Override
 		public void run(ApplicationArguments args) {
 			RegisterDto dto = new RegisterDto();
-			dto.setUsername("admin");
-			dto.setPassword("admin");
+			dto.setUsername("admin12345");
+			dto.setPassword("admin12345");
 			dto.setRole(Role.ADMIN);
 			service.register(dto);
 		}
