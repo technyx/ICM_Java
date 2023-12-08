@@ -33,9 +33,4 @@ public class User extends BaseObject {
 
     @Column(name = "c_enabled")
     private boolean enabled = true;
-
-    @Override
-    public String toString() {
-        return new Gson().toJson(this);
-    }
 }

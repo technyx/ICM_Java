@@ -20,10 +20,6 @@ public class Address extends BaseObject{
     @Column(name = "fk_extra_info")
     private long extraInfo;
 
-    @Column(name = "c_country")
-    @Enumerated(EnumType.STRING)
-    private Country country;
-
     @Column(name = "c_city")
     @Enumerated(EnumType.STRING)
     private City city;
