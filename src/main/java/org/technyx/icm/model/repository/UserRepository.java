@@ -13,13 +13,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByUsername(String username);
 
-    User findByUsernameAndPassword(String username, String password);
-
     @Query(
             nativeQuery = false
             , value = "select u.id from User u where u.username = ?1"
     )
     Long findIdByUsername(String username);
-
-    void deleteByUsername(String username);
 }

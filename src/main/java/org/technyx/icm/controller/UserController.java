@@ -20,73 +20,23 @@ public class UserController {
 
     @PostMapping("/extra-info")
     public ResponseEntity<UserWithExtraInfoDto> saveWithExtraInfo(@RequestBody UserWithExtraInfoDto dto) {
-        ResponseEntity<UserWithExtraInfoDto> response = null;
-        try {
-            UserWithExtraInfoDto savedDto = service.saveWithExtraInfo(dto);
-            if (savedDto != null) {
-                response = ResponseEntity
-                        .status(HttpStatus.CREATED)
-                        .body(savedDto);
-            }
-        } catch (Exception ex) {
-            response = ResponseEntity
-                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(null);
-        }
-        return response;
+        return ResponseEntity.ok(service.saveWithExtraInfo(dto));
     }
 
     @PostMapping("/full-data")
     public ResponseEntity<UserWithFullDataDto> saveWithFullData(@RequestBody UserWithFullDataDto dto) {
-        ResponseEntity<UserWithFullDataDto> response = null;
-        try {
-            UserWithFullDataDto savedDto = service.saveWithFullData(dto);
-            if (savedDto != null) {
-                response = ResponseEntity
-                        .status(HttpStatus.CREATED)
-                        .body(savedDto);
-            }
-        } catch (Exception ex) {
-            response = ResponseEntity
-                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(null);
-        }
-        return response;
+        return ResponseEntity.ok(service.saveWithFullData(dto));
     }
 
     @PutMapping
     public ResponseEntity<UserDto> update(@RequestBody UserDto dto) {
-        ResponseEntity<UserDto> response = null;
-        try {
-            UserDto savedDto = service.update(dto);
-            if (savedDto != null) {
-                response = ResponseEntity
-                        .status(HttpStatus.CREATED)
-                        .body(savedDto);
-            }
-        } catch (Exception ex) {
-            response = ResponseEntity
-                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(null);
-        }
-        return response;
+        return ResponseEntity.ok(service.update(dto));
     }
 
     @DeleteMapping
-    public ResponseEntity<String> delete(@RequestBody UserDto dto) {
-        ResponseEntity<String> response = null;
-        try {
-            service.delete(dto);
-            response = ResponseEntity
-                    .status(HttpStatus.OK)
-                    .body("given user has been deleted");
-
-        } catch (Exception ex) {
-            response = ResponseEntity
-                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("an exception occurred due to " + ex.getMessage());
-        }
-        return response;
+    public ResponseEntity<Void> delete(@RequestBody UserDto dto) {
+        service.delete(dto);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping
