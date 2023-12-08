@@ -52,7 +52,7 @@ public class AuthenticateController {
                     .status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(null);
         }
-        return null;
+        return response;
     }
 
 }
