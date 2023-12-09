@@ -5,6 +5,8 @@ import org.technyx.icm.model.dtos.ExtraInfoDto;
 import org.technyx.icm.model.repository.AddressRepository;
 import org.technyx.icm.model.repository.ExtraInfoRepository;
 import org.technyx.icm.model.repository.UserRepository;
+import org.technyx.icm.model.service.validation.interfaces.ExtraInfoValidation;
+import org.technyx.icm.model.util.RegexUtility;
 import org.technyx.icm.model.util.exception.AddressExceptionMessage;
 import org.technyx.icm.model.util.exception.ExtraInfoExceptionMessage;
 import org.technyx.icm.model.util.exception.UserExceptionMessages;
@@ -33,15 +35,15 @@ public class ExtraInfoValidationImpl implements ExtraInfoValidation {
     private void validateBaseInfo(ExtraInfoDto dto) {
         if (!userRepository.existsById(dto.getUser()))
             throw new UserException(UserExceptionMessages.USER_NOT_FOUND.getExceptionMessage());
-        if (!dto.getFirstname().matches("^([a-zA-Z]{2,50}|[\\u0600-\\u06FF]{2,50})$"))
+        if (!dto.getFirstname().matches(RegexUtility.CHECK_ENG_OR_PER_CHAR_2_50))
             throw new ExtraInfoException(ExtraInfoExceptionMessage.FIRSTNAME_IS_NOT_VALID.getExceptionMessage());
-        if (!dto.getLastname().matches("^([a-zA-Z]{2,50}|[\\u0600-\\u06FF]{2,50})$"))
+        if (!dto.getLastname().matches(RegexUtility.CHECK_ENG_OR_PER_CHAR_2_50))
             throw new ExtraInfoException(ExtraInfoExceptionMessage.LASTNAME_IS_NOT_VALID.getExceptionMessage());
         LocalDate birthDate = dto.getBirthDate().toLocalDate();
         Period period = Period.between(birthDate, LocalDate.now());
         if (period.getYears() <= 18)
             throw new ExtraInfoException(ExtraInfoExceptionMessage.AGE_IS_NOT_VALID.getExceptionMessage());
-        if (!dto.getPhone().matches("^\\+98[\\s\\-]?[1-9]\\d{9}$"))
+        if (!dto.getPhone().matches(RegexUtility.CHECK_IRI_PHONE))
             throw new ExtraInfoException(ExtraInfoExceptionMessage.PHONE_IS_NOT_VALID.getExceptionMessage());
     }
 

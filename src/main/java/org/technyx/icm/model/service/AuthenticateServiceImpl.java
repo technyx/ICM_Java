@@ -8,7 +8,7 @@ import org.technyx.icm.model.dtos.RegisterDto;
 import org.technyx.icm.model.entity.User;
 import org.technyx.icm.model.repository.UserRepository;
 import org.technyx.icm.model.service.interfaces.AuthenticateService;
-import org.technyx.icm.model.service.validation.UserValidation;
+import org.technyx.icm.model.service.validation.interfaces.UserValidation;
 import org.technyx.icm.model.util.ModelMapperConfig;
 import org.technyx.icm.model.util.security.ProjectSecurityConfig;
 

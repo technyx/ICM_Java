@@ -1,4 +1,4 @@
-package org.technyx.icm.model.service.validation;
+package org.technyx.icm.model.service.validation.interfaces;
 
 import org.technyx.icm.model.entity.User;
 

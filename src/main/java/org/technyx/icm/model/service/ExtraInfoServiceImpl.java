@@ -8,8 +8,7 @@ import org.technyx.icm.model.entity.ExtraInfo;
 import org.technyx.icm.model.repository.ExtraInfoRepository;
 import org.technyx.icm.model.service.interfaces.AddressService;
 import org.technyx.icm.model.service.interfaces.ExtraInfoService;
-import org.technyx.icm.model.service.validation.ExtraInfoValidation;
-import org.technyx.icm.model.service.validation.ExtraInfoValidationImpl;
+import org.technyx.icm.model.service.validation.interfaces.ExtraInfoValidation;
 import org.technyx.icm.model.util.ModelMapperConfig;
 
 import java.util.ArrayList;

@@ -19,11 +19,11 @@ public class UserWithExtraInfoDto {
 
     private String password;
 
+    private String nationalCode;
+
     private Role role;
 
     private Timestamp registerDate;
-
-    private Date birthDate;
 
     private long user;
 
@@ -31,16 +31,23 @@ public class UserWithExtraInfoDto {
 
     private String lastname;
 
+    private Date birthDate;
+
     private String phone;
+
+    private Long address;
 
     public void map2Model(User user, ExtraInfo extraInfo) {
         this.username = user.getUsername();
         this.password = user.getPassword();
+        this.nationalCode = user.getNationalCode();
         this.role = user.getRole();
         this.user = extraInfo.getUser();
         this.firstname = extraInfo.getFirstname();
         this.lastname = extraInfo.getLastname();
-        this.birthDate = extraInfo.getBirthDate();;
+        this.birthDate = extraInfo.getBirthDate();
+        ;
         this.phone = extraInfo.getPhone();
+        this.address = extraInfo.getAddress();
     }
 }

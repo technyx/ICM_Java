@@ -1,6 +1,5 @@
 package org.technyx.icm.model.entity;
 
-import com.google.gson.Gson;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,8 +25,13 @@ public class User extends BaseObject {
             , nullable = false)
     private String password;
 
+    @Column(name = "c_national_code"
+            , unique = true
+            , nullable = false)
+    private String nationalCode;
+
     @Column(name = "c_role"
-    , nullable = false)
+            , nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
 
