@@ -1,7 +1,6 @@
 package org.technyx.icm.model.service;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.technyx.icm.model.dtos.LoginDto;
@@ -9,7 +8,7 @@ import org.technyx.icm.model.dtos.RegisterDto;
 import org.technyx.icm.model.entity.User;
 import org.technyx.icm.model.repository.UserRepository;
 import org.technyx.icm.model.service.interfaces.AuthenticateService;
-import org.technyx.icm.model.service.validation.AbstractUserValidation;
+import org.technyx.icm.model.service.validation.UserValidation;
 import org.technyx.icm.model.util.ModelMapperConfig;
 import org.technyx.icm.model.util.security.ProjectSecurityConfig;
 
@@ -21,9 +20,9 @@ public class AuthenticateServiceImpl implements AuthenticateService {
 
     private final UserRepository repository;
 
-    private final AbstractUserValidation validation;
+    private final UserValidation validation;
 
-    public AuthenticateServiceImpl(UserRepository repository, AbstractUserValidation validation) {
+    public AuthenticateServiceImpl(UserRepository repository, UserValidation validation) {
         this.repository = repository;
         this.validation = validation;
     }

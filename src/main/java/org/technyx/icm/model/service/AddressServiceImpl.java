@@ -22,8 +22,11 @@ public class AddressServiceImpl implements AddressService {
 
     private final ModelMapper mapper = ModelMapperConfig.getMapperInstance();
 
-    @Autowired
-    private AddressRepository repository;
+    private final AddressRepository repository;
+
+    public AddressServiceImpl(AddressRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public AddressDto save(AddressDto dto) {

@@ -8,7 +8,8 @@ import org.technyx.icm.model.entity.ExtraInfo;
 import org.technyx.icm.model.repository.ExtraInfoRepository;
 import org.technyx.icm.model.service.interfaces.AddressService;
 import org.technyx.icm.model.service.interfaces.ExtraInfoService;
-import org.technyx.icm.model.service.validation.AbstractExtraInfoValidation;
+import org.technyx.icm.model.service.validation.ExtraInfoValidation;
+import org.technyx.icm.model.service.validation.ExtraInfoValidationImpl;
 import org.technyx.icm.model.util.ModelMapperConfig;
 
 import java.util.ArrayList;
@@ -23,11 +24,11 @@ public class ExtraInfoServiceImpl implements ExtraInfoService {
 
     private final ExtraInfoRepository repository;
 
-    private final AbstractExtraInfoValidation validation;
+    private final ExtraInfoValidation validation;
 
     private final AddressService addressService;
 
-    public ExtraInfoServiceImpl(ExtraInfoRepository repository, AbstractExtraInfoValidation validation, AddressService addressService) {
+    public ExtraInfoServiceImpl(ExtraInfoRepository repository, ExtraInfoValidation validation, AddressService addressService) {
         this.repository = repository;
         this.validation = validation;
         this.addressService = addressService;

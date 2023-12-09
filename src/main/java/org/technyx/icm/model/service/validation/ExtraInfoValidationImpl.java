@@ -16,7 +16,7 @@ import java.time.LocalDate;
 import java.time.Period;
 
 @Component
-public abstract class AbstractExtraInfoValidation {
+public class ExtraInfoValidationImpl implements ExtraInfoValidation {
 
     private final ExtraInfoRepository repository;
 
@@ -24,7 +24,7 @@ public abstract class AbstractExtraInfoValidation {
 
     private final AddressRepository addressRepository;
 
-    public AbstractExtraInfoValidation(UserRepository userRepository, ExtraInfoRepository repository, AddressRepository addressRepository) {
+    public ExtraInfoValidationImpl(UserRepository userRepository, ExtraInfoRepository repository, AddressRepository addressRepository) {
         this.userRepository = userRepository;
         this.repository = repository;
         this.addressRepository = addressRepository;
@@ -45,20 +45,24 @@ public abstract class AbstractExtraInfoValidation {
             throw new ExtraInfoException(ExtraInfoExceptionMessage.PHONE_IS_NOT_VALID.getExceptionMessage());
     }
 
+    @Override
     public void validateSave(ExtraInfoDto dto) {
         validateBaseInfo(dto);
     }
 
+    @Override
     public void validateExists(ExtraInfoDto dto) {
         if (!repository.existsById(dto.getId()))
             throw new ExtraInfoException(ExtraInfoExceptionMessage.EXTRA_INFO_NOT_FOUND.getExceptionMessage());
     }
 
+    @Override
     public void validateUpdate(ExtraInfoDto dto) {
         validateExists(dto);
         validateBaseInfo(dto);
     }
 
+    @Override
     public void validateDelete(ExtraInfoDto dto) {
         validateExists(dto);
         if (dto.getAddress() != null) {

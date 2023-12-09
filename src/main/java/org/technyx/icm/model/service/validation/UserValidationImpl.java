@@ -10,14 +10,17 @@ import org.technyx.icm.model.util.security.ProjectSecurityConfig;
 import java.util.EnumSet;
 
 @Component
-public abstract class AbstractUserValidation {
+public class UserValidationImpl implements UserValidation {
+
+    @Override
     public void validateUsernamePassword(User model) {
-        if (!model.getUsername().matches("^(?!null$)(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{6,20}$"))
+        if (!model.getUsername().matches("^\\d{10}$"))
             throw new UserException(UserExceptionMessages.USER_USERNAME_NOT_VALID.getExceptionMessage());
-        if (!model.getPassword().matches("^(?!null$)(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{8}$"))
+        if (!model.getPassword().matches("^(?!null$)(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}$"))
             throw new UserException(UserExceptionMessages.USER_PASSWORD_NOT_VALID.getExceptionMessage());
     }
 
+    @Override
     public void validateRegister(User model) {
         validateUsernamePassword(model);
         EnumSet<Role> roleEnumSet = EnumSet.allOf(Role.class);
@@ -25,6 +28,7 @@ public abstract class AbstractUserValidation {
             throw new UserException(UserExceptionMessages.USER_ROLE_NOT_VALID.getExceptionMessage());
     }
 
+    @Override
     public void validateLogin(User model, User loginModel) {
         validateUsernamePassword(model);
         if (loginModel == null ||
