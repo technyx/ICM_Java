@@ -8,13 +8,11 @@ public interface AddressService {
 
     AddressDto save(AddressDto dto);
 
-    AddressDto update(AddressDto dto);
+    AddressDto update(long id, AddressDto dto);
 
-    void delete(AddressDto dto);
+    void delete(long id);
 
-    AddressDto showSingle(AddressDto dto);
+    AddressDto showSingle(long id);
 
     List<AddressDto> showList();
-
-    void deleteById(long id);
 }

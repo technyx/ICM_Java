@@ -2,14 +2,12 @@ package org.technyx.icm.model.service;
 
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.technyx.icm.model.dtos.AddressDto;
 import org.technyx.icm.model.entity.Address;
 import org.technyx.icm.model.repository.AddressRepository;
 import org.technyx.icm.model.service.interfaces.AddressService;
-import org.technyx.icm.model.service.interfaces.ExtraInfoService;
+import org.technyx.icm.model.service.validation.interfaces.AddressValidation;
 import org.technyx.icm.model.util.ModelMapperConfig;
 
 import java.util.ArrayList;
@@ -24,12 +22,16 @@ public class AddressServiceImpl implements AddressService {
 
     private final AddressRepository repository;
 
-    public AddressServiceImpl(AddressRepository repository) {
+    private final AddressValidation validation;
+
+    public AddressServiceImpl(AddressRepository repository, AddressValidation validation) {
         this.repository = repository;
+        this.validation = validation;
     }
 
     @Override
     public AddressDto save(AddressDto dto) {
+        validation.validateSave(dto);
         Address savedModel = repository.save(
                 mapper.map(dto, Address.class)
         );
@@ -37,7 +39,8 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public AddressDto update(AddressDto dto) {
+    public AddressDto update(long id, AddressDto dto) {
+        dto.setId(id);
         Address updatedModel = repository.save(
                 mapper.map(dto, Address.class)
         );
@@ -45,13 +48,13 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public void delete(AddressDto dto) {
-        repository.delete(mapper.map(dto, Address.class));
+    public void delete(long id) {
+        repository.deleteById(id);
     }
 
     @Override
-    public AddressDto showSingle(AddressDto dto) {
-        Optional<Address> address = repository.findById(dto.getId());
+    public AddressDto showSingle(long id) {
+        Optional<Address> address = repository.findById(id);
         return mapper.map(address, AddressDto.class);
     }
 
@@ -63,10 +66,5 @@ public class AddressServiceImpl implements AddressService {
                 .add(mapper
                         .map(address, AddressDto.class)));
         return addressDtos;
-    }
-
-    @Override
-    public void deleteById(long id) {
-        repository.deleteById(id);
     }
 }
