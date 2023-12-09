@@ -19,6 +19,7 @@ import org.technyx.icm.model.util.security.ProjectSecurityConfig;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -48,6 +49,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto update(UserDto dto) {
+        validation.validateUpdate(dto);
         dto.setPassword(ProjectSecurityConfig.passwordEncoder().encode(dto.getPassword()));
         User savedUser = repository.save(
                 mapper.map(dto, User.class)
@@ -57,7 +59,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void delete(UserDto dto) {
+        validation.validateExists(dto);
+        User model = mapper.map(dto, User.class);
+        ExtraInfo extraInfo = extraInfoValidation.validateHaveExtraInfo(model);
+        if (extraInfo != null) {
+            ExtraInfoDto extraInfoDto = mapper.map(extraInfo, ExtraInfoDto.class);
+            extraInfoService.delete(extraInfoDto);
+        }
+        /*todo: delete address after implement address*/
         repository.delete(mapper.map(dto, User.class));
+    }
+
+    @Override
+    public Optional<UserDto> showSingle(UserDto dto) {
+        validation.validateExists(dto);
+        return repository.findById(dto.getId())
+                .map((element) -> mapper.map(element, UserDto.class));
     }
 
     @Override
@@ -86,6 +103,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserWithFullDataDto saveWithFullData(UserWithFullDataDto dto) {
+        /*todo: need change after implement address*/
         dto.setPassword(ProjectSecurityConfig.passwordEncoder().encode(dto.getPassword()));
         User savedUser = repository.save(mapper.map(dto, User.class));
         dto.setUser(savedUser.getId());

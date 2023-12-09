@@ -2,6 +2,8 @@ package org.technyx.icm.model.service.validation;
 
 import org.springframework.stereotype.Component;
 import org.technyx.icm.model.dtos.ExtraInfoDto;
+import org.technyx.icm.model.entity.ExtraInfo;
+import org.technyx.icm.model.entity.User;
 import org.technyx.icm.model.repository.AddressRepository;
 import org.technyx.icm.model.repository.ExtraInfoRepository;
 import org.technyx.icm.model.repository.UserRepository;
@@ -71,5 +73,10 @@ public class ExtraInfoValidationImpl implements ExtraInfoValidation {
             if (!addressRepository.existsById(dto.getAddress()))
                 throw new AddressException(AddressExceptionMessage.ADDRESS_NOT_FOUND.getExceptionMessage());
         }
+    }
+
+    @Override
+    public ExtraInfo validateHaveExtraInfo(User model) {
+        return repository.findByUser(model.getId());
     }
 }
