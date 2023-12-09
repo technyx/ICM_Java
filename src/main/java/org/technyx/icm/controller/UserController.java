@@ -42,7 +42,7 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<UserDto>> showAll() {
         return ResponseEntity
-                .status(HttpStatus.OK)
+                .ok()
                 .body(service.showList());
     }
 }

@@ -8,4 +8,6 @@ import org.technyx.icm.model.entity.Address;
 
 @Repository
 public interface AddressRepository extends JpaRepository<Address, Long> {
+
+    void deleteById(long id);
 }

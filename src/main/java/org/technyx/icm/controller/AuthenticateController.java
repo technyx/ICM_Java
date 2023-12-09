@@ -1,6 +1,5 @@
 package org.technyx.icm.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.technyx.icm.model.dtos.LoginDto;
@@ -11,8 +10,11 @@ import org.technyx.icm.model.service.interfaces.AuthenticateService;
 @RequestMapping("/app/v001/auth")
 public class AuthenticateController {
 
-    @Autowired
-    private AuthenticateService service;
+    private final AuthenticateService service;
+
+    public AuthenticateController(AuthenticateService service) {
+        this.service = service;
+    }
 
     @PostMapping("/register")
     public ResponseEntity<RegisterDto> register(@RequestBody RegisterDto dto) {

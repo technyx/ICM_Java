@@ -20,4 +20,7 @@ public class ExtraInfoDto {
     private Date birthDate;
 
     private String phone;
+
+    private Long address;
+
 }

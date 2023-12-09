@@ -10,14 +10,14 @@ public enum UserExceptionMessages {
     USER_ROLE_NOT_VALID("نقش کاربر در سیستم تعریف نشده است."),
     ;
 
-    private String errorMessage;
+    private String exceptionMessage;
 
-    UserExceptionMessages(String errorMessage) {
-        this.errorMessage = errorMessage;
+    UserExceptionMessages(String exceptionMessage) {
+        this.exceptionMessage = exceptionMessage;
     }
 
-    public UserExceptionMessages setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
+    public UserExceptionMessages setExceptionMessage(String exceptionMessage) {
+        this.exceptionMessage = exceptionMessage;
         return this;
     }
 }

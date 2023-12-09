@@ -15,6 +15,4 @@ public interface ExtraInfoService {
     ExtraInfoDto showSingle(ExtraInfoDto dto);
 
     List<ExtraInfoDto> showList();
-
-    boolean existsById(long id);
 }

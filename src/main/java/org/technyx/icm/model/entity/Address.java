@@ -21,8 +21,8 @@ public class Address extends BaseObject{
     @Enumerated(EnumType.STRING)
     private City city;
 
-    @Column(name = "c_address")
-    private String address;
+    @Column(name = "c_location")
+    private String location;
 
     @Column(name = "c_postal_code")
     private String postalCode;

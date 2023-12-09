@@ -33,5 +33,5 @@ public class ExtraInfo extends BaseObject {
     private String phone;
 
     @Column(name = "fk_address")
-    private long address;
+    private Long address;
 }

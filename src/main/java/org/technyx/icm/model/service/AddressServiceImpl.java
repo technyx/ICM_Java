@@ -61,4 +61,9 @@ public class AddressServiceImpl implements AddressService {
                         .map(address, AddressDto.class)));
         return addressDtos;
     }
+
+    @Override
+    public void deleteById(long id) {
+        repository.deleteById(id);
+    }
 }

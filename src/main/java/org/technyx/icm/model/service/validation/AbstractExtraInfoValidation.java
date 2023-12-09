@@ -1,0 +1,69 @@
+package org.technyx.icm.model.service.validation;
+
+import org.springframework.stereotype.Component;
+import org.technyx.icm.model.dtos.ExtraInfoDto;
+import org.technyx.icm.model.repository.AddressRepository;
+import org.technyx.icm.model.repository.ExtraInfoRepository;
+import org.technyx.icm.model.repository.UserRepository;
+import org.technyx.icm.model.util.exception.AddressExceptionMessage;
+import org.technyx.icm.model.util.exception.ExtraInfoExceptionMessage;
+import org.technyx.icm.model.util.exception.UserExceptionMessages;
+import org.technyx.icm.model.util.exception.base.AddressException;
+import org.technyx.icm.model.util.exception.base.ExtraInfoException;
+import org.technyx.icm.model.util.exception.base.UserException;
+
+import java.time.LocalDate;
+import java.time.Period;
+
+@Component
+public abstract class AbstractExtraInfoValidation {
+
+    private final ExtraInfoRepository repository;
+
+    private final UserRepository userRepository;
+
+    private final AddressRepository addressRepository;
+
+    public AbstractExtraInfoValidation(UserRepository userRepository, ExtraInfoRepository repository, AddressRepository addressRepository) {
+        this.userRepository = userRepository;
+        this.repository = repository;
+        this.addressRepository = addressRepository;
+    }
+
+    private void validateBaseInfo(ExtraInfoDto dto) {
+        if (!userRepository.existsById(dto.getUser()))
+            throw new UserException(UserExceptionMessages.USER_NOT_FOUND.getExceptionMessage());
+        if (!dto.getFirstname().matches("^([a-zA-Z]{2,50}|[\\u0600-\\u06FF]{2,50})$"))
+            throw new ExtraInfoException(ExtraInfoExceptionMessage.FIRSTNAME_IS_NOT_VALID.getExceptionMessage());
+        if (!dto.getLastname().matches("^([a-zA-Z]{2,50}|[\\u0600-\\u06FF]{2,50})$"))
+            throw new ExtraInfoException(ExtraInfoExceptionMessage.LASTNAME_IS_NOT_VALID.getExceptionMessage());
+        LocalDate birthDate = dto.getBirthDate().toLocalDate();
+        Period period = Period.between(birthDate, LocalDate.now());
+        if (period.getYears() <= 18)
+            throw new ExtraInfoException(ExtraInfoExceptionMessage.AGE_IS_NOT_VALID.getExceptionMessage());
+        if (!dto.getPhone().matches("^\\+98[\\s\\-]?[1-9]\\d{9}$"))
+            throw new ExtraInfoException(ExtraInfoExceptionMessage.PHONE_IS_NOT_VALID.getExceptionMessage());
+    }
+
+    public void validateSave(ExtraInfoDto dto) {
+        validateBaseInfo(dto);
+    }
+
+    public void validateExists(ExtraInfoDto dto) {
+        if (!repository.existsById(dto.getId()))
+            throw new ExtraInfoException(ExtraInfoExceptionMessage.EXTRA_INFO_NOT_FOUND.getExceptionMessage());
+    }
+
+    public void validateUpdate(ExtraInfoDto dto) {
+        validateExists(dto);
+        validateBaseInfo(dto);
+    }
+
+    public void validateDelete(ExtraInfoDto dto) {
+        validateExists(dto);
+        if (dto.getAddress() != null) {
+            if (!addressRepository.existsById(dto.getAddress()))
+                throw new AddressException(AddressExceptionMessage.ADDRESS_NOT_FOUND.getExceptionMessage());
+        }
+    }
+}

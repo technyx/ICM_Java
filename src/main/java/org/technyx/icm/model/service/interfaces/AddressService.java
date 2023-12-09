@@ -15,4 +15,6 @@ public interface AddressService {
     AddressDto showSingle(AddressDto dto);
 
     List<AddressDto> showList();
+
+    void deleteById(long id);
 }
