@@ -26,12 +26,9 @@ public class ExtraInfoValidationImpl implements ExtraInfoValidation {
 
     private final UserRepository userRepository;
 
-    private final AddressRepository addressRepository;
-
-    public ExtraInfoValidationImpl(UserRepository userRepository, ExtraInfoRepository repository, AddressRepository addressRepository) {
+    public ExtraInfoValidationImpl(UserRepository userRepository, ExtraInfoRepository repository) {
         this.userRepository = userRepository;
         this.repository = repository;
-        this.addressRepository = addressRepository;
     }
 
     private void validateBaseInfo(ExtraInfoDto dto) {
@@ -55,28 +52,19 @@ public class ExtraInfoValidationImpl implements ExtraInfoValidation {
     }
 
     @Override
-    public void validateExists(ExtraInfoDto dto) {
-        if (!repository.existsById(dto.getId()))
+    public void validateExists(long id) {
+        if (!repository.existsById(id))
             throw new ExtraInfoException(ExtraInfoExceptionMessage.EXTRA_INFO_NOT_FOUND.getExceptionMessage());
     }
 
     @Override
     public void validateUpdate(ExtraInfoDto dto) {
-        validateExists(dto);
+        validateExists(dto.getId());
         validateBaseInfo(dto);
     }
 
     @Override
-    public void validateDelete(ExtraInfoDto dto) {
-        validateExists(dto);
-        if (dto.getAddress() != null) {
-            if (!addressRepository.existsById(dto.getAddress()))
-                throw new AddressException(AddressExceptionMessage.ADDRESS_NOT_FOUND.getExceptionMessage());
-        }
-    }
-
-    @Override
-    public ExtraInfo validateHaveExtraInfo(User model) {
-        return repository.findByUser(model.getId());
+    public ExtraInfo validateHaveExtraInfo(long id) {
+        return repository.findByUser(id);
     }
 }

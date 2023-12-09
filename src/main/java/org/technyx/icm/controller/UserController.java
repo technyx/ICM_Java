@@ -10,6 +10,7 @@ import org.technyx.icm.model.dtos.UserWithFullDataDto;
 import org.technyx.icm.model.service.interfaces.UserService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/app/v001/user")
@@ -28,15 +29,20 @@ public class UserController {
         return ResponseEntity.ok(service.saveWithFullData(dto));
     }
 
-    @PutMapping
-    public ResponseEntity<UserDto> update(@RequestBody UserDto dto) {
-        return ResponseEntity.ok(service.update(dto));
+    @PutMapping("/{id}")
+    public ResponseEntity<UserDto> update(@PathVariable long id,@RequestBody UserDto dto) {
+        return ResponseEntity.ok(service.update(id, dto));
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> delete(@RequestBody UserDto dto) {
-        service.delete(dto);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable long id) {
+        service.delete(id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<UserDto>> showSingle(@PathVariable long id) {
+        return ResponseEntity.ok().body(service.showSingle(id));
     }
 
     @GetMapping

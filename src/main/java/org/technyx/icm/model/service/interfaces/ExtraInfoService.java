@@ -8,11 +8,11 @@ public interface ExtraInfoService {
 
     ExtraInfoDto save(ExtraInfoDto dto);
 
-    ExtraInfoDto update(ExtraInfoDto dto);
+    ExtraInfoDto update(long id, ExtraInfoDto dto);
 
-    void delete(ExtraInfoDto dto);
+    void delete(long id);
 
-    ExtraInfoDto showSingle(ExtraInfoDto dto);
+    ExtraInfoDto showSingle(long id);
 
     List<ExtraInfoDto> showList();
 }

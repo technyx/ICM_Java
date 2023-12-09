@@ -24,11 +24,8 @@ public class UserValidationImpl implements UserValidation {
 
     private final UserRepository repository;
 
-    private final ExtraInfoRepository extraInfoRepository;
-
-    public UserValidationImpl(UserRepository repository, ExtraInfoRepository extraInfoRepository) {
+    public UserValidationImpl(UserRepository repository) {
         this.repository = repository;
-        this.extraInfoRepository = extraInfoRepository;
     }
 
     @Override
@@ -67,14 +64,14 @@ public class UserValidationImpl implements UserValidation {
     @Override
     public void validateUpdate(UserDto dto) {
         User model = modelMapper.map(dto, User.class);
-        validateExists(dto);
+        validateExists(dto.getId());
         validateUsernamePassword(model);
         validateExtras(model);
     }
 
     @Override
-    public void validateExists(UserDto dto) {
-        if (!repository.existsById(dto.getId()))
+    public void validateExists(long id) {
+        if (!repository.existsById(id))
             throw new UserException(UserExceptionMessages.USER_NOT_FOUND.getExceptionMessage());
     }
 }

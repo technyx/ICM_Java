@@ -8,11 +8,9 @@ public interface ExtraInfoValidation {
 
     void validateSave(ExtraInfoDto dto);
 
-    void validateExists(ExtraInfoDto dto);
+    void validateExists(long id);
 
     void validateUpdate(ExtraInfoDto dto);
 
-    void validateDelete(ExtraInfoDto dto);
-
-    ExtraInfo validateHaveExtraInfo(User model);
+    ExtraInfo validateHaveExtraInfo(long id);
 }

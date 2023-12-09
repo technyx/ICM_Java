@@ -9,11 +9,11 @@ import java.util.Optional;
 
 public interface UserService {
 
-    UserDto update(UserDto dto);
+    UserDto update(long id, UserDto dto);
 
-    void delete(UserDto dto);
+    void delete(long id);
 
-    Optional<UserDto> showSingle(UserDto dto);
+    Optional<UserDto> showSingle(long id);
 
     List<UserDto> showList();
 

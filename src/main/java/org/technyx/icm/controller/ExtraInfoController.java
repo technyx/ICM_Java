@@ -20,20 +20,21 @@ public class ExtraInfoController {
         return ResponseEntity.ok().body(service.save(dto));
     }
 
-    @PutMapping
-    public ResponseEntity<ExtraInfoDto> update(@RequestBody ExtraInfoDto dto) {
-        return ResponseEntity.ok().body(service.update(dto));
+    @PutMapping("/{id}")
+    public ResponseEntity<ExtraInfoDto> update(@PathVariable long id, @RequestBody ExtraInfoDto dto) {
+        return ResponseEntity.ok().body(service.update(id, dto));
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> delete(@RequestBody ExtraInfoDto dto) {
-        service.delete(dto);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable long id) {
+        service.delete(id);
         return ResponseEntity.ok().build();
     }
 
-    /*
-     * TODO: remember to implement showSingle
-     * */
+    @GetMapping("/{id}")
+    public ResponseEntity<ExtraInfoDto> showSingle(@PathVariable long id) {
+        return ResponseEntity.ok().body(service.showSingle(id));
+    }
 
     @GetMapping
     public ResponseEntity<List<ExtraInfoDto>> showAll() {

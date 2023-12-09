@@ -48,7 +48,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto update(UserDto dto) {
+    public UserDto update(long id, UserDto dto) {
+        dto.setId(id);
         validation.validateUpdate(dto);
         dto.setPassword(ProjectSecurityConfig.passwordEncoder().encode(dto.getPassword()));
         User savedUser = repository.save(
@@ -58,22 +59,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(UserDto dto) {
-        validation.validateExists(dto);
-        User model = mapper.map(dto, User.class);
-        ExtraInfo extraInfo = extraInfoValidation.validateHaveExtraInfo(model);
+    public void delete(long id) {
+        validation.validateExists(id);
+        ExtraInfo extraInfo = extraInfoValidation.validateHaveExtraInfo(id);
         if (extraInfo != null) {
-            ExtraInfoDto extraInfoDto = mapper.map(extraInfo, ExtraInfoDto.class);
-            extraInfoService.delete(extraInfoDto);
+            extraInfoService.delete(extraInfo.getId());
         }
         /*todo: delete address after implement address*/
-        repository.delete(mapper.map(dto, User.class));
+        repository.deleteById(id);
     }
 
     @Override
-    public Optional<UserDto> showSingle(UserDto dto) {
-        validation.validateExists(dto);
-        return repository.findById(dto.getId())
+    public Optional<UserDto> showSingle(long id) {
+        validation.validateExists(id);
+        return repository.findById(id)
                 .map((element) -> mapper.map(element, UserDto.class));
     }
 

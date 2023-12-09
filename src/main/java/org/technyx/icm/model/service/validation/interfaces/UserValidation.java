@@ -14,5 +14,5 @@ public interface UserValidation {
 
     void validateUpdate(UserDto dto);
 
-    void validateExists(UserDto dto);
+    void validateExists(long id);
 }

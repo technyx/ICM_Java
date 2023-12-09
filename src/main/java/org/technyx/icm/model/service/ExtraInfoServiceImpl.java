@@ -43,7 +43,8 @@ public class ExtraInfoServiceImpl implements ExtraInfoService {
     }
 
     @Override
-    public ExtraInfoDto update(ExtraInfoDto dto) {
+    public ExtraInfoDto update(long id,ExtraInfoDto dto) {
+        dto.setId(id);
         validation.validateUpdate(dto);
         ExtraInfo updatedModel = repository.save(
                 mapper.map(dto, ExtraInfo.class)
@@ -52,18 +53,16 @@ public class ExtraInfoServiceImpl implements ExtraInfoService {
     }
 
     @Override
-    public void delete(ExtraInfoDto dto) {
-        validation.validateDelete(dto);
-        repository.delete(mapper.map(dto, ExtraInfo.class));
-        if (dto.getAddress() != null) {
-            addressService.deleteById(dto.getId());
-        }
+    public void delete(long id) {
+        validation.validateExists(id);
+        repository.deleteById(id);
+        /*todo: implement delete adderess if needed*/
     }
 
     @Override
-    public ExtraInfoDto showSingle(ExtraInfoDto dto) {
-        validation.validateExists(dto);
-        Optional<ExtraInfo> model = repository.findById(dto.getId());
+    public ExtraInfoDto showSingle(long id) {
+        validation.validateExists(id);
+        Optional<ExtraInfo> model = repository.findById(id);
         return mapper.map(model, ExtraInfoDto.class);
     }
 
