@@ -8,11 +8,11 @@ public interface PaySlipService {
 
     PaySlipDto save(PaySlipDto dto);
 
-    PaySlipDto update(PaySlipDto dto);
+    PaySlipDto update(long id, PaySlipDto dto);
 
-    void delete(PaySlipDto dto);
+    void delete(long id);
 
-    PaySlipDto showSingle(PaySlipDto dto);
+    PaySlipDto showSingle(long id);
 
     List<PaySlipDto> showList();
 }

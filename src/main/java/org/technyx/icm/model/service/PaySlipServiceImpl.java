@@ -32,7 +32,7 @@ public class PaySlipServiceImpl implements PaySlipService {
     }
 
     @Override
-    public PaySlipDto update(PaySlipDto dto) {
+    public PaySlipDto update(long id, PaySlipDto dto) {
         PaySlip updatedModel = repository.save(
                 mapper.map(dto, PaySlip.class)
         );
@@ -40,14 +40,14 @@ public class PaySlipServiceImpl implements PaySlipService {
     }
 
     @Override
-    public void delete(PaySlipDto dto) {
-        repository.delete(mapper.map(dto, PaySlip.class));
+    public void delete(long id) {
+        repository.deleteById(id);
 
     }
 
     @Override
-    public PaySlipDto showSingle(PaySlipDto dto) {
-        Optional<PaySlip> paySlip = repository.findById(dto.getId());
+    public PaySlipDto showSingle(long id) {
+        Optional<PaySlip> paySlip = repository.findById(id);
         return mapper.map(paySlip, PaySlipDto.class);
     }
 
