@@ -1,11 +1,13 @@
 package org.technyx.icm.model.service;
 
+import org.springframework.stereotype.Service;
 import org.technyx.icm.model.entity.DataType;
 import org.technyx.icm.model.repository.DataTypeRepository;
 import org.technyx.icm.model.service.interfaces.DataTypeService;
 
 import java.util.List;
 
+@Service
 public class DataTypeServiceImpl implements DataTypeService {
 
     private final DataTypeRepository repository;
@@ -16,6 +18,6 @@ public class DataTypeServiceImpl implements DataTypeService {
 
     @Override
     public List<DataType> findByDiscriminator(String discriminator) {
-        return repository.findByDiscriminator(discriminator);
+        return repository.findByDiscriminatorOrderByPriority(discriminator);
     }
 }
