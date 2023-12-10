@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.technyx.icm.model.entity.enums.Role;
 
+import java.sql.Timestamp;
+
 @Getter
 @Setter
 public class UserDto {
@@ -19,4 +21,6 @@ public class UserDto {
     private String nationalCode;
 
     private Role role;
+
+//    private Timestamp registerDate;
 }
