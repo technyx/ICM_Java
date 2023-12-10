@@ -102,12 +102,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserWithFullDataDto saveWithFullData(UserWithFullDataDto dto) {
-        /*todo: need change after implement address*/
         dto.setPassword(ProjectSecurityConfig.passwordEncoder().encode(dto.getPassword()));
         User savedUser = repository.save(mapper.map(dto, User.class));
         dto.setUser(savedUser.getId());
         AddressDto savedAddress = addressService.save(mapper.map(dto, AddressDto.class));
-        dto.setAddressId(savedAddress.getId());
+        dto.setAddress(savedAddress.getId());
         ExtraInfoDto savedExtraInfo = extraInfoService.save(mapper.map(dto, ExtraInfoDto.class));
         UserWithFullDataDto newUserWithFullData = new UserWithFullDataDto();
         newUserWithFullData.map2Model(

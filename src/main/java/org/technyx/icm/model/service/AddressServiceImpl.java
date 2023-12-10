@@ -41,6 +41,7 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public AddressDto update(long id, AddressDto dto) {
         dto.setId(id);
+        validation.validateUpdate(dto);
         Address updatedModel = repository.save(
                 mapper.map(dto, Address.class)
         );
@@ -49,13 +50,15 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public void delete(long id) {
+        validation.validateExists(id);
         repository.deleteById(id);
     }
 
     @Override
     public AddressDto showSingle(long id) {
-        Optional<Address> address = repository.findById(id);
-        return mapper.map(address, AddressDto.class);
+        validation.validateExists(id);
+        return mapper
+                .map(repository.findById(id), AddressDto.class);
     }
 
     @Override

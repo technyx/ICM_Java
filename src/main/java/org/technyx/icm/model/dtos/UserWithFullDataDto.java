@@ -21,11 +21,9 @@ public class UserWithFullDataDto {
 
     private String password;
 
+    private String nationalCode;
+
     private Role role;
-
-    private Timestamp registerDate;
-
-    private Date birthDate;
 
     private long user;
 
@@ -33,30 +31,31 @@ public class UserWithFullDataDto {
 
     private String lastname;
 
+    private Date birthDate;
+
     private String phone;
 
-    private long addressId;
-
-    private Country country;
+    private Long address;
 
     private City city;
 
-    private String postalCode;
+    private String location;
 
-    private String address;
+    private String postalCode;
 
     public void map2Model(User user, ExtraInfo extraInfo, Address address) {
         this.username = user.getUsername();
         this.password = user.getPassword();
+        this.nationalCode = user.getNationalCode();
         this.role = user.getRole();
         this.user = extraInfo.getUser();
         this.firstname = extraInfo.getFirstname();
         this.lastname = extraInfo.getLastname();
         this.birthDate = extraInfo.getBirthDate();
         this.phone = extraInfo.getPhone();
-        this.addressId = extraInfo.getAddress();
+        this.address = extraInfo.getAddress();
         this.city = address.getCity();
-//        this.address = address.getAddress();
+        this.location = address.getLocation();
         this.postalCode = address.getPostalCode();
     }
 }

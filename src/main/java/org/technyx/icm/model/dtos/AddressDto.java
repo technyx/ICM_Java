@@ -11,10 +11,6 @@ public class AddressDto {
 
     private long id;
 
-    private long extraInfo;
-
-    private Country country;
-
     private City city;
 
     private String location;

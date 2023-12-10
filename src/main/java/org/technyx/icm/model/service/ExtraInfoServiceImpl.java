@@ -55,15 +55,18 @@ public class ExtraInfoServiceImpl implements ExtraInfoService {
     @Override
     public void delete(long id) {
         validation.validateExists(id);
+        Long addressId = repository.findAddressById(id);
         repository.deleteById(id);
-        /*todo: implement delete adderess if needed*/
+        if (addressId != null) {
+            addressService.delete(addressId);
+        }
     }
 
     @Override
     public ExtraInfoDto showSingle(long id) {
         validation.validateExists(id);
-        Optional<ExtraInfo> model = repository.findById(id);
-        return mapper.map(model, ExtraInfoDto.class);
+        return mapper
+                .map(repository.findById(id), ExtraInfoDto.class);
     }
 
     @Override

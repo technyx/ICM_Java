@@ -8,7 +8,11 @@ public class RegexUtility {
 
     public static final String CHECK_ONLY_TEN_DIGIT = "^\\d{10}$";
 
-    public static final String CHECK_ENG_OR_PER_CHAR_2_50 = "^([a-zA-Z]{2,50}|[\\u0600-\\u06FF]{2,50})$";
+    public static final String CHECK_ENG_OR_PER_CHAR_2_50 = "^([a-zA-Z\\u0600-\\u06FF\\s-]{2,50})$";
 
     public static final String CHECK_IRI_PHONE = "^\\+98[\\s\\-]?[1-9]\\d{9}$";
+
+    public static final String PER_POSTAL_CODE = "\\d{10}";
+
+    public static final String PER_LOCATION = "^[\\u0600-\\u06FF0-9\\s\\-،؛؟!\\.,:]+$";
 }

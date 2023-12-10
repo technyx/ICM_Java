@@ -29,20 +29,19 @@ public class ProjectSecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests
                         ((requests) -> requests
-                                .requestMatchers(HttpMethod.POST, "/app/v001/auth/register").authenticated()
-                                .requestMatchers(HttpMethod.POST, "/app/v001/auth/login").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/app/v001/user/**").authenticated()
+                                .requestMatchers(HttpMethod.POST, "/app/v001/**").authenticated()
+                                /*.requestMatchers(HttpMethod.POST, "/app/v001/auth/login").permitAll()
                                 .requestMatchers(HttpMethod.PUT, "/app/v001/user").authenticated()
                                 .requestMatchers(HttpMethod.DELETE, "/app/v001/user").authenticated()
-                                .requestMatchers(HttpMethod.GET, "/app/v001/user").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/app/v001/user").authenticated()
                                 .requestMatchers(HttpMethod.POST, "/app/v001/extra-info").authenticated()
                                 .requestMatchers(HttpMethod.PUT, "/app/v001/extra-info").authenticated()
                                 .requestMatchers(HttpMethod.DELETE, "/app/v001/extra-info").authenticated()
-                                .requestMatchers(HttpMethod.GET, "/app/v001/extra-info").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/app/v001/extra-info").authenticated()
                                 .requestMatchers(HttpMethod.POST, "/app/v001/address").authenticated()
                                 .requestMatchers(HttpMethod.PUT, "/app/v001/address").authenticated()
                                 .requestMatchers(HttpMethod.DELETE, "/app/v001/address").authenticated()
-                                .requestMatchers(HttpMethod.GET, "/app/v001/address").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/app/v001/address").authenticated()*/
                         )
                 .httpBasic(withDefaults())
                 .build();
