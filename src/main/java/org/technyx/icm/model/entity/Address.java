@@ -5,9 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.experimental.SuperBuilder;
-import org.technyx.icm.model.entity.enums.City;
-import org.technyx.icm.model.entity.enums.Country;
 
 @Getter
 @Setter
@@ -18,8 +15,7 @@ import org.technyx.icm.model.entity.enums.Country;
 public class Address extends BaseObject{
 
     @Column(name = "c_city")
-    @Enumerated(EnumType.STRING)
-    private City city;
+    private String city;
 
     @Column(name = "c_location")
     private String location;

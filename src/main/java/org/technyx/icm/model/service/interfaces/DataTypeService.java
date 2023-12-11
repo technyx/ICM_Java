@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface DataTypeService {
 
+    DataType save(DataType dataType);
+
     List<DataType> findByDiscriminator(String discriminator);
 }

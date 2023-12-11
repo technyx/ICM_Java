@@ -1,5 +1,5 @@
 package org.technyx.icm.model.entity.enums;
 
-public enum Country {
-    IRAN
+public enum Discriminator {
+    CITY_NAME
 }

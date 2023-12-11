@@ -2,31 +2,33 @@ package org.technyx.icm.model.service.validation;
 
 import org.springframework.stereotype.Component;
 import org.technyx.icm.model.dtos.AddressDto;
-import org.technyx.icm.model.entity.enums.City;
-import org.technyx.icm.model.entity.enums.Country;
+import org.technyx.icm.model.entity.DataType;
+import org.technyx.icm.model.entity.enums.Discriminator;
 import org.technyx.icm.model.repository.AddressRepository;
-import org.technyx.icm.model.repository.ExtraInfoRepository;
+import org.technyx.icm.model.repository.DataTypeRepository;
 import org.technyx.icm.model.service.validation.interfaces.AddressValidation;
 import org.technyx.icm.model.util.RegexUtility;
 import org.technyx.icm.model.util.exception.AddressExceptionMessage;
-import org.technyx.icm.model.util.exception.ExtraInfoExceptionMessage;
 import org.technyx.icm.model.util.exception.base.AddressException;
-import org.technyx.icm.model.util.exception.base.ExtraInfoException;
 
 import java.util.EnumSet;
+import java.util.List;
 
 @Component
 public class AddressValidationImpl implements AddressValidation {
 
     private final AddressRepository repository;
 
-    public AddressValidationImpl(AddressRepository repository) {
+    private final DataTypeRepository dataTypeRepository;
+
+    public AddressValidationImpl(AddressRepository repository, DataTypeRepository dataTypeRepository) {
         this.repository = repository;
+        this.dataTypeRepository = dataTypeRepository;
     }
 
     private void validateBaseInfo(AddressDto dto) {
-        EnumSet<City> cityEnumSet = EnumSet.allOf(City.class);
-        if (!cityEnumSet.contains(dto.getCity()))
+        List<DataType> cityTypes = dataTypeRepository.findByDiscriminatorOrderByPriority(Discriminator.CITY_NAME);
+        if (cityTypes.stream().noneMatch(dataType -> dataType.getPerTitle().equals(dto.getCity())))
             throw new AddressException(AddressExceptionMessage.CITY_NOT_VALID.getExceptionMessage());
         if (!dto.getLocation().matches(RegexUtility.PER_LOCATION))
             throw new AddressException(AddressExceptionMessage.LOCATION_NOT_VALID.getExceptionMessage());

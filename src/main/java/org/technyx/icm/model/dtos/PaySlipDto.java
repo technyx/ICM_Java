@@ -15,5 +15,5 @@ public class PaySlipDto {
 
     private String url;
 
-    private long userId;
+    private long user;
 }

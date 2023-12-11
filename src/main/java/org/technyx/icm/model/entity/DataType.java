@@ -3,6 +3,7 @@ package org.technyx.icm.model.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.technyx.icm.model.entity.enums.Discriminator;
 
 @Getter
 @Setter
@@ -13,17 +14,18 @@ public class DataType {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "c_id")
-    long id;
+    private long id;
 
     @Column(name = "c_discriminator")
-    String discriminator;
+    @Enumerated(EnumType.STRING)
+    private Discriminator discriminator;
 
     @Column(name = "c_eng_title")
-    String engTitle;
+    private String engTitle;
 
     @Column(name = "c_per_title")
-    String perTitle;
+    private String perTitle;
 
     @Column(name = "c_priority")
-    long priority;
+    private long priority;
 }
