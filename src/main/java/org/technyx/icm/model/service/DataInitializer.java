@@ -36,18 +36,18 @@ public class DataInitializer implements CommandLineRunner {
         _1_admin.setRole(Role.ADMIN);
         authenticateService.register(_1_admin);
 
-        RegisterDto _1_user = new RegisterDto();
-        _1_user.setUsername("4490434773");
-        _1_user.setPassword("employee1");
-        _1_user.setNationalCode("4490434773");
-        _1_user.setRole(Role.EMPLOYEE);
-        authenticateService.register(_1_user);
+        RegisterDto _1_employee = new RegisterDto();
+        _1_employee.setUsername("4490434773");
+        _1_employee.setPassword("employee1");
+        _1_employee.setNationalCode("4490434773");
+        _1_employee.setRole(Role.EMPLOYEE);
+        authenticateService.register(_1_employee);
 
-        RegisterDto _2_user = new RegisterDto();
-        _2_user.setUsername("4490434774");
-        _2_user.setPassword("employee2");
-        _2_user.setNationalCode("4490434774");
-        _2_user.setRole(Role.EMPLOYEE);
-        authenticateService.register(_2_user);
+        RegisterDto _2_employee = new RegisterDto();
+        _2_employee.setUsername("4490434774");
+        _2_employee.setPassword("employee2");
+        _2_employee.setNationalCode("4490434774");
+        _2_employee.setRole(Role.EMPLOYEE);
+        authenticateService.register(_2_employee);
     }
 }

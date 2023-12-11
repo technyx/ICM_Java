@@ -15,7 +15,7 @@ import java.sql.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "PaySlip")
-@Table(name = "tb_payslip")
+@Table(name = "tb_pay_slip")
 public class PaySlip extends BaseObject {
 
     @Column(name = "c_url")
