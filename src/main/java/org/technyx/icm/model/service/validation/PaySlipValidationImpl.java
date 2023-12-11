@@ -1,6 +1,5 @@
 package org.technyx.icm.model.service.validation;
 
-import jdk.jfr.Category;
 import org.springframework.stereotype.Component;
 import org.technyx.icm.model.dtos.PaySlipDto;
 import org.technyx.icm.model.repository.PaySlipRepository;
