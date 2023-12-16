@@ -8,11 +8,11 @@ public interface FileService {
 
     FileDto save(FileDto dto);
 
-    FileDto update(FileDto dto);
+    FileDto update(long id, FileDto dto);
 
-    void delete(FileDto dto);
+    void delete(long id);
 
-    FileDto showSingle(FileDto dto);
+    FileDto showSingle(long id);
 
     List<FileDto> showList();
 }
