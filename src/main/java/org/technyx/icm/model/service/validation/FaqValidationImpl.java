@@ -2,18 +2,17 @@ package org.technyx.icm.model.service.validation;
 
 import org.springframework.stereotype.Component;
 import org.technyx.icm.model.dtos.FaqDto;
-import org.technyx.icm.model.repository.DataTypeRepository;
 import org.technyx.icm.model.repository.FaqRepository;
 import org.technyx.icm.model.service.validation.interfaces.FaqValidation;
 import org.technyx.icm.model.util.exception.FaqExceptionMessage;
 import org.technyx.icm.model.util.exception.base.FaqException;
 
 @Component
-public class FaqServiceImpl implements FaqValidation {
+public class FaqValidationImpl implements FaqValidation {
 
     private final FaqRepository repository;
 
-    public FaqServiceImpl(FaqRepository repository) {
+    public FaqValidationImpl(FaqRepository repository) {
         this.repository = repository;
     }
 
