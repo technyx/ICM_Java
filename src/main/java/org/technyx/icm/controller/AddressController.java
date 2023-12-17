@@ -12,8 +12,11 @@ import java.util.List;
 @RequestMapping("/app/v001/address")
 public class AddressController {
 
-    @Autowired
-    private AddressService service;
+    private final AddressService service;
+
+    public AddressController(AddressService service) {
+        this.service = service;
+    }
 
     @PostMapping
     public ResponseEntity<AddressDto> save(@RequestBody AddressDto dto) {

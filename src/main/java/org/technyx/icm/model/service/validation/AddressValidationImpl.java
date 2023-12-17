@@ -3,7 +3,6 @@ package org.technyx.icm.model.service.validation;
 import org.springframework.stereotype.Component;
 import org.technyx.icm.model.dtos.AddressDto;
 import org.technyx.icm.model.entity.DataType;
-import org.technyx.icm.model.entity.enums.Discriminator;
 import org.technyx.icm.model.repository.AddressRepository;
 import org.technyx.icm.model.repository.DataTypeRepository;
 import org.technyx.icm.model.service.validation.interfaces.AddressValidation;
@@ -11,7 +10,6 @@ import org.technyx.icm.model.util.RegexUtility;
 import org.technyx.icm.model.util.exception.AddressExceptionMessage;
 import org.technyx.icm.model.util.exception.base.AddressException;
 
-import java.util.EnumSet;
 import java.util.List;
 
 @Component
@@ -27,7 +25,7 @@ public class AddressValidationImpl implements AddressValidation {
     }
 
     private void validateBaseInfo(AddressDto dto) {
-        List<DataType> cityTypes = dataTypeRepository.findByDiscriminatorOrderByPriority(Discriminator.CITY_NAME);
+        List<DataType> cityTypes = dataTypeRepository.findByDiscriminatorOrderByPriority("CITY_NAME");
         if (cityTypes.stream().noneMatch(dataType -> dataType.getPerTitle().equals(dto.getCity())))
             throw new AddressException(AddressExceptionMessage.CITY_NOT_VALID.getExceptionMessage());
         if (!dto.getLocation().matches(RegexUtility.PER_LOCATION))

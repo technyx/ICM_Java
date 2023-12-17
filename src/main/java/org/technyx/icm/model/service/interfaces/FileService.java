@@ -14,5 +14,5 @@ public interface FileService {
 
     FileDto showSingle(long id);
 
-    List<FileDto> showList();
+    List<FileDto> showList(String discriminator);
 }

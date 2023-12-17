@@ -9,5 +9,7 @@ public class FileDto {
 
     private long id;
 
+    private String discriminator;
+
     private String url;
 }

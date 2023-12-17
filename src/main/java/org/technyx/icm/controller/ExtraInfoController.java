@@ -1,6 +1,5 @@
 package org.technyx.icm.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.technyx.icm.model.dtos.ExtraInfoDto;
@@ -12,8 +11,11 @@ import java.util.List;
 @RequestMapping("/app/v001/extra-info")
 public class ExtraInfoController {
 
-    @Autowired
-    private ExtraInfoService service;
+    private final ExtraInfoService service;
+
+    public ExtraInfoController(ExtraInfoService service) {
+        this.service = service;
+    }
 
     @PostMapping
     public ResponseEntity<ExtraInfoDto> save(@RequestBody ExtraInfoDto dto) {

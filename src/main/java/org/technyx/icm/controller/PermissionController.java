@@ -12,8 +12,11 @@ import java.util.List;
 @RequestMapping("/app/v001/permission")
 public class PermissionController {
 
-    @Autowired
-    private PermissionService service;
+    private final PermissionService service;
+
+    public PermissionController(PermissionService service) {
+        this.service = service;
+    }
 
     @PostMapping
     public ResponseEntity<PermissionDto> save(@RequestBody PermissionDto dto) {

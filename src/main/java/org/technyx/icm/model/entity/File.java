@@ -16,6 +16,9 @@ import lombok.Setter;
 @Table(name = "tb_file")
 public class File extends BaseObject {
 
+    @Column(name = "c_discriminator")
+    private String discriminator;
+
     @Column(name = "c_url")
     private String url;
 }

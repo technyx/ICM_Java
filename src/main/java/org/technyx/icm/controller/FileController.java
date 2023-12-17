@@ -12,8 +12,11 @@ import java.util.List;
 @RequestMapping("/app/v001/file")
 public class FileController {
 
-    @Autowired
-    private FileService service;
+    private final FileService service;
+
+    public FileController(FileService service) {
+        this.service = service;
+    }
 
     @PostMapping
     public ResponseEntity<FileDto> save(@RequestBody FileDto dto) {

@@ -8,7 +8,6 @@ import org.technyx.icm.model.dtos.RegisterDto;
 import org.technyx.icm.model.dtos.UserWithExtraInfoDto;
 import org.technyx.icm.model.dtos.UserWithFullDataDto;
 import org.technyx.icm.model.entity.DataType;
-import org.technyx.icm.model.entity.enums.Discriminator;
 import org.technyx.icm.model.entity.enums.Role;
 import org.technyx.icm.model.service.interfaces.AuthenticateService;
 import org.technyx.icm.model.service.interfaces.DataTypeService;
@@ -41,21 +40,21 @@ public class DataInitializer implements CommandLineRunner {
 
     private void createDatTypes() {
         DataType _1_dataType = new DataType();
-        _1_dataType.setDiscriminator(Discriminator.CITY_NAME);
+        _1_dataType.setDiscriminator("CITY_NAME");
         _1_dataType.setEngTitle("Ilam");
         _1_dataType.setPerTitle("ایلام");
         _1_dataType.setPriority(1);
         dataTypeService.save(_1_dataType);
 
         DataType _2_dataType = new DataType();
-        _2_dataType.setDiscriminator(Discriminator.CITY_NAME);
+        _2_dataType.setDiscriminator("CITY_NAME");
         _2_dataType.setEngTitle("Tehran");
         _2_dataType.setPerTitle("تهران");
         _2_dataType.setPriority(2);
         dataTypeService.save(_2_dataType);
 
         DataType _3_dataType = new DataType();
-        _3_dataType.setDiscriminator(Discriminator.CITY_NAME);
+        _3_dataType.setDiscriminator("CITY_NAME");
         _3_dataType.setEngTitle("Esfehan");
         _3_dataType.setPerTitle("اصفهان");
         _3_dataType.setPriority(3);

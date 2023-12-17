@@ -29,7 +29,7 @@ public class ProjectSecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests
                         ((requests) -> requests
-                                .requestMatchers("/app/v001/**").permitAll()
+                                .requestMatchers("/app/v001/**").authenticated()
                                 /*.requestMatchers(HttpMethod.POST, "/app/v001/auth/login").permitAll()
                                 .requestMatchers(HttpMethod.PUT, "/app/v001/user").authenticated()
                                 .requestMatchers(HttpMethod.DELETE, "/app/v001/user").authenticated()
@@ -43,6 +43,7 @@ public class ProjectSecurityConfig {
                                 .requestMatchers(HttpMethod.DELETE, "/app/v001/address").authenticated()
                                 .requestMatchers(HttpMethod.GET, "/app/v001/address").authenticated()*/
                         )
+                .formLogin(withDefaults())
                 .httpBasic(withDefaults())
                 .build();
     }

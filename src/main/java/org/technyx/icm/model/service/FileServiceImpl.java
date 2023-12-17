@@ -61,7 +61,7 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public List<FileDto> showList() {
+    public List<FileDto> showList(String discriminator) {
         List<File> fileList = repository.findAll();
         List<FileDto> fileDtos = new ArrayList<>();
         fileList.forEach(file -> fileDtos

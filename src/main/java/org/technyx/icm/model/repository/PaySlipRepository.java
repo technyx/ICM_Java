@@ -10,5 +10,4 @@ import java.sql.Date;
 
 @Repository
 public interface PaySlipRepository extends JpaRepository<PaySlip, Long> {
-    PaySlip findAllByDate(Date date);
 }

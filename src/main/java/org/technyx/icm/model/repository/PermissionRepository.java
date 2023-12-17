@@ -6,6 +6,4 @@ import org.technyx.icm.model.entity.Permission;
 
 @Repository
 public interface PermissionRepository extends JpaRepository<Permission, Long> {
-
-    void deleteById(long id);
 }
