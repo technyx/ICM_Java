@@ -28,16 +28,16 @@ public class FileController {
         return ResponseEntity.ok().body(service.update(id, dto));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/show-single/{id}")
     public ResponseEntity<Void> delete(@PathVariable long id) {
         service.delete(id);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping
-    public ResponseEntity<List<FileDto>> showAll() {
+    @GetMapping("/show-list/{discriminator}")
+    public ResponseEntity<List<FileDto>> showAll(String discriminator) {
         return ResponseEntity
                 .ok()
-                .body(service.showList());
+                .body(service.showList(discriminator));
     }
 }
