@@ -17,9 +17,9 @@ import lombok.Setter;
 @Table(name = "tb_faq")
 public class Faq extends BaseObject{
 
-    @Column(name = "question")
+    @Column(name = "c_question")
     private String question;
 
-    @Column(name = "answer")
+    @Column(name = "c_answer")
     private String answer;
 }

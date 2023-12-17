@@ -13,15 +13,17 @@ public class FaqServiceImpl implements FaqValidation {
 
     private final FaqRepository repository;
 
-    private final DataTypeRepository dataTypeRepository;
-
-    public FaqServiceImpl(FaqRepository repository, DataTypeRepository dataTypeRepository) {
+    public FaqServiceImpl(FaqRepository repository) {
         this.repository = repository;
-        this.dataTypeRepository = dataTypeRepository;
     }
 
     private void validateBaseInfo(FaqDto dto) {
-
+        if (dto.getQuestion().isEmpty() ||
+        dto.getQuestion().isBlank())
+            throw new FaqException(FaqExceptionMessage.QUESTION_IS_EMPTY.getExceptionMessage());
+        if (dto.getAnswer().isEmpty() ||
+        dto.getAnswer().isBlank())
+            throw new FaqException(FaqExceptionMessage.ANSWER_IS_EMPTY.getExceptionMessage());
     }
 
     @Override
@@ -37,7 +39,7 @@ public class FaqServiceImpl implements FaqValidation {
 
     @Override
     public void validateExists(long id) {
-        if (repository.existsById(id))
-            throw new FaqException(FaqExceptionMessage.ANSWER_NOT_FOUND.getExceptionMessage());
+        if (!repository.existsById(id))
+            throw new FaqException(FaqExceptionMessage.FAQ_NOT_FOUND.getExceptionMessage());
     }
 }

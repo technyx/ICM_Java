@@ -6,7 +6,4 @@ import org.technyx.icm.model.entity.Faq;
 
 @Repository
 public interface FaqRepository  extends JpaRepository<Faq, Long> {
-
-    void deleteById(long id);
-
 }
