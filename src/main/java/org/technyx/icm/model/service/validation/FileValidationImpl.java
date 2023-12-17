@@ -13,14 +13,17 @@ public class FileValidationImpl implements FileValidation {
 
     private final FileRepository repository;
 
-    private final DataTypeRepository dataTypeRepository;
-
-    public FileValidationImpl(FileRepository repository, DataTypeRepository dataTypeRepository) {
+    public FileValidationImpl(FileRepository repository) {
         this.repository = repository;
-        this.dataTypeRepository = dataTypeRepository;
     }
 
     private void validateBaseInfo(FileDto dto) {
+        if (dto.getDiscriminator().isEmpty() ||
+        dto.getDiscriminator().isBlank())
+            throw new FileException(FileExceptionMessage.DISCRIMINATOR_IS_EMPTY.getExceptionMessage());
+        if (dto.getUrl().isEmpty() ||
+                dto.getUrl().isBlank())
+            throw new FileException(FileExceptionMessage.URL_IS_EMPTY.getExceptionMessage());
     }
 
     @Override
