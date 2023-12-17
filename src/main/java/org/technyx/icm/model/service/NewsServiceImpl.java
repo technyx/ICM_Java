@@ -47,10 +47,12 @@ public class NewsServiceImpl implements NewsService {
         Content updatedNews = repository.save(
                 mapper.map(dto, Content.class)
         );
+        repository.flush();
         dto.getContentFiles().forEach(contentFile ->
                 contentFile.setContent(updatedNews)
         );
-        return mapper.map(updatedNews, NewsDto.class);
+        Content updatedNewsAndContent = repository.save(mapper.map(dto, Content.class));
+        return mapper.map(updatedNewsAndContent, NewsDto.class);
     }
 
     @Override
