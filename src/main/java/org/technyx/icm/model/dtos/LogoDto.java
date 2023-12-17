@@ -5,9 +5,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CustomerLogosDto {
+public class LogoDto {
 
     private long id;
 
-    private String imageUrl;
+    private String url;
 }
