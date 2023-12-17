@@ -1,12 +1,8 @@
 package org.technyx.icm.model.service.validation.interfaces;
 
-import org.technyx.icm.model.dtos.AddressDto;
+import org.technyx.icm.model.entity.Address;
 
 public interface AddressValidation {
 
-    void validateSave(AddressDto dto);
-
-    void validateUpdate(AddressDto dto);
-
-    void validateExists(long id);
+    void validateBaseInfo(Address model);
 }

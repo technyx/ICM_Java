@@ -2,28 +2,27 @@ package org.technyx.icm.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.technyx.icm.model.dtos.ExtraInfoDto;
-import org.technyx.icm.model.service.interfaces.ExtraInfoService;
+import org.technyx.icm.model.dtos.BlogDto;
+import org.technyx.icm.model.service.interfaces.BlogService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/app/v001/extra-info")
-public class ExtraInfoController {
+@RequestMapping("/app/v001/blog")
+public class BlogController {
+    private final BlogService service;
 
-    private final ExtraInfoService service;
-
-    public ExtraInfoController(ExtraInfoService service) {
+    public BlogController(BlogService service) {
         this.service = service;
     }
 
     @PostMapping
-    public ResponseEntity<ExtraInfoDto> save(@RequestBody ExtraInfoDto dto) {
+    public ResponseEntity<BlogDto> save(@RequestBody BlogDto dto) {
         return ResponseEntity.ok().body(service.save(dto));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ExtraInfoDto> update(@PathVariable long id, @RequestBody ExtraInfoDto dto) {
+    public ResponseEntity<BlogDto> update(@PathVariable long id, @RequestBody BlogDto dto) {
         return ResponseEntity.ok().body(service.update(id, dto));
     }
 
@@ -34,12 +33,14 @@ public class ExtraInfoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ExtraInfoDto> showSingle(@PathVariable long id) {
-        return ResponseEntity.ok().body(service.showSingle(id));
+    public ResponseEntity<BlogDto> showSingle(@PathVariable long id) {
+        return ResponseEntity
+                .ok()
+                .body(service.showSingle(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<ExtraInfoDto>> showAll() {
+    public ResponseEntity<List<BlogDto>> showAll() {
         return ResponseEntity
                 .ok()
                 .body(service.showList());

@@ -8,7 +8,7 @@ import org.technyx.icm.model.service.interfaces.LogoService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/app/v001/customerLogos")
+@RequestMapping("/app/v001/logo")
 public class LogoController {
 
     private final LogoService service;
@@ -27,16 +27,16 @@ public class LogoController {
         return ResponseEntity.ok().body(service.update(id, dto));
     }
 
-    @DeleteMapping("/show-single/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable long id) {
         service.delete(id);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/show-list/{discriminator}")
-    public ResponseEntity<List<LogoDto>> showAll(@PathVariable String discriminator) {
+    @GetMapping
+    public ResponseEntity<List<LogoDto>> showAll() {
         return ResponseEntity
                 .ok()
-                .body(service.showList(discriminator));
+                .body(service.showList());
     }
 }

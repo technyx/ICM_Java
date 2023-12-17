@@ -37,4 +37,11 @@ public class User extends BaseObject {
 
     @Column(name = "c_enabled")
     private boolean enabled = true;
+
+    @OneToOne(cascade = CascadeType.ALL
+            , fetch = FetchType.EAGER
+            , orphanRemoval = true)
+    @JoinColumn(name = "fk_extra_info"
+            , referencedColumnName = "c_id")
+    private ExtraInfo extraInfo;
 }

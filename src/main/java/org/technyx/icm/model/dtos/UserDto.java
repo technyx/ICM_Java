@@ -5,6 +5,8 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.Getter;
 import lombok.Setter;
+import org.technyx.icm.model.entity.Address;
+import org.technyx.icm.model.entity.ExtraInfo;
 import org.technyx.icm.model.entity.enums.Role;
 
 import java.sql.Timestamp;
@@ -22,5 +24,5 @@ public class UserDto {
 
     private Role role;
 
-//    private Timestamp registerDate;
+    private ExtraInfo extraInfo;
 }

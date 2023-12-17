@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.technyx.icm.model.dtos.LoginDto;
-import org.technyx.icm.model.dtos.RegisterDto;
+import org.technyx.icm.model.dtos.UserDto;
 import org.technyx.icm.model.entity.User;
 import org.technyx.icm.model.repository.UserRepository;
 import org.technyx.icm.model.service.interfaces.AuthenticateService;
@@ -28,12 +28,12 @@ public class AuthenticateServiceImpl implements AuthenticateService {
     }
 
     @Override
-    public RegisterDto register(RegisterDto dto) {
+    public UserDto register(UserDto dto) {
         User model = mapper.map(dto, User.class);
         validation.validateRegister(model);
         model.setPassword(ProjectSecurityConfig.passwordEncoder().encode(model.getPassword()));
         User savedModel = repository.save(model);
-        return mapper.map(savedModel, RegisterDto.class);
+        return mapper.map(savedModel, UserDto.class);
     }
 
     public LoginDto login(LoginDto dto) {

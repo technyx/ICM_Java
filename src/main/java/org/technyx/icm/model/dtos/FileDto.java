@@ -12,4 +12,6 @@ public class FileDto {
     private String discriminator;
 
     private String url;
+
+    private int priority;
 }

@@ -1,30 +1,28 @@
 package org.technyx.icm.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.technyx.icm.model.dtos.AddressDto;
-import org.technyx.icm.model.service.interfaces.AddressService;
+import org.technyx.icm.model.dtos.NewsDto;
+import org.technyx.icm.model.service.NewsServiceImpl;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/app/v001/address")
-public class AddressController {
+@RequestMapping("/app/v001/news")
+public class NewsController {
+    private final NewsServiceImpl service;
 
-    private final AddressService service;
-
-    public AddressController(AddressService service) {
+    public NewsController(NewsServiceImpl service) {
         this.service = service;
     }
 
     @PostMapping
-    public ResponseEntity<AddressDto> save(@RequestBody AddressDto dto) {
+    public ResponseEntity<NewsDto> save(@RequestBody NewsDto dto) {
         return ResponseEntity.ok().body(service.save(dto));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AddressDto> update(@PathVariable long id, @RequestBody AddressDto dto) {
+    public ResponseEntity<NewsDto> update(@PathVariable long id, @RequestBody NewsDto dto) {
         return ResponseEntity.ok().body(service.update(id, dto));
     }
 
@@ -34,8 +32,15 @@ public class AddressController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<NewsDto> showSingle(@PathVariable long id) {
+        return ResponseEntity
+                .ok()
+                .body(service.showSingle(id));
+    }
+
     @GetMapping
-    public ResponseEntity<List<AddressDto>> showAll() {
+    public ResponseEntity<List<NewsDto>> showAll() {
         return ResponseEntity
                 .ok()
                 .body(service.showList());

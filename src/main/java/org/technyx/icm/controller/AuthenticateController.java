@@ -3,7 +3,7 @@ package org.technyx.icm.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.technyx.icm.model.dtos.LoginDto;
-import org.technyx.icm.model.dtos.RegisterDto;
+import org.technyx.icm.model.dtos.UserDto;
 import org.technyx.icm.model.service.interfaces.AuthenticateService;
 
 @RestController
@@ -17,7 +17,7 @@ public class AuthenticateController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<RegisterDto> register(@RequestBody RegisterDto dto) {
+    public ResponseEntity<UserDto> register(@RequestBody UserDto dto) {
         return ResponseEntity.ok(service.register(dto));
     }
 

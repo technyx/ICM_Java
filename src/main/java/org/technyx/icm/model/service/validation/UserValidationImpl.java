@@ -6,6 +6,8 @@ import org.technyx.icm.model.dtos.UserDto;
 import org.technyx.icm.model.entity.User;
 import org.technyx.icm.model.entity.enums.Role;
 import org.technyx.icm.model.repository.UserRepository;
+import org.technyx.icm.model.service.validation.interfaces.AddressValidation;
+import org.technyx.icm.model.service.validation.interfaces.ExtraInfoValidation;
 import org.technyx.icm.model.service.validation.interfaces.UserValidation;
 import org.technyx.icm.model.util.ModelMapperConfig;
 import org.technyx.icm.model.util.RegexUtility;
@@ -18,12 +20,18 @@ import java.util.EnumSet;
 @Component
 public class UserValidationImpl implements UserValidation {
 
-    private final ModelMapper modelMapper = ModelMapperConfig.getMapperInstance();
+    private final ModelMapper mapper = ModelMapperConfig.getMapperInstance();
 
     private final UserRepository repository;
 
-    public UserValidationImpl(UserRepository repository) {
+    private final ExtraInfoValidation extraInfoValidation;
+
+    private final AddressValidation addressValidation;
+
+    public UserValidationImpl(UserRepository repository, ExtraInfoValidation extraInfoValidation, AddressValidation addressValidation) {
         this.repository = repository;
+        this.extraInfoValidation = extraInfoValidation;
+        this.addressValidation = addressValidation;
     }
 
     @Override
@@ -40,6 +48,11 @@ public class UserValidationImpl implements UserValidation {
             throw new UserException(UserExceptionMessages.USER_ROLE_NOT_VALID.getExceptionMessage());
         if (!model.getNationalCode().matches(RegexUtility.CHECK_ONLY_TEN_DIGIT))
             throw new UserException(UserExceptionMessages.NATIONAL_CODE_NOT_VALID.getExceptionMessage());
+        if (model.getExtraInfo() != null) {
+            extraInfoValidation.validateBaseInfo(model.getExtraInfo());
+            if (model.getExtraInfo().getAddress() != null)
+                addressValidation.validateBaseInfo(model.getExtraInfo().getAddress());
+        }
     }
 
     @Override
@@ -60,9 +73,8 @@ public class UserValidationImpl implements UserValidation {
     }
 
     @Override
-    public void validateUpdate(UserDto dto) {
-        User model = modelMapper.map(dto, User.class);
-        validateExists(dto.getId());
+    public void validateUpdate(User model) {
+        validateExists(model.getId());
         validateUsernamePassword(model);
         validateExtras(model);
     }

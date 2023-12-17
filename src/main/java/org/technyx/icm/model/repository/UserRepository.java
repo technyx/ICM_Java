@@ -12,10 +12,4 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByUsername(String username);
-
-    @Query(
-            nativeQuery = false
-            , value = "select u.id from User u where u.username = ?1"
-    )
-    Long findIdByUsername(String username);
 }

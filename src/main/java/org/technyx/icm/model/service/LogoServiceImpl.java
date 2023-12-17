@@ -24,6 +24,8 @@ public class LogoServiceImpl implements LogoService {
 
     private final LogoValidation validation;
 
+    private final static String DISCRIMINATOR = "LOGO_FILE";
+
     public LogoServiceImpl(FileService service, LogoValidation validation) {
         this.service = service;
         this.validation = validation;
@@ -33,7 +35,7 @@ public class LogoServiceImpl implements LogoService {
     public LogoDto save(LogoDto dto) {
         validation.validateSave(dto);
         FileDto fileDto = mapper.map(dto, FileDto.class);
-        fileDto.setDiscriminator("LOGO_FILE");
+        fileDto.setDiscriminator(DISCRIMINATOR);
         FileDto savedFileDto = service.save(fileDto);
         return mapper.map(savedFileDto, LogoDto.class);
     }
@@ -43,7 +45,7 @@ public class LogoServiceImpl implements LogoService {
         dto.setId(id);
         validation.validateUpdate(dto);
         FileDto fileDto = mapper.map(dto, FileDto.class);
-        fileDto.setDiscriminator("LOGO_FILE");
+        fileDto.setDiscriminator(DISCRIMINATOR);
         FileDto savedFileDto = service.save(fileDto);
         return mapper.map(savedFileDto, LogoDto.class);
     }
@@ -62,8 +64,8 @@ public class LogoServiceImpl implements LogoService {
     }
 
     @Override
-    public List<LogoDto> showList(String discriminator) {
-        List<FileDto> fileDtoList = service.showList(discriminator);
+    public List<LogoDto> showList() {
+        List<FileDto> fileDtoList = service.showList(DISCRIMINATOR);
         List<LogoDto> logoDtos = new ArrayList<>();
         fileDtoList.forEach(logo -> logoDtos
                 .add(mapper

@@ -1,8 +1,6 @@
 package org.technyx.icm.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,16 +10,19 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "File")
-@Table(name = "tb_file")
-public class File extends BaseObject {
-
-    @Column(name = "fk_discriminator"
-            , nullable = false)
-    private String discriminator;
+@Entity(name = "ContentFile")
+@Table(name = "tb_content_file")
+public class ContentFile extends BaseObject{
 
     @Column(name = "c_url"
             , nullable = false
             , unique = true)
     private String url;
+
+    @Column(name = "c_priority")
+    private int priority;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_content")
+    private Content content;
 }

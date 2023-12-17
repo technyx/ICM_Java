@@ -17,9 +17,6 @@ import java.sql.Date;
 @Table(name = "tb_extra_info")
 public class ExtraInfo extends BaseObject {
 
-    @Column(name = "fk_user")
-    private long user;
-
     @Column(name = "c_firstname")
     private String firstname;
 
@@ -32,6 +29,10 @@ public class ExtraInfo extends BaseObject {
     @Column(name = "c_phone")
     private String phone;
 
-    @Column(name = "fk_address")
-    private Long address;
+    @OneToOne(cascade = CascadeType.ALL
+            , fetch = FetchType.EAGER
+            , orphanRemoval = true)
+    @JoinColumn(name = "fk_address"
+            , referencedColumnName = "c_id")
+    private Address address;
 }

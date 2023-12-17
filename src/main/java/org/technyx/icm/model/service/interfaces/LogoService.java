@@ -14,5 +14,5 @@ public interface LogoService {
 
     LogoDto showSingle(long id);
 
-    List<LogoDto> showList(String discriminator);
+    List<LogoDto> showList();
 }
