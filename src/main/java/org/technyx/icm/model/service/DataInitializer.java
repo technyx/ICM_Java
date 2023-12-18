@@ -11,11 +11,9 @@ import org.technyx.icm.model.entity.enums.Role;
 import org.technyx.icm.model.service.interfaces.AuthenticateService;
 import org.technyx.icm.model.service.interfaces.DataTypeService;
 import org.technyx.icm.model.service.interfaces.NewsService;
-import org.technyx.icm.model.service.interfaces.UserService;
 import org.technyx.icm.model.util.ModelMapperConfig;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,9 +24,6 @@ public class DataInitializer implements CommandLineRunner {
 
     @Autowired
     private AuthenticateService authenticateService;
-
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private DataTypeService dataTypeService;
@@ -125,13 +120,14 @@ public class DataInitializer implements CommandLineRunner {
         _2_news.setImportant(true);
         _2_news.setMetaKeyword("kir, kos, kon");
         _2_news.setMetaDescription("hamatoon anid");
+        Content _2_content = new Content();
+        _2_content.setId(1);
         List<ContentFile> _2_contentFile = Arrays.asList(
-                new ContentFile("url4", 0, null),
-                new ContentFile("url5", 1, null),
-                new ContentFile("url6", 2, null)
+                new ContentFile("url4", 0, _2_content),
+                new ContentFile("url5", 1, _2_content),
+                new ContentFile("url6", 2, _2_content)
         );
         _2_news.setContentFiles(_2_contentFile);
-        newsService.save(_2_news);
+        newsService.update(1, _2_news);
     }
-
 }

@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.technyx.icm.model.entity.ContentFile;
 import org.technyx.icm.model.entity.File;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -25,5 +26,5 @@ public class NewsDto {
 
     private String metaDescription;
 
-    private List<ContentFile> contentFiles;
+    private List<ContentFile> contentFiles = new ArrayList<>();
 }

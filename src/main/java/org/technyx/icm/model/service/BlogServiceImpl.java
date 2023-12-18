@@ -4,10 +4,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.technyx.icm.model.dtos.BlogDto;
-import org.technyx.icm.model.dtos.NewsDto;
 import org.technyx.icm.model.entity.Content;
 import org.technyx.icm.model.repository.ContentRepository;
 import org.technyx.icm.model.service.interfaces.BlogService;
+import org.technyx.icm.model.service.validation.interfaces.ContentValidation;
 import org.technyx.icm.model.util.ModelMapperConfig;
 
 import java.util.ArrayList;
@@ -21,17 +21,23 @@ public class BlogServiceImpl implements BlogService {
 
     private final ContentRepository repository;
 
+    private final ContentValidation validation;
+
     private static final String DISCRIMINATOR = "BLOG";
 
-    public BlogServiceImpl(ContentRepository repository) {
+    public BlogServiceImpl(ContentRepository repository, ContentValidation validation) {
         this.repository = repository;
+        this.validation = validation;
     }
 
     @Override
     public BlogDto save(BlogDto dto) {
         dto.setDiscriminator(DISCRIMINATOR);
-        Content savedBlog = repository.save(
-                mapper.map(dto, Content.class)
+        Content model = mapper.map(dto, Content.class);
+        validation.validateBaseInfo(model);
+        Content savedBlog = repository.save(model);
+        dto.getContentFiles().forEach(contentFile ->
+                contentFile.setContent(savedBlog)
         );
         return mapper.map(savedBlog, BlogDto.class);
     }
@@ -40,19 +46,21 @@ public class BlogServiceImpl implements BlogService {
     public BlogDto update(long id, BlogDto dto) {
         dto.setId(id);
         dto.setDiscriminator(DISCRIMINATOR);
-        Content updatedBlog = repository.save(
-                mapper.map(dto, Content.class)
-        );
+        Content model = mapper.map(dto, Content.class);
+        validation.validateBaseInfo(model);
+        Content updatedBlog = repository.save(model);
         return mapper.map(updatedBlog, BlogDto.class);
     }
 
     @Override
     public void delete(long id) {
+        validation.validateExists(id);
         repository.deleteById(id);
     }
 
     @Override
     public BlogDto showSingle(long id) {
+        validation.validateExists(id);
         return mapper.map(
                 repository.findById(id), BlogDto.class
         );

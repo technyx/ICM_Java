@@ -7,11 +7,11 @@ import org.technyx.icm.model.dtos.NewsDto;
 import org.technyx.icm.model.entity.Content;
 import org.technyx.icm.model.repository.ContentRepository;
 import org.technyx.icm.model.service.interfaces.NewsService;
+import org.technyx.icm.model.service.validation.interfaces.ContentValidation;
 import org.technyx.icm.model.util.ModelMapperConfig;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -21,19 +21,22 @@ public class NewsServiceImpl implements NewsService {
 
     private final ContentRepository repository;
 
+    private final ContentValidation validation;
+
     private final static String DISCRIMINATOR = "NEWS";
 
-    public NewsServiceImpl(ContentRepository repository) {
+    public NewsServiceImpl(ContentRepository repository, ContentValidation validation) {
         this.repository = repository;
+        this.validation = validation;
     }
 
 
     @Override
     public NewsDto save(NewsDto dto) {
         dto.setDiscriminator(DISCRIMINATOR);
-        Content savedNews = repository.save(
-                mapper.map(dto, Content.class)
-        );
+        Content model = mapper.map(dto, Content.class);
+        validation.validateBaseInfo(model);
+        Content savedNews = repository.save(model);
         dto.getContentFiles().forEach(contentFile ->
                 contentFile.setContent(savedNews)
         );
@@ -44,24 +47,21 @@ public class NewsServiceImpl implements NewsService {
     public NewsDto update(long id, NewsDto dto) {
         dto.setId(id);
         dto.setDiscriminator(DISCRIMINATOR);
-        Content updatedNews = repository.save(
-                mapper.map(dto, Content.class)
-        );
-        repository.flush();
-        dto.getContentFiles().forEach(contentFile ->
-                contentFile.setContent(updatedNews)
-        );
-        Content updatedNewsAndContent = repository.save(mapper.map(dto, Content.class));
-        return mapper.map(updatedNewsAndContent, NewsDto.class);
+        Content model = mapper.map(dto, Content.class);
+        validation.validateBaseInfo(model);
+        Content updatedNews = repository.save(model);
+        return mapper.map(updatedNews, NewsDto.class);
     }
 
     @Override
     public void delete(long id) {
+        validation.validateExists(id);
         repository.deleteById(id);
     }
 
     @Override
     public NewsDto showSingle(long id) {
+        validation.validateExists(id);
         return mapper.map(
                 repository.findById(id), NewsDto.class
         );
