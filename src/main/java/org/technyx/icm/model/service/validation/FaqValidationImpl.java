@@ -1,7 +1,7 @@
 package org.technyx.icm.model.service.validation;
 
 import org.springframework.stereotype.Component;
-import org.technyx.icm.model.dtos.FaqDto;
+import org.technyx.icm.model.entity.Faq;
 import org.technyx.icm.model.repository.FaqRepository;
 import org.technyx.icm.model.service.validation.interfaces.FaqValidation;
 import org.technyx.icm.model.util.exception.FaqExceptionMessage;
@@ -16,24 +16,24 @@ public class FaqValidationImpl implements FaqValidation {
         this.repository = repository;
     }
 
-    private void validateBaseInfo(FaqDto dto) {
-        if (dto.getQuestion().isEmpty() ||
-        dto.getQuestion().isBlank())
-            throw new FaqException(FaqExceptionMessage.QUESTION_IS_EMPTY.getExceptionMessage());
-        if (dto.getAnswer().isEmpty() ||
-        dto.getAnswer().isBlank())
-            throw new FaqException(FaqExceptionMessage.ANSWER_IS_EMPTY.getExceptionMessage());
+    private void validateBaseInfo(Faq model) {
+//        if (model.getQuestion().isEmpty() ||
+//                model.getQuestion().isBlank())
+//            throw new FaqException(FaqExceptionMessage.QUESTION_IS_EMPTY.getExceptionMessage());
+//        if (model.getAnswer().isEmpty() ||
+//                model.getAnswer().isBlank())
+//            throw new FaqException(FaqExceptionMessage.ANSWER_IS_EMPTY.getExceptionMessage());
     }
 
     @Override
-    public void validateSave(FaqDto dto) {
-        validateBaseInfo(dto);
+    public void validateSave(Faq model) {
+        validateBaseInfo(model);
     }
 
     @Override
-    public void validateUpdate(FaqDto dto) {
-        validateExists(dto.getId());
-        validateBaseInfo(dto);
+    public void validateUpdate(Faq model) {
+        validateExists(model.getId());
+        validateBaseInfo(model);
     }
 
     @Override

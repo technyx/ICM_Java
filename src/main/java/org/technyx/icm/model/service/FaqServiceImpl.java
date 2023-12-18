@@ -30,20 +30,18 @@ public class FaqServiceImpl implements FaqService {
 
     @Override
     public FaqDto save(FaqDto dto) {
-        validation.validateSave(dto);
-        Faq savedModel = repository.save(
-                mapper.map(dto, Faq.class)
-        );
+        Faq model = mapper.map(dto, Faq.class);
+        validation.validateSave(model);
+        Faq savedModel = repository.save(model);
         return mapper.map(savedModel, FaqDto.class);
     }
 
     @Override
     public FaqDto update(long id, FaqDto dto) {
         dto.setId(id);
-        validation.validateUpdate(dto);
-        Faq updatedModel = repository.save(
-                mapper.map(dto, Faq.class)
-        );
+        Faq model = mapper.map(dto, Faq.class);
+        validation.validateUpdate(model);
+        Faq updatedModel = repository.save(model);
         return mapper.map(updatedModel, FaqDto.class);
     }
 
@@ -56,17 +54,14 @@ public class FaqServiceImpl implements FaqService {
     @Override
     public FaqDto showSingle(long id) {
         validation.validateExists(id);
-        return mapper
-                .map(repository.findById(id), FaqDto.class);
+        return mapper.map(repository.findById(id), FaqDto.class);
     }
 
     @Override
     public List<FaqDto> showList() {
         List<Faq> faqList = repository.findAll();
         List<FaqDto> faqDtos = new ArrayList<>();
-        faqList.forEach(faq -> faqDtos
-                .add(mapper
-                        .map(faq, FaqDto.class)));
+        faqList.forEach(faq -> faqDtos.add(mapper.map(faq, FaqDto.class)));
         return faqDtos;
     }
 }
