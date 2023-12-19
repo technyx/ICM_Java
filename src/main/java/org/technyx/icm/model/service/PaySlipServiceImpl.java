@@ -31,20 +31,18 @@ public class PaySlipServiceImpl implements PaySlipService {
 
     @Override
     public PaySlipDto save(PaySlipDto dto) {
-        validation.validateSave(dto);
-        PaySlip savedModel = repository.save(
-                mapper.map(dto, PaySlip.class)
-        );
+        PaySlip model = mapper.map(dto, PaySlip.class);
+        validation.validateSave(model);
+        PaySlip savedModel = repository.save(model);
         return mapper.map(savedModel, PaySlipDto.class);
     }
 
     @Override
     public PaySlipDto update(long id, PaySlipDto dto) {
         dto.setId(id);
-        validation.validateUpdate(dto);
-        PaySlip updatedModel = repository.save(
-                mapper.map(dto, PaySlip.class)
-        );
+        PaySlip model = mapper.map(dto, PaySlip.class);
+        validation.validateSave(model);
+        PaySlip updatedModel = repository.save(model);
         return mapper.map(updatedModel, PaySlipDto.class);
     }
 

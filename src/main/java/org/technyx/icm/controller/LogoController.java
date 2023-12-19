@@ -8,7 +8,7 @@ import org.technyx.icm.model.service.interfaces.LogoService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/app/v001/logo")
+@RequestMapping("/logo")
 public class LogoController {
 
     private final LogoService service;

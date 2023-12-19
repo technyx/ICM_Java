@@ -11,7 +11,7 @@ import org.technyx.icm.model.service.interfaces.PaySlipService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/app/v001/payslip")
+@RequestMapping("/payslip")
 public class PaySlipController {
 
     private final PaySlipService service;

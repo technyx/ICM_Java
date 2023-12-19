@@ -1,12 +1,12 @@
 package org.technyx.icm.model.service.validation.interfaces;
 
-import org.technyx.icm.model.dtos.FileDto;
+import org.technyx.icm.model.entity.File;
 
 public interface FileValidation {
 
-    void validateSave(FileDto dto);
+    void validateSave(File model);
 
-    void validateUpdate(FileDto dto);
+    void validateUpdate(File model);
 
     void validateExists(long id);
 }

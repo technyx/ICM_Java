@@ -17,12 +17,10 @@ public class FaqValidationImpl implements FaqValidation {
     }
 
     private void validateBaseInfo(Faq model) {
-//        if (model.getQuestion().isEmpty() ||
-//                model.getQuestion().isBlank())
-//            throw new FaqException(FaqExceptionMessage.QUESTION_IS_EMPTY.getExceptionMessage());
-//        if (model.getAnswer().isEmpty() ||
-//                model.getAnswer().isBlank())
-//            throw new FaqException(FaqExceptionMessage.ANSWER_IS_EMPTY.getExceptionMessage());
+        if (model.getQuestion().isBlank())
+            throw new FaqException(FaqExceptionMessage.QUESTION_IS_EMPTY.getExceptionMessage());
+        if (model.getAnswer().isBlank())
+            throw new FaqException(FaqExceptionMessage.ANSWER_IS_EMPTY.getExceptionMessage());
     }
 
     @Override

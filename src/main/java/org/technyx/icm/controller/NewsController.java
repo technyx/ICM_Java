@@ -8,7 +8,7 @@ import org.technyx.icm.model.service.NewsServiceImpl;
 import java.util.List;
 
 @RestController
-@RequestMapping("/app/v001/news")
+@RequestMapping("/news")
 public class NewsController {
     private final NewsServiceImpl service;
 

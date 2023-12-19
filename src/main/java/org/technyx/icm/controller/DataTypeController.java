@@ -11,7 +11,7 @@ import org.technyx.icm.model.service.interfaces.DataTypeService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/app/v001/util/data-type")
+@RequestMapping("/util/data-type")
 public class DataTypeController {
 
     private final DataTypeService service;

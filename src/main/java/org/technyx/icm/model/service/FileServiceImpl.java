@@ -23,6 +23,8 @@ public class FileServiceImpl implements FileService {
 
     private final FileValidation validation;
 
+    private final static String DISCRIMINATOR = "FILE";
+
     public FileServiceImpl(FileRepository repository, FileValidation validation) {
         this.repository = repository;
         this.validation = validation;
@@ -30,20 +32,18 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public FileDto save(FileDto dto) {
-        validation.validateSave(dto);
-        File savedModel = repository.save(
-                mapper.map(dto, File.class)
-        );
+        File model = mapper.map(dto, File.class);
+        validation.validateSave(model);
+        File savedModel = repository.save(model);
         return mapper.map(savedModel, FileDto.class);
     }
 
     @Override
     public FileDto update(long id, FileDto dto) {
         dto.setId(id);
-        validation.validateUpdate(dto);
-        File updatedModel = repository.save(
-                mapper.map(dto, File.class)
-        );
+        File model = mapper.map(dto, File.class);
+        validation.validateSave(model);
+        File updatedModel = repository.save(model);
         return mapper.map(updatedModel, FileDto.class);
     }
 
@@ -61,8 +61,8 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public List<FileDto> showList(String discriminator) {
-        List<File> fileList = repository.findAllByDiscriminator(discriminator);
+    public List<FileDto> showList() {
+        List<File> fileList = repository.findAllByDiscriminator(DISCRIMINATOR);
         List<FileDto> fileDtos = new ArrayList<>();
         fileList.forEach(file -> fileDtos
                 .add(mapper

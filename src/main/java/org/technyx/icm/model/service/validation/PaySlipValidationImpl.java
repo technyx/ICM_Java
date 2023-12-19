@@ -2,6 +2,7 @@ package org.technyx.icm.model.service.validation;
 
 import org.springframework.stereotype.Component;
 import org.technyx.icm.model.dtos.PaySlipDto;
+import org.technyx.icm.model.entity.PaySlip;
 import org.technyx.icm.model.repository.PaySlipRepository;
 import org.technyx.icm.model.repository.UserRepository;
 import org.technyx.icm.model.service.validation.interfaces.PaySlipValidation;
@@ -22,20 +23,20 @@ public class PaySlipValidationImpl implements PaySlipValidation {
         this.userRepository = userRepository;
     }
 
-    private void validateBaseInfo(PaySlipDto dto) {
-        if (!userRepository.existsById(dto.getUser()))
+    private void validateBaseInfo(PaySlip model) {
+        if (!userRepository.existsById(model.getUser()))
             throw new UserException(UserExceptionMessages.USER_NOT_FOUND.getExceptionMessage());
     }
 
     @Override
-    public void validateSave(PaySlipDto dto) {
-        validateBaseInfo(dto);
+    public void validateSave(PaySlip model) {
+        validateBaseInfo(model);
     }
 
     @Override
-    public void validateUpdate(PaySlipDto dto) {
-        validateExists(dto.getId());
-        validateBaseInfo(dto);
+    public void validateUpdate(PaySlip model) {
+        validateExists(model.getId());
+        validateBaseInfo(model);
     }
 
     @Override

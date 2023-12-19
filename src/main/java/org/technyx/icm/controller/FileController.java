@@ -9,7 +9,7 @@ import org.technyx.icm.model.service.interfaces.FileService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/app/v001/file")
+@RequestMapping("/file")
 public class FileController {
 
     private final FileService service;
@@ -28,16 +28,16 @@ public class FileController {
         return ResponseEntity.ok().body(service.update(id, dto));
     }
 
-    @DeleteMapping("/show-single/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable long id) {
         service.delete(id);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/show-list/{discriminator}")
+    @GetMapping
     public ResponseEntity<List<FileDto>> showAll(String discriminator) {
         return ResponseEntity
                 .ok()
-                .body(service.showList(discriminator));
+                .body(service.showList());
     }
 }

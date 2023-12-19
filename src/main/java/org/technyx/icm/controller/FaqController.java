@@ -8,7 +8,7 @@ import org.technyx.icm.model.service.interfaces.FaqService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/app/v001/faq")
+@RequestMapping("/faq")
 public class FaqController {
 
     public final FaqService service;

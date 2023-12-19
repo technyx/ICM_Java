@@ -18,9 +18,9 @@ public class ContentValidationImpl implements ContentValidation {
 
     @Override
     public void validateBaseInfo(Content model) {
-        if (!model.getTitle().isBlank())
+        if (model.getTitle().isBlank())
             throw new ContentException(ContentExceptionMessage.TITLE_IS_EMPTY.getExceptionMessage());
-        if (!model.getDescription().isBlank())
+        if (model.getDescription().isBlank())
             throw new ContentException(ContentExceptionMessage.DESCRIPTION_IS_EMPTY.getExceptionMessage());
         if (model.getContentFiles().size() <= 1 &&
                 model.getContentFiles().get(0).getPriority() != 0)

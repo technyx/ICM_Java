@@ -10,7 +10,7 @@ public interface UserValidation {
 
     void validateLogin(User model, User loginModel);
 
-    void validateUpdate(User dto);
+    void validateUpdate(User model);
 
     void validateExists(long id);
 }

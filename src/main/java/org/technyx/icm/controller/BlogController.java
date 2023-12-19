@@ -8,7 +8,7 @@ import org.technyx.icm.model.service.interfaces.BlogService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/app/v001/blog")
+@RequestMapping("/blog")
 public class BlogController {
     private final BlogService service;
 

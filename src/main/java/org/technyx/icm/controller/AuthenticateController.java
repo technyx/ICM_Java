@@ -7,7 +7,7 @@ import org.technyx.icm.model.dtos.UserDto;
 import org.technyx.icm.model.service.interfaces.AuthenticateService;
 
 @RestController
-@RequestMapping("/app/v001/auth")
+@RequestMapping("/auth")
 public class AuthenticateController {
 
     private final AuthenticateService service;
