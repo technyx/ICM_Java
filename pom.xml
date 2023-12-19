@@ -10,7 +10,7 @@
     </parent>
     <groupId>org.technyx</groupId>
     <artifactId>icm</artifactId>
-    <version>001</version>
+    <version>1</version>
     <packaging>jar</packaging>
     <name>icm</name>
     <description>Demo project for Spring Boot</description>

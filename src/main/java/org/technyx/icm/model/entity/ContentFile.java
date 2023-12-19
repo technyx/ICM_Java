@@ -1,5 +1,6 @@
 package org.technyx.icm.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,7 +23,8 @@ public class ContentFile extends BaseObject{
     @Column(name = "c_priority")
     private int priority;
 
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_content")
     private Content content;
 }
