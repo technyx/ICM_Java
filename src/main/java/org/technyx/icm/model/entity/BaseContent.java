@@ -12,7 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @MappedSuperclass
-public class BasePost extends BaseObject {
+public class BaseContent extends BaseObject {
 
     @Column(name = "fk_discriminator")
     private String discriminator;

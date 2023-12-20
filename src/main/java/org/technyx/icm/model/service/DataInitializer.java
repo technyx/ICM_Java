@@ -1,17 +1,17 @@
 package org.technyx.icm.model.service;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import org.technyx.icm.model.dtos.InfoDto;
 import org.technyx.icm.model.dtos.NewsDto;
 import org.technyx.icm.model.dtos.UserDto;
 import org.technyx.icm.model.entity.*;
 import org.technyx.icm.model.entity.enums.Role;
+import org.technyx.icm.model.service.interfaces.InfoService;
 import org.technyx.icm.model.service.interfaces.AuthenticateService;
 import org.technyx.icm.model.service.interfaces.DataTypeService;
 import org.technyx.icm.model.service.interfaces.NewsService;
-import org.technyx.icm.model.util.ModelMapperConfig;
 
 import java.sql.Date;
 import java.util.Arrays;
@@ -19,8 +19,6 @@ import java.util.List;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
-
-    private final ModelMapper mapper = ModelMapperConfig.getMapperInstance();
 
     @Autowired
     private AuthenticateService authenticateService;
@@ -31,14 +29,53 @@ public class DataInitializer implements CommandLineRunner {
     @Autowired
     private NewsService newsService;
 
+    @Autowired
+    private InfoService infoService;
+
     private final static String CITY = "CITY_NAME";
+
     private final static String NEWS = "NEWS";
+
+    private final static String ABOUT = "ABOUT";
+
+    private final static String CONTACT = "CONTACT";
 
     @Override
     public void run(String... args) throws Exception {
         createDataTypes();
         createBaseUsers();
-        createBaseNews();
+        createBaseContact();
+        createBaseAbout();
+    }
+
+    private void createBaseAbout() {
+        InfoDto infoDto = new InfoDto();
+        infoDto.setTitle("درباره ما");
+        infoDto.setText("در باره شرکت ما، یه عده کسخولیم کیرم دهن هرکی میخونه اینو");
+        File _1_file = new File();
+        _1_file.setDiscriminator(ABOUT);
+        _1_file.setUrl("url9");
+        File _2_file = new File();
+        _2_file.setDiscriminator(ABOUT);
+        _2_file.setUrl("url10");
+        infoDto.setFiles(Arrays.asList(_1_file, _2_file));
+        infoDto.setDiscriminator(ABOUT);
+        infoService.save(infoDto);
+    }
+
+    private void createBaseContact() {
+        InfoDto infoDto = new InfoDto();
+        infoDto.setTitle("درباره ما");
+        infoDto.setText("در باره شرکت ما، یه عده کسخولیم کیرم دهن هرکی میخونه اینو");
+        File _1_file = new File();
+        _1_file.setDiscriminator(CONTACT);
+        _1_file.setUrl("url123");
+        File _2_file = new File();
+        _2_file.setDiscriminator(CONTACT);
+        _2_file.setUrl("url1234");
+        infoDto.setDiscriminator(CONTACT);
+        infoDto.setFiles(Arrays.asList(_1_file, _2_file));
+        infoService.save(infoDto);
     }
 
     private void createDataTypes() {
@@ -84,7 +121,7 @@ public class DataInitializer implements CommandLineRunner {
         authenticateService.register(_1_admin);
 
         ExtraInfo _2_extraInfo = new ExtraInfo();
-        _2_extraInfo.setFirstname("مهناز");
+        _2_extraInfo.setFirstname("حجت");
         _2_extraInfo.setLastname("حسینی");
         _2_extraInfo.setPhone("+989918114841");
         _2_extraInfo.setBirthDate(Date.valueOf("1998-01-02"));
@@ -112,22 +149,5 @@ public class DataInitializer implements CommandLineRunner {
         );
         _1_news.setContentFiles(contentFile);
         newsService.save(_1_news);
-
-        NewsDto _2_news = new NewsDto();
-        _2_news.setDiscriminator(NEWS);
-        _2_news.setTitle("خبر کونی");
-        _2_news.setDescription("این خبر کونی برای کیر همه pms هاست");
-        _2_news.setImportant(true);
-        _2_news.setMetaKeyword("kir, kos, kon");
-        _2_news.setMetaDescription("hamatoon anid");
-        Content _2_content = new Content();
-        _2_content.setId(1);
-        List<ContentFile> _2_contentFile = Arrays.asList(
-                new ContentFile("url4", 0, _2_content),
-                new ContentFile("url5", 1, _2_content),
-                new ContentFile("url6", 2, _2_content)
-        );
-        _2_news.setContentFiles(_2_contentFile);
-        newsService.update(1, _2_news);
     }
 }

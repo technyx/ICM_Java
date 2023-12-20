@@ -1,6 +1,5 @@
 package org.technyx.icm.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity(name = "Content")
 @Table(name = "tb_content")
-public class Content extends BasePost {
+public class Content extends BaseContent {
 
     @Column(name = "c_description")
     private String description;
