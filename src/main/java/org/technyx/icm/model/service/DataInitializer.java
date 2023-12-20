@@ -36,6 +36,8 @@ public class DataInitializer implements CommandLineRunner {
 
     private final static String NEWS = "NEWS";
 
+    private final static String BLOG = "BLOG";
+
     private final static String ABOUT = "ABOUT";
 
     private final static String CONTACT = "CONTACT";
@@ -46,6 +48,9 @@ public class DataInitializer implements CommandLineRunner {
         createBaseUsers();
         createBaseContact();
         createBaseAbout();
+        createBaseBlog1();
+        createBaseBlog2();
+        createBaseNews();
     }
 
     private void createBaseAbout() {
@@ -143,9 +148,43 @@ public class DataInitializer implements CommandLineRunner {
         _1_news.setMetaKeyword("kir, kos, kon");
         _1_news.setMetaDescription("hamatoon anid");
         List<ContentFile> contentFile = Arrays.asList(
-                new ContentFile("url1", 0, null),
-                new ContentFile("url2", 1, null),
-                new ContentFile("url3", 2, null)
+                new ContentFile("url1765756", 0, null),
+                new ContentFile("url24356346", 1, null),
+                new ContentFile("url3123451235", 2, null)
+        );
+        _1_news.setContentFiles(contentFile);
+        newsService.save(_1_news);
+    }
+
+    private void createBaseBlog1() {
+        NewsDto _1_news = new NewsDto();
+        _1_news.setDiscriminator(BLOG);
+        _1_news.setTitle("مقاله کیری");
+        _1_news.setDescription("این خبر کیری برای کون همه pms هاست");
+        _1_news.setImportant(true);
+        _1_news.setMetaKeyword("kir, kos, kon");
+        _1_news.setMetaDescription("hamatoon anid");
+        List<ContentFile> contentFile = Arrays.asList(
+                new ContentFile("url1346346346", 0, null),
+                new ContentFile("url234634634", 1, null),
+                new ContentFile("url334563", 2, null)
+        );
+        _1_news.setContentFiles(contentFile);
+        newsService.save(_1_news);
+    }
+
+    private void createBaseBlog2() {
+        NewsDto _1_news = new NewsDto();
+        _1_news.setDiscriminator(BLOG);
+        _1_news.setTitle("مقاله کیری");
+        _1_news.setDescription("این خبر کیری برای کون همه pms هاست");
+        _1_news.setImportant(true);
+        _1_news.setMetaKeyword("kir, kos, kon");
+        _1_news.setMetaDescription("hamatoon anid");
+        List<ContentFile> contentFile = Arrays.asList(
+                new ContentFile("url134634", 0, null),
+                new ContentFile("url2234623462", 1, null),
+                new ContentFile("url2346234623462", 2, null)
         );
         _1_news.setContentFiles(contentFile);
         newsService.save(_1_news);
