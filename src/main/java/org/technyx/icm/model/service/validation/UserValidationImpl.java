@@ -20,8 +20,6 @@ import java.util.EnumSet;
 @Component
 public class UserValidationImpl implements UserValidation {
 
-    private final ModelMapper mapper = ModelMapperConfig.getMapperInstance();
-
     private final UserRepository repository;
 
     private final ExtraInfoValidation extraInfoValidation;
