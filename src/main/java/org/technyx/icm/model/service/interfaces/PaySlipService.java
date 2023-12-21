@@ -14,5 +14,7 @@ public interface PaySlipService {
 
     PaySlipDto showSingle(long id);
 
+    List<PaySlipDto> showListByUser(String username);
+
     List<PaySlipDto> showList();
 }

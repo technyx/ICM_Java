@@ -14,15 +14,14 @@ import lombok.Setter;
 @MappedSuperclass
 public class BaseContent extends BaseObject {
 
-    @Column(name = "fk_discriminator")
-    private String discriminator;
-
     @Column(name = "c_title")
     private String title;
 
-    @Column(name = "c_meta_keyword")
+    @Column(name = "c_meta_keyword"
+            , columnDefinition = "TEXT")
     private String metaKeyword;
 
-    @Column(name = "c_meta_description")
+    @Column(name = "c_meta_description"
+            , columnDefinition = "TEXT")
     private String metaDescription;
 }

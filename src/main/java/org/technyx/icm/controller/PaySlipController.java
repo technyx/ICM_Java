@@ -36,9 +36,9 @@ public class PaySlipController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<PaySlipDto> showSingle(@PathVariable long id) {
-        return ResponseEntity.ok().body(service.showSingle(id));
+    @GetMapping("/user/{username}")
+    public ResponseEntity<List<PaySlipDto>> showListByUser(@PathVariable String username) {
+        return ResponseEntity.ok().body(service.showListByUser(username));
     }
 
     @GetMapping

@@ -2,6 +2,7 @@ package org.technyx.icm.model.dtos;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.technyx.icm.model.entity.User;
 
 import java.sql.Date;
 
@@ -15,5 +16,5 @@ public class PaySlipDto {
 
     private String url;
 
-    private long user;
+    private User user;
 }

@@ -12,4 +12,9 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByUsername(String username);
+
+    @Query(
+            value = "from User order by id desc"
+    )
+    List<User> findAllOrderDesc();
 }

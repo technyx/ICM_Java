@@ -55,7 +55,7 @@ public class  UserServiceImpl implements UserService {
     @Override
     public List<UserDto> showList() {
         List<UserDto> userDtos = new ArrayList<>();
-        List<User> modelList = repository.findAll();
+        List<User> modelList = repository.findAllOrderDesc();
         modelList.forEach(user -> userDtos.add(mapper.map(user, UserDto.class)));
         return userDtos;
     }

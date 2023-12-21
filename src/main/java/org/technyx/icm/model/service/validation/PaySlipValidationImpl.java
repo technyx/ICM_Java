@@ -24,7 +24,7 @@ public class PaySlipValidationImpl implements PaySlipValidation {
     }
 
     private void validateBaseInfo(PaySlip model) {
-        if (!userRepository.existsById(model.getUser()))
+        if (!userRepository.existsById(model.getUser().getId()))
             throw new UserException(UserExceptionMessages.USER_NOT_FOUND.getExceptionMessage());
     }
 
