@@ -18,7 +18,10 @@ public class SeoValidationImpl implements SeoValidation {
 
     @Override
     public void validateBaseInfo(Seo model) {
-
+        if (model.getTitle().isBlank())
+            throw new SeoException(SeoExceptionMessage.SEO_TITLE_IS_EMPTY.getExceptionMessage());
+        if (model.getDescription().isBlank())
+            throw new SeoException(SeoExceptionMessage.SEO_DESCRIPTION_IS_EMPTY.getExceptionMessage());
     }
 
     @Override
