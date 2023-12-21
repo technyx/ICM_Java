@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.technyx.icm.model.entity.ContentFile;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,8 @@ public class CourseDto {
     private String metaKeyword;
 
     private String metaDescription;
+
+    private Timestamp registerDate;
 
     private List<ContentFile> contentFiles = new ArrayList<>();
 }

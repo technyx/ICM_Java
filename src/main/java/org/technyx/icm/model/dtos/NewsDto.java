@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.technyx.icm.model.entity.ContentFile;
 import org.technyx.icm.model.entity.File;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,8 @@ public class NewsDto {
     private String metaKeyword;
 
     private String metaDescription;
+
+    private Timestamp registerDate;
 
     private List<ContentFile> contentFiles = new ArrayList<>();
 }

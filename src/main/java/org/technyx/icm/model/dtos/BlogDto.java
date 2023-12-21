@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.technyx.icm.model.entity.ContentFile;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Getter
@@ -23,6 +24,8 @@ public class BlogDto {
     private String metaKeyword;
 
     private String metaDescription;
+
+    private Timestamp registerDate;
 
     private List<ContentFile> contentFiles;
 }
