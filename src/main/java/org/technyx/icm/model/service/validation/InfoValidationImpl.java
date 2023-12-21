@@ -20,16 +20,16 @@ public class InfoValidationImpl implements InfoValidation {
     public void validateBaseInfo(Info model) {
         if (model.getTitle().length() < 8)
             throw new InfoException(InfoExceptionMessage.INFO_TITLE_MUST_BE_AT_LEAST_8_CHAR.getExceptionMessage());
-        if (model.getText().length() < 21)
+        if (model.getText().length() < 8)
             throw new InfoException(InfoExceptionMessage.INFO_TEXT_MUST_BE_AT_LEAST_8_CHAR.getExceptionMessage());
         if (model.getDiscriminator().isBlank())
             throw new InfoException(InfoExceptionMessage.INFO_DISCRIMINATOR_IS_BLANK.getExceptionMessage());
         else  {
             if (model.getDiscriminator().equals("ABOUT"))
-                if (model.getFiles().size() < 2)
+                if (model.getFiles().size() != 2)
                     throw new InfoException(InfoExceptionMessage.INFO_FILE_MUST_BE_AT_LEAST_2.getExceptionMessage());
             if (model.getDiscriminator().equals("CONTACT"))
-                if (model.getFiles().size() < 2)
+                if (model.getFiles().size() != 1)
                     throw new InfoException(InfoExceptionMessage.INFO_FILE_MUST_BE_AT_LEAST_1.getExceptionMessage());
         }
     }

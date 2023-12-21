@@ -3,19 +3,15 @@ package org.technyx.icm.model.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import org.technyx.icm.model.dtos.InfoDto;
-import org.technyx.icm.model.dtos.NewsDto;
-import org.technyx.icm.model.dtos.UserDto;
+import org.technyx.icm.model.dtos.*;
 import org.technyx.icm.model.entity.*;
 import org.technyx.icm.model.entity.enums.Role;
-import org.technyx.icm.model.service.interfaces.InfoService;
-import org.technyx.icm.model.service.interfaces.AuthenticateService;
-import org.technyx.icm.model.service.interfaces.DataTypeService;
-import org.technyx.icm.model.service.interfaces.NewsService;
+import org.technyx.icm.model.service.interfaces.*;
 
 import java.sql.Date;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
@@ -32,6 +28,12 @@ public class DataInitializer implements CommandLineRunner {
     @Autowired
     private InfoService infoService;
 
+    @Autowired
+    private BlogService blogService;
+
+    @Autowired
+    private FaqService faqService;
+
     private final static String CITY = "CITY_NAME";
 
     private final static String NEWS = "NEWS";
@@ -42,15 +44,16 @@ public class DataInitializer implements CommandLineRunner {
 
     private final static String CONTACT = "CONTACT";
 
+
     @Override
     public void run(String... args) throws Exception {
+        createBaseBlog();
+        createBaseNews();
+        createBaseAbout();
         createDataTypes();
         createBaseUsers();
         createBaseContact();
-        createBaseAbout();
-        createBaseBlog1();
-        createBaseBlog2();
-        createBaseNews();
+        createBaseFaq();
     }
 
     private void createBaseAbout() {
@@ -59,28 +62,44 @@ public class DataInitializer implements CommandLineRunner {
         infoDto.setText("در باره شرکت ما، یه عده کسخولیم کیرم دهن هرکی میخونه اینو");
         File _1_file = new File();
         _1_file.setDiscriminator(ABOUT);
-        _1_file.setUrl("url9");
+        _1_file.setUrl("urlAbout9");
         File _2_file = new File();
         _2_file.setDiscriminator(ABOUT);
-        _2_file.setUrl("url10");
+        _2_file.setUrl("urlAbout10");
         infoDto.setFiles(Arrays.asList(_1_file, _2_file));
         infoDto.setDiscriminator(ABOUT);
         infoService.save(infoDto);
     }
 
     private void createBaseContact() {
-        InfoDto infoDto = new InfoDto();
-        infoDto.setTitle("درباره ما");
-        infoDto.setText("در باره شرکت ما، یه عده کسخولیم کیرم دهن هرکی میخونه اینو");
-        File _1_file = new File();
-        _1_file.setDiscriminator(CONTACT);
-        _1_file.setUrl("url123");
-        File _2_file = new File();
-        _2_file.setDiscriminator(CONTACT);
-        _2_file.setUrl("url1234");
-        infoDto.setDiscriminator(CONTACT);
-        infoDto.setFiles(Arrays.asList(_1_file, _2_file));
-        infoService.save(infoDto);
+        for (int i = 0; i < 3; i++) {
+            InfoDto infoDto = new InfoDto();
+            infoDto.setTitle("شماره عمت");
+            infoDto.setText("متن عشقی 129857");
+            File _1_file = new File();
+            _1_file.setDiscriminator(CONTACT);
+            _1_file.setUrl("urlContact999" + i);
+            File _2_file = new File();
+            _2_file.setDiscriminator(CONTACT);
+            _2_file.setUrl("urlContact999" + i);
+            infoDto.setDiscriminator(CONTACT);
+            infoDto.setFiles(Arrays.asList(_1_file));
+            infoService.save(infoDto);
+        }
+    }
+
+    private void createBaseFaq() {
+        int minCodePoint = 0x0600;
+        int maxCodePoint = 0x06FF;
+        Random random = new Random();
+        for (int i = 0; i < 5; i++) {
+            int randomCodePoint = random.nextInt(maxCodePoint - minCodePoint + 1) + minCodePoint;
+            char randomPersianChar = (char) randomCodePoint;
+            FaqDto faqDto = new FaqDto();
+            faqDto.setQuestion("سوال کیری" + randomPersianChar);
+            faqDto.setAnswer("جواب تخمی" + randomPersianChar);
+            faqService.save(faqDto);
+        }
     }
 
     private void createDataTypes() {
@@ -137,56 +156,60 @@ public class DataInitializer implements CommandLineRunner {
         _2_employee.setRole(Role.EMPLOYEE);
         _2_employee.setExtraInfo(_2_extraInfo);
         authenticateService.register(_2_employee);
+        int minCodePoint = 0x0600;
+        int maxCodePoint = 0x06FF;
+        Random random = new Random();
+        for (int i = 0; i < 10; i++) {
+            int randomCodePoint = random.nextInt(maxCodePoint - minCodePoint + 1) + minCodePoint;
+            char randomPersianChar = (char) randomCodePoint;
+            ExtraInfo extrainfo = new ExtraInfo();
+            extrainfo.setFirstname("نام " +  randomPersianChar);
+            extrainfo.setLastname("فامیلی " + randomPersianChar);
+            extrainfo.setPhone("+98991811484" + i);
+            extrainfo.setBirthDate(Date.valueOf("1998-01-02"));
+            UserDto emp = new UserDto();
+            emp.setUsername("449043471" + i);
+            emp.setPassword("e449043471" + i);
+            emp.setNationalCode("449043471" + i);
+            emp.setRole(Role.EMPLOYEE);
+            emp.setExtraInfo(extrainfo);
+            authenticateService.register(emp);
+        }
     }
 
     private void createBaseNews() {
-        NewsDto _1_news = new NewsDto();
-        _1_news.setDiscriminator(NEWS);
-        _1_news.setTitle("خبر کیری");
-        _1_news.setDescription("این خبر کیری برای کون همه pms هاست");
-        _1_news.setImportant(true);
-        _1_news.setMetaKeyword("kir, kos, kon");
-        _1_news.setMetaDescription("hamatoon anid");
-        List<ContentFile> contentFile = Arrays.asList(
-                new ContentFile("url1765756", 0, null),
-                new ContentFile("url24356346", 1, null),
-                new ContentFile("url3123451235", 2, null)
-        );
-        _1_news.setContentFiles(contentFile);
-        newsService.save(_1_news);
+        for (int i = 0; i < 10; i++) {
+            NewsDto news = new NewsDto();
+            news.setTitle("خیر کیری" + i);
+            news.setDescription("این خبر کیری برای کون همه pms هاست" + i);
+            news.setImportant(true);
+            news.setMetaKeyword("kir, kos, kon" + i);
+            news.setMetaDescription("hamatoon anid" + i);
+            List<ContentFile> contentFile = Arrays.asList(
+                    new ContentFile("urlNews1" + i, 0, null),
+                    new ContentFile("urlNews2" + i, 1, null),
+                    new ContentFile("urlNews3" + i, 2, null)
+            );
+            news.setContentFiles(contentFile);
+            newsService.save(news);
+        }
     }
 
-    private void createBaseBlog1() {
-        NewsDto _1_news = new NewsDto();
-        _1_news.setDiscriminator(BLOG);
-        _1_news.setTitle("مقاله کیری");
-        _1_news.setDescription("این خبر کیری برای کون همه pms هاست");
-        _1_news.setImportant(true);
-        _1_news.setMetaKeyword("kir, kos, kon");
-        _1_news.setMetaDescription("hamatoon anid");
-        List<ContentFile> contentFile = Arrays.asList(
-                new ContentFile("url1346346346", 0, null),
-                new ContentFile("url234634634", 1, null),
-                new ContentFile("url334563", 2, null)
-        );
-        _1_news.setContentFiles(contentFile);
-        newsService.save(_1_news);
-    }
-
-    private void createBaseBlog2() {
-        NewsDto _1_news = new NewsDto();
-        _1_news.setDiscriminator(BLOG);
-        _1_news.setTitle("مقاله کیری");
-        _1_news.setDescription("این خبر کیری برای کون همه pms هاست");
-        _1_news.setImportant(true);
-        _1_news.setMetaKeyword("kir, kos, kon");
-        _1_news.setMetaDescription("hamatoon anid");
-        List<ContentFile> contentFile = Arrays.asList(
-                new ContentFile("url134634", 0, null),
-                new ContentFile("url2234623462", 1, null),
-                new ContentFile("url2346234623462", 2, null)
-        );
-        _1_news.setContentFiles(contentFile);
-        newsService.save(_1_news);
+    private void createBaseBlog() {
+        for (int i = 0; i < 10; i++) {
+            BlogDto blog = new BlogDto();
+            blog.setTitle("مقاله کیری" + i);
+            blog.setDescription("این مقاله کیری برای کون همه pms هاست" + i);
+            blog.setImportant(true);
+            blog.setMetaKeyword("mame, kos, kon" + i);
+            blog.setMetaDescription("hamatoon eshalid" + i);
+            List<ContentFile> contentFile = Arrays.asList(
+                    new ContentFile("urlBlog1" + i, 0, null),
+                    new ContentFile("urlBlog2" + i, 1, null),
+                    new ContentFile("urlBlog3" + i, 2, null)
+            );
+            blog.setContentFiles(contentFile);
+            blogService.save(blog);
+        }
     }
 }
