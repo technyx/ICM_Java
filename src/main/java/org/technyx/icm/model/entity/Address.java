@@ -17,7 +17,8 @@ public class Address extends BaseObject{
     @Column(name = "c_city")
     private String city;
 
-    @Column(name = "c_location")
+    @Column(name = "c_location"
+            , columnDefinition = "TEXT")
     private String location;
 
     @Column(name = "c_postal_code")

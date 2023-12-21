@@ -16,7 +16,8 @@ import java.util.List;
 @Table(name = "tb_content")
 public class Content extends BaseContent {
 
-    @Column(name = "c_description")
+    @Column(name = "c_description"
+            , columnDefinition = "TEXT")
     private String description;
 
     @Column(name = "c_important")

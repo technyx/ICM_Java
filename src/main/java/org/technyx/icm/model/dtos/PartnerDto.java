@@ -17,13 +17,5 @@ public class PartnerDto {
 
     private String title;
 
-    private String description;
-
-    private boolean important;
-
-    private String metaKeyword;
-
-    private String metaDescription;
-
     private List<ContentFile> contentFiles = new ArrayList<>();
 }

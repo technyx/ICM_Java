@@ -19,7 +19,8 @@ public class Info extends BaseObject{
     @Column(name = "c_title")
     private String title;
 
-    @Column(name = "c_text")
+    @Column(name = "c_text"
+            , columnDefinition = "TEXT")
     private String text;
 
     @Column(name = "c_discriminator")

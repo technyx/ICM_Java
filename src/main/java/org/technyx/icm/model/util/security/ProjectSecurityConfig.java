@@ -60,6 +60,7 @@ public class ProjectSecurityConfig {
                                 .requestMatchers(HttpMethod.PUT,"/info/**").authenticated()
                                 .requestMatchers(HttpMethod.DELETE,"/info/**").authenticated()
                                 .requestMatchers(HttpMethod.GET,"/info/**").permitAll()
+                                .requestMatchers(HttpMethod.GET,"/util/data-type/**").permitAll()
                         )
                 .httpBasic(withDefaults())
                 .build();
