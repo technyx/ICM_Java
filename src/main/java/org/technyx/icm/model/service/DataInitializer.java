@@ -22,35 +22,21 @@ public class DataInitializer implements CommandLineRunner {
     @Autowired
     private DataTypeService dataTypeService;
 
-    @Autowired
-    private NewsService newsService;
-
-    @Autowired
-    private InfoService infoService;
-
-    @Autowired
-    private BlogService blogService;
-
-    @Autowired
-    private FaqService faqService;
-
     private final static String CITY = "CITY_NAME";
-
-    private final static String NEWS = "NEWS";
-
-    private final static String BLOG = "BLOG";
-
-    private final static String ABOUT = "ABOUT";
-
-    private final static String CONTACT = "CONTACT";
 
 
     @Override
     public void run(String... args) throws Exception {
-        createBaseUsers();
+        createBase();
     }
 
-    private void createBaseUsers() {
+    private void createBase() {
+        DataType dataType = new DataType();
+        dataType.setDiscriminator(CITY);
+        dataType.setPriority(0);
+        dataType.setEngTitle("ILAM");
+        dataType.setPerTitle("ایلام");
+        dataTypeService.save(dataType);
         Address _1_address = new Address();
         _1_address.setCity("ایلام");
         _1_address.setLocation("دفتر تیم تولید");
@@ -58,7 +44,7 @@ public class DataInitializer implements CommandLineRunner {
         ExtraInfo _1_extraInfo = new ExtraInfo();
         _1_extraInfo.setFirstname("تیم تولید");
         _1_extraInfo.setLastname("تیم تولید");
-        _1_extraInfo.setPhone("+980000000000");
+        _1_extraInfo.setPhone("+981111111111");
         _1_extraInfo.setBirthDate(Date.valueOf("1000-01-01"));
         _1_extraInfo.setAddress(_1_address);
         UserDto _1_admin = new UserDto();
