@@ -1,0 +1,218 @@
+blog
+
+{
+  "id": 0,
+  "discriminator": "discriminator_b940283a25b2",
+  "title": "title_279ef62d6516",
+  "description": "description_739381c7dafb",
+  "important": false,
+  "metaKeyword": "metaKeyword_f7506d08ae35",
+  "metaDescription": "metaDescription_b89d3cd1711b",
+  "registerDate": "2023-12-22 04:30:46",
+  "contentFiles": [
+    {
+      "url": "url_fae5d5474a15",
+      "priority": 0,
+      "id": 0,
+      "registerDate": "2023-12-22 04:30:46"
+    }
+  ]
+}
+
+course
+
+{
+  "id": 0,
+  "discriminator": "discriminator_30b3d058a7cb",
+  "title": "title_87dc4f767295",
+  "description": "description_c3ec91cfd611",
+  "important": false,
+  "metaKeyword": "metaKeyword_95d40ee7e323",
+  "metaDescription": "metaDescription_6c411b40fe9e",
+  "registerDate": "2023-12-22 04:31:00",
+  "contentFiles": [
+    {
+      "url": "url_5870f1511aae",
+      "priority": 0,
+      "id": 0,
+      "registerDate": "2023-12-22 04:31:00"
+    }
+  ]
+}
+
+faq 
+
+{
+  "id": 0,
+  "question": "question_2f5197b22352",
+  "answer": "answer_03ab1b12c2ee"
+}
+
+file
+
+{
+  "id": 0,
+  "discriminator": "discriminator_301b46c9d069",
+  "url": "url_7ead755fdf6c",
+  "priority": 0
+}
+
+gallery
+
+{
+  "id": 0,
+  "title": "title_a1d9ce1fb8e0",
+  "file": {
+    "discriminator": "discriminator_c888e05c69b9",
+    "url": "url_c9b68832194d",
+    "id": 0,
+    "registerDate": "2023-12-22 04:31:34"
+  },
+  "registerDate": "2023-12-22 04:31:34"
+}
+
+info
+
+{
+  "id": 0,
+  "icon": "icon_8f83ac55404c",
+  "title": "title_ff3037ddbc57",
+  "text": "text_12563ded74ba",
+  "discriminator": "discriminator_c6270969f242",
+  "files": [
+    {
+      "discriminator": "discriminator_31c3775d18f8",
+      "url": "url_46a127fc174b",
+      "id": 0,
+      "registerDate": "2023-12-22 04:31:40"
+    }
+  ]
+}
+
+login
+
+{
+  "username": "username_159f8bf2e91b",
+  "password": "password_e9e068a4ffc4",
+  "role": "ADMIN"
+}
+
+logo
+
+{
+  "id": 0,
+  "url": "url_c711eb4c7b3a"
+}
+
+news
+
+{
+  "id": 0,
+  "discriminator": "discriminator_30fb569a2da1",
+  "title": "title_ae9e7343fd66",
+  "description": "description_a391b4465f54",
+  "important": false,
+  "metaKeyword": "metaKeyword_afc3974b80cf",
+  "metaDescription": "metaDescription_898afc2c8f78",
+  "registerDate": "2023-12-22 04:32:34",
+  "contentFiles": [
+    {
+      "url": "url_176598e37a8f",
+      "priority": 0,
+      "id": 0,
+      "registerDate": "2023-12-22 04:32:34"
+    }
+  ]
+}
+
+partner
+
+{
+  "id": 0,
+  "discriminator": "discriminator_e8357b7a445a",
+  "title": "title_795237a95180",
+  "contentFiles": [
+    {
+      "url": "url_c1b5ac3cb3e3",
+      "priority": 0,
+      "id": 0,
+      "registerDate": "2023-12-22 04:32:42"
+    }
+  ]
+}
+
+payslip
+
+{
+  "id": 0,
+  "date": "2023-12-22 04:32:55",
+  "url": "url_95a1d6bd56c8",
+  "user": {
+    "username": "username_5531030d594a",
+    "password": "password_f1b50f1d05bb",
+    "nationalCode": "nationalCode_c4c8ce6bb586",
+    "role": "ADMIN",
+    "enabled": false,
+    "extraInfo": {
+      "firstname": "firstname_3289ee5b3691",
+      "lastname": "lastname_15b13437db08",
+      "birthDate": "2023-12-22 04:32:55",
+      "phone": "phone_0d45f128e40f",
+      "address": {
+        "city": "city_b915a7d01f9d",
+        "location": "location_531d93baa3ac",
+        "postalCode": "postalCode_d06b3d308517",
+        "id": 0,
+        "registerDate": "2023-12-22 04:32:55"
+      },
+      "id": 0,
+      "registerDate": "2023-12-22 04:32:55"
+    },
+    "id": 0,
+    "registerDate": "2023-12-22 04:32:55"
+  }
+}
+
+seo
+
+{
+  "id": 0,
+  "title": "title_cccc388030b6",
+  "description": "description_90c65253a590",
+  "metaKeyword": "metaKeyword_d90533c0eb75",
+  "metaDescription": "metaDescription_869f8ca9e787"
+}
+
+service
+
+{
+  "id": 0,
+  "title": "title_4d68e28804ac",
+  "description": "description_50eb2c48ac97",
+  "registerDate": "2023-12-22 04:33:18"
+}
+
+user
+
+{
+  "id": 0,
+  "username": "username_c361d89479be",
+  "password": "password_30f6d561bcc4",
+  "nationalCode": "nationalCode_d2c1d1a012f0",
+  "role": "ADMIN",
+  "extraInfo": {
+    "firstname": "firstname_00a8c85b25c3",
+    "lastname": "lastname_de54f108ba2c",
+    "birthDate": "2023-12-22 04:33:26",
+    "phone": "phone_3a823240ca76",
+    "address": {
+      "city": "city_cb247b0afae0",
+      "location": "location_bbd0b61ef57b",
+      "postalCode": "postalCode_1f36a2b85c88",
+      "id": 0,
+      "registerDate": "2023-12-22 04:33:26"
+    },
+    "id": 0,
+    "registerDate": "2023-12-22 04:33:26"
+  }
+}

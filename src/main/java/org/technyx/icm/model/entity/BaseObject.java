@@ -27,7 +27,7 @@ public class BaseObject {
 
     @Column(name = "c_register_date")
     @CreationTimestamp
-    private Timestamp registerDate = Timestamp.valueOf(LocalDateTime.now());
+    private Timestamp registerDate;
 
     @Override
     public String toString() {

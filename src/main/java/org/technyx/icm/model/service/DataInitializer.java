@@ -47,13 +47,13 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        createBaseBlog();
-        createBaseNews();
-        createBaseAbout();
         createDataTypes();
         createBaseUsers();
-        createBaseContact();
-        createBaseFaq();
+//        createBaseBlog();
+//        createBaseNews();
+//        createBaseAbout();
+//        createBaseContact();
+//        createBaseFaq();
     }
 
     private void createBaseAbout() {
