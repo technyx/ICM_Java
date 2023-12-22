@@ -20,5 +20,7 @@ public class Gallery extends BaseObject {
     @OneToOne(cascade = CascadeType.ALL
             , fetch = FetchType.EAGER
             , orphanRemoval = true)
+    @JoinColumn(name = "fk_file"
+            , referencedColumnName = "c_id")
     private File file;
 }
