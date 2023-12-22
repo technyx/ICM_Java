@@ -1,13 +1,11 @@
 package org.technyx.icm.controller;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.technyx.icm.model.entity.DataType;
 import org.technyx.icm.model.service.interfaces.DataTypeService;
 
+import javax.xml.crypto.Data;
 import java.util.List;
 
 @RestController
@@ -20,8 +18,24 @@ public class DataTypeController {
         this.service = service;
     }
 
+    @PostMapping
+    public ResponseEntity<DataType> save(DataType model) {
+        return ResponseEntity.ok().body(service.save(model));
+    }
+
+    @PutMapping
+    public ResponseEntity<DataType> update(long id, DataType model) {
+        return ResponseEntity.ok().body(service.update(id, model));
+    }
+
+    @DeleteMapping
+    public ResponseEntity<DataType> delete(long id) {
+        service.delete(id);
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/{discriminator}")
-    public ResponseEntity<List<DataType>> showDataTypeByDiscriminator(@PathVariable String  discriminator) {
+    public ResponseEntity<List<DataType>> showDataTypeByDiscriminator(@PathVariable String discriminator) {
         return ResponseEntity.ok().body(service.findByDiscriminator(discriminator));
     }
 }

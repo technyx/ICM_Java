@@ -6,7 +6,11 @@ import java.util.List;
 
 public interface DataTypeService {
 
-    DataType save(DataType dataType);
+    DataType save(DataType model);
+
+    DataType update(long id, DataType model);
+
+    void delete(long id);
 
     List<DataType> findByDiscriminator(String discriminator);
 }

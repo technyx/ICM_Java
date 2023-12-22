@@ -17,8 +17,19 @@ public class DataTypeServiceImpl implements DataTypeService {
     }
 
     @Override
-    public DataType save(DataType dataType) {
-        return repository.save(dataType);
+    public DataType save(DataType model) {
+        return repository.save(model);
+    }
+
+    @Override
+    public DataType update(long id, DataType model) {
+        model.setId(id);
+        return repository.save(model);
+    }
+
+    @Override
+    public void delete(long id) {
+        repository.deleteById(id);
     }
 
     @Override
