@@ -2,42 +2,28 @@ blog
 
 {
   "id": 0,
-  "discriminator": "discriminator_b940283a25b2",
-  "title": "title_279ef62d6516",
-  "description": "description_739381c7dafb",
+  "discriminator": "discriminator_96d482d7440f",
+  "title": "title_e55d6f735338",
+  "description": "description_4db4e290c407",
   "important": false,
-  "metaKeyword": "metaKeyword_f7506d08ae35",
-  "metaDescription": "metaDescription_b89d3cd1711b",
-  "registerDate": "2023-12-22 04:30:46",
-  "contentFiles": [
-    {
-      "url": "url_fae5d5474a15",
-      "priority": 0,
-      "id": 0,
-      "registerDate": "2023-12-22 04:30:46"
-    }
-  ]
+  "metaKeyword": "metaKeyword_b6635d75a6f6",
+  "metaDescription": "metaDescription_c1caeee986bf",
+  "registerDate": "2023-12-22 20:34:05",
+  "coverUrl": "coverUrl_bb70d349f4a3"
 }
 
 course
 
 {
   "id": 0,
-  "discriminator": "discriminator_30b3d058a7cb",
-  "title": "title_87dc4f767295",
-  "description": "description_c3ec91cfd611",
+  "discriminator": "discriminator_e1d131213ed5",
+  "title": "title_da07466f3a4e",
+  "description": "description_1b3c96281c57",
   "important": false,
-  "metaKeyword": "metaKeyword_95d40ee7e323",
-  "metaDescription": "metaDescription_6c411b40fe9e",
-  "registerDate": "2023-12-22 04:31:00",
-  "contentFiles": [
-    {
-      "url": "url_5870f1511aae",
-      "priority": 0,
-      "id": 0,
-      "registerDate": "2023-12-22 04:31:00"
-    }
-  ]
+  "metaKeyword": "metaKeyword_6246920de4be",
+  "metaDescription": "metaDescription_3f95a78af2a5",
+  "registerDate": "2023-12-22 20:33:57",
+  "coverUrl": "coverUrl_b5ef177c36e4"
 }
 
 faq 
@@ -61,30 +47,30 @@ gallery
 
 {
   "id": 0,
-  "title": "title_a1d9ce1fb8e0",
+  "title": "title_4f61754530f4",
   "file": {
-    "discriminator": "discriminator_c888e05c69b9",
-    "url": "url_c9b68832194d",
+    "discriminator": "discriminator_8e3fc6ab6606",
+    "url": "url_7560df7acf19",
     "id": 0,
-    "registerDate": "2023-12-22 04:31:34"
+    "registerDate": "2023-12-22 20:33:41"
   },
-  "registerDate": "2023-12-22 04:31:34"
+  "registerDate": "2023-12-22 20:33:41"
 }
 
 info
 
 {
   "id": 0,
-  "icon": "icon_8f83ac55404c",
-  "title": "title_ff3037ddbc57",
-  "text": "text_12563ded74ba",
-  "discriminator": "discriminator_c6270969f242",
+  "icon": "icon_d79805643bdd",
+  "title": "title_57e809c3850f",
+  "text": "text_f818f2cacd27",
+  "discriminator": "discriminator_e308c77a748a",
   "files": [
     {
-      "discriminator": "discriminator_31c3775d18f8",
-      "url": "url_46a127fc174b",
+      "discriminator": "discriminator_4f51b59f2431",
+      "url": "url_9266f3273f96",
       "id": 0,
-      "registerDate": "2023-12-22 04:31:40"
+      "registerDate": "2023-12-22 20:33:28"
     }
   ]
 }
@@ -108,37 +94,23 @@ news
 
 {
   "id": 0,
-  "discriminator": "discriminator_30fb569a2da1",
-  "title": "title_ae9e7343fd66",
-  "description": "description_a391b4465f54",
+  "discriminator": "discriminator_68e56042eea5",
+  "title": "title_4754b631dfa1",
+  "description": "description_aa967b4d2bed",
   "important": false,
-  "metaKeyword": "metaKeyword_afc3974b80cf",
-  "metaDescription": "metaDescription_898afc2c8f78",
-  "registerDate": "2023-12-22 04:32:34",
-  "contentFiles": [
-    {
-      "url": "url_176598e37a8f",
-      "priority": 0,
-      "id": 0,
-      "registerDate": "2023-12-22 04:32:34"
-    }
-  ]
+  "metaKeyword": "metaKeyword_6219ff0083a4",
+  "metaDescription": "metaDescription_60305d6ce515",
+  "registerDate": "2023-12-22 20:33:15",
+  "coverUrl": "coverUrl_ca1a26a2d0d3"
 }
 
 partner
 
 {
   "id": 0,
-  "discriminator": "discriminator_e8357b7a445a",
-  "title": "title_795237a95180",
-  "contentFiles": [
-    {
-      "url": "url_c1b5ac3cb3e3",
-      "priority": 0,
-      "id": 0,
-      "registerDate": "2023-12-22 04:32:42"
-    }
-  ]
+  "discriminator": "discriminator_425e4ae9af0e",
+  "title": "title_339810c18ffc",
+  "coverUrl": "coverUrl_3c26b4ed058f"
 }
 
 payslip
@@ -177,42 +149,53 @@ seo
 
 {
   "id": 0,
-  "title": "title_cccc388030b6",
-  "description": "description_90c65253a590",
-  "metaKeyword": "metaKeyword_d90533c0eb75",
-  "metaDescription": "metaDescription_869f8ca9e787"
+  "title": "title_e7a411e178a1",
+  "description": "description_8536aa55b1fc",
+  "metaKeyword": "metaKeyword_79094a618dbb",
+  "metaDescription": "metaDescription_88c602101012"
 }
 
 service
 
 {
   "id": 0,
-  "title": "title_4d68e28804ac",
-  "description": "description_50eb2c48ac97",
-  "registerDate": "2023-12-22 04:33:18"
+  "icon": "icon_1a76f96c7e15",
+  "title": "title_e17bfe6aed1a",
+  "description": "description_3cc0754bded7",
+  "registerDate": "2023-12-22 20:32:38"
 }
 
 user
 
 {
   "id": 0,
-  "username": "username_c361d89479be",
-  "password": "password_30f6d561bcc4",
-  "nationalCode": "nationalCode_d2c1d1a012f0",
+  "username": "username_ef3cf048fe5f",
+  "password": "password_20c3c1278fbf",
+  "nationalCode": "nationalCode_f1115e3f3aa9",
   "role": "ADMIN",
   "extraInfo": {
-    "firstname": "firstname_00a8c85b25c3",
-    "lastname": "lastname_de54f108ba2c",
-    "birthDate": "2023-12-22 04:33:26",
-    "phone": "phone_3a823240ca76",
+    "firstname": "firstname_6e98724b1c17",
+    "lastname": "lastname_ce6603869af7",
+    "birthDate": "2023-12-22 20:32:13",
+    "phone": "phone_a624f80a6b48",
     "address": {
-      "city": "city_cb247b0afae0",
-      "location": "location_bbd0b61ef57b",
-      "postalCode": "postalCode_1f36a2b85c88",
+      "city": "city_2e266879917d",
+      "location": "location_0e76948dd160",
+      "postalCode": "postalCode_e2887fc8cc60",
       "id": 0,
-      "registerDate": "2023-12-22 04:33:26"
+      "registerDate": "2023-12-22 20:32:13"
     },
     "id": 0,
-    "registerDate": "2023-12-22 04:33:26"
+    "registerDate": "2023-12-22 20:32:13"
   }
+}
+
+data-type
+
+{
+  "id": 0,
+  "discriminator": "discriminator_b8f6a1d7e7a7",
+  "engTitle": "engTitle_9638709fd7e0",
+  "perTitle": "perTitle_626b1ff00271",
+  "priority": 0
 }
