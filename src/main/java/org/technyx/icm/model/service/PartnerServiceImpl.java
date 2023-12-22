@@ -36,9 +36,6 @@ public class PartnerServiceImpl implements PartnerService {
         Content model = mapper.map(dto, Content.class);
         validation.validateBaseInfo(model);
         Content savedPartner = repository.save(model);
-        dto.getContentFiles().forEach(contentFile ->
-                contentFile.setContent(savedPartner)
-        );
         return mapper.map(savedPartner, PartnerDto.class);
     }
 

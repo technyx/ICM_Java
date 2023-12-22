@@ -2,7 +2,6 @@ package org.technyx.icm.model.dtos;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.technyx.icm.model.entity.ContentFile;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -27,5 +26,5 @@ public class BlogDto {
 
     private Timestamp registerDate;
 
-    private List<ContentFile> contentFiles;
+    private String coverUrl;
 }

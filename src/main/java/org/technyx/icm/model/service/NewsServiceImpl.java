@@ -37,9 +37,6 @@ public class NewsServiceImpl implements NewsService {
         Content model = mapper.map(dto, Content.class);
         validation.validateBaseInfo(model);
         Content savedNews = repository.save(model);
-        dto.getContentFiles().forEach(contentFile ->
-                contentFile.setContent(savedNews)
-        );
         return mapper.map(savedNews, NewsDto.class);
     }
 

@@ -12,6 +12,8 @@ public class ServiceDto {
 
     private long id;
 
+    private String icon;
+
     private String title;
 
     private String description;

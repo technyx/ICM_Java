@@ -2,7 +2,6 @@ package org.technyx.icm.model.dtos;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.technyx.icm.model.entity.ContentFile;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -28,5 +27,5 @@ public class CourseDto {
 
     private Timestamp registerDate;
 
-    private List<ContentFile> contentFiles = new ArrayList<>();
+    private String coverUrl;
 }

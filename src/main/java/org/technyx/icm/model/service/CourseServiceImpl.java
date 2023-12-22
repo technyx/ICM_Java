@@ -36,9 +36,6 @@ public class CourseServiceImpl implements CourseService {
         Content model = mapper.map(dto, Content.class);
         validation.validateBaseInfo(model);
         Content savedCourse = repository.save(model);
-        dto.getContentFiles().forEach(contentFile ->
-                contentFile.setContent(savedCourse)
-        );
         return mapper.map(savedCourse, CourseDto.class);
     }
 

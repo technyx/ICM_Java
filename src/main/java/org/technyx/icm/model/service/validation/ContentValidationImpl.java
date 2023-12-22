@@ -23,14 +23,6 @@ public class ContentValidationImpl implements ContentValidation {
         if (!model.getDiscriminator().equals("PARTNER"))
             if (model.getDescription().isBlank())
                 throw new ContentException(ContentExceptionMessage.DESCRIPTION_IS_EMPTY.getExceptionMessage());
-        if (model.getDiscriminator().equals("PARTNER"))
-            if (model.getContentFiles().size() != 1 &&
-                    model.getContentFiles().get(0).getPriority() != 0)
-                throw new ContentException(ContentExceptionMessage.CONTENT_FILE_FOR_PARTNER_IS_ONE.getExceptionMessage());
-        else
-            if (model.getContentFiles().size() <= 1 &&
-                    model.getContentFiles().get(0).getPriority() != 0)
-                throw new ContentException(ContentExceptionMessage.CONTENT_FILE_IS_EMPTY.getExceptionMessage());
     }
 
     @Override

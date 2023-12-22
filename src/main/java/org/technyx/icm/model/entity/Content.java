@@ -26,9 +26,6 @@ public class Content extends BaseContent {
     @Column(name = "c_important")
     private boolean important;
 
-    @OneToMany(mappedBy = "content"
-            , cascade = CascadeType.ALL
-            , orphanRemoval = true
-            , fetch = FetchType.EAGER)
-    private List<ContentFile> contentFiles;
+    @Column(name = "c_cover_url")
+    private String coverUrl;
 }
