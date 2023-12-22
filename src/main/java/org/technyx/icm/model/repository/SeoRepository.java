@@ -6,6 +6,4 @@ import org.technyx.icm.model.entity.Seo;
 
 @Repository
 public interface SeoRepository extends JpaRepository<Seo, Long> {
-
-    Seo findById(long id);
 }

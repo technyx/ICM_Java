@@ -14,7 +14,11 @@ import java.util.List;
 @AllArgsConstructor
 @Entity(name = "Info")
 @Table(name = "tb_info")
-public class Info extends BaseObject{
+public class Info extends BaseObject {
+
+    @Column(name = "c_icon"
+            , columnDefinition = "TEXT")
+    private String icon;
 
     @Column(name = "c_title")
     private String title;
@@ -28,7 +32,7 @@ public class Info extends BaseObject{
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinTable(name = "m_tb_info_file"
-    , joinColumns = @JoinColumn(name = "fk_info")
-    , inverseJoinColumns = @JoinColumn(name = "fk_file"))
+            , joinColumns = @JoinColumn(name = "fk_info")
+            , inverseJoinColumns = @JoinColumn(name = "fk_file"))
     private List<File> files;
 }

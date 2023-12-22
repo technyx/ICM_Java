@@ -1,30 +1,29 @@
 package org.technyx.icm.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.technyx.icm.model.dtos.FileDto;
-import org.technyx.icm.model.service.interfaces.FileService;
+import org.technyx.icm.model.dtos.ServiceDto;
+import org.technyx.icm.model.service.interfaces.ServiceService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/file")
-public class FileController {
+@RequestMapping("/service")
+public class ServiceController {
 
-    private final FileService service;
+    private final ServiceService service;
 
-    public FileController(FileService service) {
+    public ServiceController(ServiceService service) {
         this.service = service;
     }
 
     @PostMapping
-    public ResponseEntity<FileDto> save(@RequestBody FileDto dto) {
+    public ResponseEntity<ServiceDto> save(@RequestBody ServiceDto dto) {
         return ResponseEntity.ok().body(service.save(dto));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<FileDto> update(@PathVariable long id, @RequestBody FileDto dto) {
+    public ResponseEntity<ServiceDto> update(@PathVariable long id, @RequestBody ServiceDto dto) {
         return ResponseEntity.ok().body(service.update(id, dto));
     }
 
@@ -35,7 +34,7 @@ public class FileController {
     }
 
     @GetMapping
-    public ResponseEntity<List<FileDto>> showAll() {
+    public ResponseEntity<List<ServiceDto>> showAll() {
         return ResponseEntity
                 .ok()
                 .body(service.showList());

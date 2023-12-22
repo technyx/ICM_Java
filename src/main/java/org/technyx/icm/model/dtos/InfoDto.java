@@ -13,6 +13,8 @@ public class InfoDto {
 
     private long id;
 
+    private String icon;
+
     private String title;
 
     private String text;
