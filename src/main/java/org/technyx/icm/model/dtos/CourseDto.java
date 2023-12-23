@@ -28,4 +28,6 @@ public class CourseDto {
     private Timestamp registerDate;
 
     private String coverUrl;
+
+    private boolean active;
 }

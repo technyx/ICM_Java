@@ -27,4 +27,6 @@ public class BlogDto {
     private Timestamp registerDate;
 
     private String coverUrl;
+
+    private boolean active;
 }

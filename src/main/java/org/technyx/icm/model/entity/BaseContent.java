@@ -24,4 +24,7 @@ public class BaseContent extends BaseObject {
     @Column(name = "c_meta_description"
             , columnDefinition = "TEXT")
     private String metaDescription;
+
+    @Column(name = "c_active")
+    private boolean active;
 }

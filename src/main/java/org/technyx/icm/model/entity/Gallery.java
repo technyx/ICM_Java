@@ -23,4 +23,7 @@ public class Gallery extends BaseObject {
     @JoinColumn(name = "fk_file"
             , referencedColumnName = "c_id")
     private File file;
+
+    @Column(name = "c_active")
+    private boolean active;
 }

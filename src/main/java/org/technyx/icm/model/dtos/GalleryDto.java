@@ -17,4 +17,6 @@ public class GalleryDto {
     private File file;
 
     private Timestamp registerDate;
+
+    private boolean active;
 }

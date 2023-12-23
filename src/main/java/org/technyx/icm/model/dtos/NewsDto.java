@@ -28,4 +28,6 @@ public class NewsDto {
     private Timestamp registerDate;
 
     private String coverUrl;
+
+    private boolean active;
 }
