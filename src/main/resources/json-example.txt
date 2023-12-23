@@ -10,6 +10,7 @@ blog
   "metaDescription": "metaDescription_c1caeee986bf",
   "registerDate": "2023-12-22 20:34:05",
   "coverUrl": "coverUrl_bb70d349f4a3"
+  "active": false
 }
 
 course
@@ -24,6 +25,7 @@ course
   "metaDescription": "metaDescription_3f95a78af2a5",
   "registerDate": "2023-12-22 20:33:57",
   "coverUrl": "coverUrl_b5ef177c36e4"
+  "active": false
 }
 
 faq 
@@ -55,6 +57,7 @@ gallery
     "registerDate": "2023-12-22 20:33:41"
   },
   "registerDate": "2023-12-22 20:33:41"
+  "active": false
 }
 
 info
@@ -94,14 +97,15 @@ news
 
 {
   "id": 0,
-  "discriminator": "discriminator_68e56042eea5",
-  "title": "title_4754b631dfa1",
-  "description": "description_aa967b4d2bed",
+  "discriminator": "discriminator_6346aef2c18b",
+  "title": "title_3f984a86c7a0",
+  "description": "description_aaa4400bfa78",
   "important": false,
-  "metaKeyword": "metaKeyword_6219ff0083a4",
-  "metaDescription": "metaDescription_60305d6ce515",
-  "registerDate": "2023-12-22 20:33:15",
-  "coverUrl": "coverUrl_ca1a26a2d0d3"
+  "metaKeyword": "metaKeyword_b9610e29d155",
+  "metaDescription": "metaDescription_fe391ec3e70f",
+  "registerDate": "2023-12-24 00:32:32",
+  "coverUrl": "coverUrl_e4e41f8483cf",
+  "active": false
 }
 
 partner
@@ -149,10 +153,11 @@ seo
 
 {
   "id": 0,
-  "title": "title_e7a411e178a1",
-  "description": "description_8536aa55b1fc",
-  "metaKeyword": "metaKeyword_79094a618dbb",
-  "metaDescription": "metaDescription_88c602101012"
+  "title": "title_4b4ed116e8d4",
+  "description": "description_0b4aa78a7674",
+  "metaKeyword": "metaKeyword_f67b570c067c",
+  "metaDescription": "metaDescription_ee18e7876b96",
+  "slug": "slug_210b3f59df8c"
 }
 
 service
