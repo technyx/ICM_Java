@@ -78,6 +78,10 @@ public class ProjectSecurityConfig {
                                 .requestMatchers(HttpMethod.PUT, "/service/**").authenticated()
                                 .requestMatchers(HttpMethod.DELETE, "/service/**").authenticated()
                                 .requestMatchers(HttpMethod.GET, "/service/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/seo/**").authenticated()
+                                .requestMatchers(HttpMethod.PUT, "/seo/**").authenticated()
+                                .requestMatchers(HttpMethod.DELETE, "/seo/**").authenticated()
+                                .requestMatchers(HttpMethod.GET, "/seo/**").permitAll()
                         )
                 .httpBasic(withDefaults())
                 .build();
