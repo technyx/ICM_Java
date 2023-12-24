@@ -30,4 +30,6 @@ public class NewsDto {
     private String coverUrl;
 
     private boolean active;
+
+    private String slug;
 }

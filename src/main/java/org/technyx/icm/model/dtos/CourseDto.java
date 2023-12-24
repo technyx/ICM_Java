@@ -30,4 +30,6 @@ public class CourseDto {
     private String coverUrl;
 
     private boolean active;
+
+    private String slug;
 }

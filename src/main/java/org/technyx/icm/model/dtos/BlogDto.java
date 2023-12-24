@@ -29,4 +29,6 @@ public class BlogDto {
     private String coverUrl;
 
     private boolean active;
+
+    private String slug;
 }

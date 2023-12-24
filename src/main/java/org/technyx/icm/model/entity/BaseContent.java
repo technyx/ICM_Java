@@ -27,4 +27,7 @@ public class BaseContent extends BaseObject {
 
     @Column(name = "c_active")
     private boolean active;
+
+    @Column(name = "c_slug")
+    private String slug;
 }
