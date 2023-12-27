@@ -3,6 +3,7 @@ package org.technyx.icm.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.technyx.icm.model.dtos.FaqDto;
+import org.technyx.icm.model.dtos.FileDto;
 import org.technyx.icm.model.service.interfaces.FaqService;
 
 import java.util.List;
@@ -31,6 +32,13 @@ public class FaqController {
     public ResponseEntity<Void> delete(@PathVariable long id) {
         service.delete(id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<FaqDto> showSingle(@PathVariable long id) {
+        return ResponseEntity
+                .ok()
+                .body(service.showSingle(id));
     }
 
     @GetMapping

@@ -34,6 +34,13 @@ public class GalleryController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<GalleryDto> showSingle(@PathVariable long id) {
+        return ResponseEntity
+                .ok()
+                .body(service.showSingle(id));
+    }
+
     @GetMapping
     public ResponseEntity<List<GalleryDto>> showAll() {
         return ResponseEntity

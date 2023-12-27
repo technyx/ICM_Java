@@ -34,6 +34,13 @@ public class FileController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<FileDto> showSingle(@PathVariable long id) {
+        return ResponseEntity
+                .ok()
+                .body(service.showSingle(id));
+    }
+
     @GetMapping
     public ResponseEntity<List<FileDto>> showAll() {
         return ResponseEntity

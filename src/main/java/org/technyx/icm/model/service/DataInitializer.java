@@ -27,7 +27,7 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        createBase();
+//        createBase();
     }
 
     private void createBase() {

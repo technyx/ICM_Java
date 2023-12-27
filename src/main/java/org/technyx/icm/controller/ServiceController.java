@@ -2,6 +2,7 @@ package org.technyx.icm.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.technyx.icm.model.dtos.FileDto;
 import org.technyx.icm.model.dtos.ServiceDto;
 import org.technyx.icm.model.service.interfaces.ServiceService;
 
@@ -31,6 +32,13 @@ public class ServiceController {
     public ResponseEntity<Void> delete(@PathVariable long id) {
         service.delete(id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ServiceDto> showSingle(@PathVariable long id) {
+        return ResponseEntity
+                .ok()
+                .body(service.showSingle(id));
     }
 
     @GetMapping
