@@ -1,8 +1,6 @@
 package org.technyx.icm.controller;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PostAuthorize;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.technyx.icm.model.dtos.InfoDto;
 import org.technyx.icm.model.service.interfaces.InfoService;

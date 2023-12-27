@@ -2,7 +2,6 @@ package org.technyx.icm.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.technyx.icm.model.dtos.FileDto;
 import org.technyx.icm.model.dtos.GalleryDto;
 import org.technyx.icm.model.service.interfaces.GalleryService;
 

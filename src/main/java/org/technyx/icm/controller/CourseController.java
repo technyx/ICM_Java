@@ -3,7 +3,6 @@ package org.technyx.icm.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.technyx.icm.model.dtos.CourseDto;
-import org.technyx.icm.model.dtos.PartnerDto;
 import org.technyx.icm.model.service.interfaces.CourseService;
 
 import java.util.List;

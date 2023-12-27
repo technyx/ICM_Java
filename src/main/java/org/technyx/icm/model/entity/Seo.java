@@ -15,11 +15,4 @@ import lombok.Setter;
 @Entity(name = "Seo")
 @Table(name = "tb_seo")
 public class Seo extends BaseContent{
-
-    @Column(name = "c_description"
-            , columnDefinition = "TEXT")
-    private String description;
-
-    @Column(name = "c_slug")
-    private String slug;
 }

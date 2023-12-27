@@ -11,11 +11,7 @@ public class SeoDto {
 
     private String title;
 
-    private String description;
-
     private String metaKeyword;
 
     private String metaDescription;
-
-    private String slug;
 }
