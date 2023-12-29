@@ -29,8 +29,8 @@ public class InfoValidationImpl implements InfoValidation {
                 if (model.getFiles().size() != 2)
                     throw new InfoException(InfoExceptionMessage.INFO_FILE_MUST_BE_AT_LEAST_2.getExceptionMessage());
             if (model.getDiscriminator().equals("CONTACT"))
-                if (model.getFiles().size() != 1)
-                    throw new InfoException(InfoExceptionMessage.INFO_FILE_MUST_BE_AT_LEAST_1.getExceptionMessage());
+                if (!model.getFiles().isEmpty())
+                    throw new InfoException(InfoExceptionMessage.INFO_FILE_MUST_BE_AT_EMPTY.getExceptionMessage());
         }
     }
 

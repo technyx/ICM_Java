@@ -8,7 +8,7 @@ public enum InfoExceptionMessage {
     INFO_TITLE_MUST_BE_AT_LEAST_8_CHAR("طول عنوان درباره باید حداقل 8 کاراکتر باشد."),
     INFO_TEXT_MUST_BE_AT_LEAST_8_CHAR("طول متن درباره باید حداقل 8 کاراکتر باشد."),
     INFO_FILE_MUST_BE_AT_LEAST_2("حداقل دو فایل باید با درباره باشد."),
-    INFO_FILE_MUST_BE_AT_LEAST_1("حداقل یک فایل باید با درباره باشد."),
+    INFO_FILE_MUST_BE_AT_EMPTY("حداقل فایل باید با درباره باشد."),
     INFO_DISCRIMINATOR_IS_BLANK("حداقل دو فایل باید با درباره باشد."),
     ;
 

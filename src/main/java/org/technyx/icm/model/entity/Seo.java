@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @Entity(name = "Seo")
 @Table(name = "tb_seo")
 public class Seo extends BaseContent{

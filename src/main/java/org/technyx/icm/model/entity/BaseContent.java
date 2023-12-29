@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 
 @Getter
 @Setter
@@ -26,6 +27,7 @@ public class BaseContent extends BaseObject {
     private String metaDescription;
 
     @Column(name = "c_active")
+    @ColumnDefault("true")
     private boolean active;
 
     @Column(name = "c_slug")
