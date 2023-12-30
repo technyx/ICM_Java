@@ -71,7 +71,7 @@ public class PaySlipServiceImpl implements PaySlipService {
 
     @Override
     public List<PaySlipDto> showList() {
-        List<PaySlip> paySlipList = repository.findAll();
+        List<PaySlip> paySlipList = repository.findAllOrderByDate();
         List<PaySlipDto> paySlipDtos = new ArrayList<>();
         paySlipList.forEach(paySlip -> paySlipDtos
                 .add(mapper

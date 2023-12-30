@@ -47,7 +47,7 @@ public class DataInitializer implements CommandLineRunner {
         _1_extraInfo.setPhone("+981111111111");
         _1_extraInfo.setBirthDate(Date.valueOf("1000-01-01"));
         _1_extraInfo.setAddress(_1_address);
-        UserDto _1_admin = new UserDto();
+        RegisterDto _1_admin = new RegisterDto();
         _1_admin.setUsername("develop1");
         _1_admin.setPassword("develop1");
         _1_admin.setNationalCode("0000000000");

@@ -3,6 +3,7 @@ package org.technyx.icm.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.technyx.icm.model.dtos.UserDto;
+import org.technyx.icm.model.dtos.UserUpdateDto;
 import org.technyx.icm.model.service.interfaces.UserService;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDto> update(@PathVariable long id,@RequestBody UserDto dto) {
+    public ResponseEntity<UserDto> update(@PathVariable long id,@RequestBody UserUpdateDto dto) {
         return ResponseEntity.ok(service.update(id, dto));
     }
 

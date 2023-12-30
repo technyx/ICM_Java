@@ -17,4 +17,11 @@ public interface PaySlipRepository extends JpaRepository<PaySlip, Long> {
             value = "select * from tb_pay_slip where fk_user = ?1"
     )
     List<PaySlip> findAllByUser(String username);
+
+
+    @Query(
+            nativeQuery = true,
+            value = "select * from tb_pay_slip order by c_date desc"
+    )
+    List<PaySlip> findAllOrderByDate();
 }

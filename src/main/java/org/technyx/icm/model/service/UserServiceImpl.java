@@ -31,11 +31,11 @@ public class  UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto update(long id, UserDto dto) {
+    public UserDto update(long id, UserUpdateDto dto) {
         dto.setId(id);
         User model = mapper.map(dto, User.class);
         validation.validateUpdate(model);
-        dto.setPassword(ProjectSecurityConfig.passwordEncoder().encode(dto.getPassword()));
+        model.setPassword(ProjectSecurityConfig.passwordEncoder().encode(dto.getPassword()));
         User savedUser = repository.save(model);
         return mapper.map(savedUser, UserDto.class);
     }
