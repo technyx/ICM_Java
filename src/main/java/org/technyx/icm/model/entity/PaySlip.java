@@ -23,6 +23,6 @@ public class PaySlip extends BaseObject {
     private Date date;
 
     @ManyToOne
-    @JoinColumn(name = "fk_user", referencedColumnName = "c_username")
+    @JoinColumn(name = "fk_user", referencedColumnName = "c_id")
     private User user;
 }

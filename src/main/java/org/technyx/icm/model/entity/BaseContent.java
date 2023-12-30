@@ -18,6 +18,10 @@ public class BaseContent extends BaseObject {
     @Column(name = "c_title")
     private String title;
 
+    @Column(name = "c_description"
+            , columnDefinition = "TEXT")
+    private String description;
+
     @Column(name = "c_meta_keyword"
             , columnDefinition = "TEXT")
     private String metaKeyword;

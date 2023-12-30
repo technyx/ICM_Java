@@ -19,9 +19,6 @@ public class Content extends BaseContent {
     @Column(name = "fk_discriminator")
     private String discriminator;
 
-    @Column(name = "c_description"
-            , columnDefinition = "TEXT")
-    private String description;
 
     @Column(name = "c_important")
     private boolean important;

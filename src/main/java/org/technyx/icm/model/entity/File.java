@@ -21,7 +21,6 @@ public class File extends BaseObject {
     private String discriminator;
 
     @Column(name = "c_url"
-            , nullable = false
-            , unique = true)
+            , nullable = false)
     private String url;
 }

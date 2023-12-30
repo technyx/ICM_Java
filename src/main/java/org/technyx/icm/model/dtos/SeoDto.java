@@ -14,4 +14,6 @@ public class SeoDto {
     private String metaKeyword;
 
     private String metaDescription;
+
+    private String discriminator;
 }
