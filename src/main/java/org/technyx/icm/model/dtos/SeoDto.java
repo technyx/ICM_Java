@@ -15,5 +15,5 @@ public class SeoDto {
 
     private String metaDescription;
 
-    private String discriminator;
+    private String description;
 }
