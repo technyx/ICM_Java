@@ -60,8 +60,8 @@ public class PaySlipServiceImpl implements PaySlipService {
     }
 
     @Override
-    public List<PaySlipDto> showListByUser(String username) {
-        List<PaySlip> paySlipList = repository.findAllByUser(username);
+    public List<PaySlipDto> showListByUser(long userId) {
+        List<PaySlip> paySlipList = repository.findAllByUser(userId);
         List<PaySlipDto> paySlipDtos = new ArrayList<>();
         paySlipList.forEach(paySlip -> paySlipDtos
                 .add(mapper

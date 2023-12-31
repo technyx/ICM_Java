@@ -16,7 +16,7 @@ public interface PaySlipRepository extends JpaRepository<PaySlip, Long> {
             nativeQuery = true,
             value = "select * from tb_pay_slip where fk_user = ?1"
     )
-    List<PaySlip> findAllByUser(String username);
+    List<PaySlip> findAllByUser(long userId);
 
 
     @Query(
