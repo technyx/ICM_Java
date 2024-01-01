@@ -1,8 +1,5 @@
 package org.technyx.icm.controller;
 
-import lombok.Getter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.technyx.icm.model.dtos.PaySlipDto;
@@ -37,8 +34,13 @@ public class PaySlipController {
     }
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<PaySlipDto>> showListByUser(@PathVariable long userId) {
-        return ResponseEntity.ok().body(service.showListByUser(userId));
+    public ResponseEntity<List<PaySlipDto>> showListByUserId(@PathVariable long userId) {
+        return ResponseEntity.ok().body(service.showListByUserId(userId));
+    }
+
+    @GetMapping("/user/{username}")
+    public ResponseEntity<List<PaySlipDto>> showListByUserId(@PathVariable String username) {
+        return ResponseEntity.ok().body(service.showListByUserUsername(username));
     }
 
     @GetMapping("/{id}")
