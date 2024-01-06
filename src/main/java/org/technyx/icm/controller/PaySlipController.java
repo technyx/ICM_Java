@@ -33,12 +33,12 @@ public class PaySlipController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/user/{userId}")
+    @GetMapping("/user_id/{userId}")
     public ResponseEntity<List<PaySlipDto>> showListByUserId(@PathVariable long userId) {
         return ResponseEntity.ok().body(service.showListByUserId(userId));
     }
 
-    @GetMapping("/user/{username}")
+    @GetMapping("/user_username/{username}")
     public ResponseEntity<List<PaySlipDto>> showListByUserId(@PathVariable String username) {
         return ResponseEntity.ok().body(service.showListByUserUsername(username));
     }
